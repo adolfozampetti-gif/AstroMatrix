@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Scopri il tuo Segno Zodiacale</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial, sans-serif;
+background:linear-gradient(180deg,#140028,#2f005c,#10001d);
+color:white;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.container{
+width:100%;
+max-width:450px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(10px);
+border-radius:20px;
+padding:25px;
+text-align:center;
+box-shadow:0 0 25px rgba(255,215,0,0.3);
+}
+
+h1{
+color:#ffd700;
+margin-bottom:15px;
+}
+
+.sub{
+margin-bottom:20px;
+opacity:0.8;
+}
+
+input{
+width:100%;
+padding:12px;
+border:none;
+border-radius:10px;
+font-size:16px;
+margin-bottom:15px;
+}
+
+button{
+background:#ffd700;
+color:#000;
+border:none;
+padding:12px 20px;
+font-size:16px;
+font-weight:bold;
+border-radius:10px;
+cursor:pointer;
+}
+
+button:hover{
+background:#ffea71;
+}
+
+#risultato{
+margin-top:25px;
+text-align:left;
+}
+
+.card{
+background:rgba(255,255,255,0.1);
+padding:15px;
+border-radius:15px;
+}
+
+.card h2{
+color:#ffd700;
+margin-bottom:10px;
+text-align:center;
+}
+
+.info{
+margin:8px 0;
+}
+
+footer{
+margin-top:20px;
+font-size:12px;
+opacity:0.7;
+text-align:center;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🔮 Segno Zodiacale</h1>
+
+<p class="sub">
+Inserisci la tua data di nascita
+</p>
+
+<input type="date" id="data">
+
+<button onclick="calcolaSegno()">
+Scopri il tuo segno
+</button>
+
+<div id="risultato"></div>
+
+<footer>
+Creato da Adolfo ✨
+</footer>
+
+</div>
+
+<script>
+
+const segni = {
+
+"Ariete":{
+emoji:"♈",
+descrizione:"Coraggioso, impulsivo e pieno di energia.",
+colore:"Rosso",
+numero:"9",
+compatibile:"Leone e Sagittario"
+},
+
+"Toro":{
+emoji:"♉",
+descrizione:"Affidabile, concreto e amante della stabilità.",
+colore:"Verde",
+numero:"6",
+compatibile:"Vergine e Capricorno"
+},
+
+"Gemelli":{
+emoji:"♊",
+descrizione:"Curioso, intelligente e comunicativo.",
+colore:"Giallo",
+numero:"5",
+compatibile:"Bilancia e Acquario"
+},
+
+"Cancro":{
+emoji:"♋",
+descrizione:"Sensibile, protettivo e intuitivo.",
+colore:"Argento",
+numero:"2",
+compatibile:"Scorpione e Pesci"
+},
+
+"Leone":{
+emoji:"♌",
+descrizione:"Carismatico, generoso e leader naturale.",
+colore:"Oro",
+numero:"1",
+compatibile:"Ariete e Sagittario"
+},
+
+"Vergine":{
+emoji:"♍",
+descrizione:"Precisa, pratica e organizzata.",
+colore:"Beige",
+numero:"5",
+compatibile:"Toro e Capricorno"
+},
+
+"Bilancia":{
+emoji:"♎",
+descrizione:"Equilibrata, elegante e diplomatica.",
+colore:"Rosa",
+numero:"6",
+compatibile:"Gemelli e Acquario"
+},
+
+"Scorpione":{
+emoji:"♏",
+descrizione:"Intenso, passionale e determinato.",
+colore:"Bordeaux",
+numero:"8",
+compatibile:"Cancro e Pesci"
+},
+
+"Sagittario":{
+emoji:"♐",
+descrizione:"Ottimista, avventuroso e libero.",
+colore:"Viola",
+numero:"3",
+compatibile:"Ariete e Leone"
+},
+
+"Capricorno":{
+emoji:"♑",
+descrizione:"Ambizioso, disciplinato e responsabile.",
+colore:"Marrone",
+numero:"8",
+compatibile:"Toro e Vergine"
+},
+
+"Acquario":{
+emoji:"♒",
+descrizione:"Originale, indipendente e innovativo.",
+colore:"Blu",
+numero:"4",
+compatibile:"Gemelli e Bilancia"
+},
+
+"Pesci":{
+emoji:"♓",
+descrizione:"Empatico, creativo e sognatore.",
+colore:"Turchese",
+numero:"7",
+compatibile:"Cancro e Scorpione"
+}
+};
+
+function trovaSegno(g,m){
+
+if((m==3&&g>=21)||(m==4&&g<=19)) return "Ariete";
+if((m==4&&g>=20)||(m==5&&g<=20)) return "Toro";
+if((m==5&&g>=21)||(m==6&&g<=20)) return "Gemelli";
+if((m==6&&g>=21)||(m==7&&g<=22)) return "Cancro";
+if((m==7&&g>=23)||(m==8&&g<=22)) return "Leone";
+if((m==8&&g>=23)||(m==9&&g<=22)) return "Vergine";
+if((m==9&&g>=23)||(m==10&&g<=22)) return "Bilancia";
+if((m==10&&g>=23)||(m==11&&g<=21)) return "Scorpione";
+if((m==11&&g>=22)||(m==12&&g<=21)) return "Sagittario";
+if((m==12&&g>=22)||(m==1&&g<=19)) return "Capricorno";
+if((m==1&&g>=20)||(m==2&&g<=18)) return "Acquario";
+
+return "Pesci";
+}
+
+function calcolaSegno(){
+
+let valore=document.getElementById("data").value;
+
+if(!valore){
+alert("Inserisci una data");
+return;
+}
+
+let data=new Date(valore);
+
+let giorno=data.getDate();
+let mese=data.getMonth()+1;
+
+let segno=trovaSegno(giorno,mese);
+
+let info=segni[segno];
+
+document.getElementById("risultato").innerHTML=`
+
+<div class="card">
+
+<h2>${info.emoji} ${segno}</h2>
+
+<div class="info"><strong>Personalità:</strong><br>
+${info.descrizione}
+</div>
+
+<div class="info">
+🎨 <strong>Colore fortunato:</strong> ${info.colore}
+</div>
+
+<div class="info">
+🔢 <strong>Numero fortunato:</strong> ${info.numero}
+</div>
+
+<div class="info">
+💕 <strong>Compatibilità:</strong> ${info.compatibile}
+</div>
+
+</div>
+
+`;
+
+}
+
+</script>
+
+</body>
+</html>
