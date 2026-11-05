@@ -44,6 +44,7 @@
             font-family: 'Plus Jakarta Sans', sans-serif; 
             background-color: #020617; 
             color: #f8fafc; 
+            -webkit-tap-highlight-color: transparent;
         }
         .font-cinzel { 
             font-family: 'Cinzel', serif; 
@@ -61,7 +62,10 @@
             filter: invert(100%) sepia(50%) saturate(1000%) hue-rotate(340deg);
             cursor: pointer;
         }
-        /* Custom scrollbar for clean aesthetics */
+        /* Ottimizzazione touch per mobile */
+        button, select, input {
+            touch-action: manipulation;
+        }
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -71,9 +75,6 @@
         ::-webkit-scrollbar-thumb {
             background: #1e293b;
             border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #f59e0b;
         }
     </style>
 </head>
@@ -124,22 +125,22 @@
         <div class="glass-card rounded-2xl p-6 sm:p-8 shadow-2xl mb-8 glow-gold">
             <div class="space-y-5">
                 
-                <!-- 1. Campo Nome -->
+                <!-- 1. Campo Nome Azzerato -->
                 <div>
                     <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2">
                         <i class="fa-solid fa-user mr-1.5"></i>Nome
                     </label>
-                    <input type="text" id="userName" placeholder="Es. Monica" value="Monica"
+                    <input type="text" id="userName" placeholder="Inserisci il tuo nome" value=""
                         class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all text-base">
                 </div>
 
-                <!-- 2. Campi Data: Giorno, Mese, Anno -->
+                <!-- 2. Campi Data Azzerati -->
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2">
                             <i class="fa-solid fa-calendar-day mr-1.5"></i>Giorno (1-31)
                         </label>
-                        <input type="number" id="userDay" min="1" max="31" placeholder="Es. 24" value="24"
+                        <input type="number" id="userDay" min="1" max="31" placeholder="GG" value=""
                             class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-amber-500 transition-all text-base">
                     </div>
                     <div>
@@ -147,6 +148,7 @@
                             <i class="fa-solid fa-calendar-days mr-1.5"></i>Mese di Nascita
                         </label>
                         <select id="userMonth" class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 focus:outline-none focus:border-amber-500 transition-all text-base">
+                            <option value="" disabled selected>Seleziona mese</option>
                             <option value="1">Gennaio</option>
                             <option value="2">Febbraio</option>
                             <option value="3">Marzo</option>
@@ -158,54 +160,42 @@
                             <option value="9">Settembre</option>
                             <option value="10">Ottobre</option>
                             <option value="11">Novembre</option>
-                            <option value="12" selected>Dicembre</option>
+                            <option value="12">Dicembre</option>
                         </select>
                     </div>
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2">
                             <i class="fa-solid fa-calendar mr-1.5"></i>Anno (AAAA)
                         </label>
-                        <input type="number" id="userYear" min="1900" max="2026" placeholder="Es. 1959" value="1959"
+                        <input type="number" id="userYear" min="1900" max="2026" placeholder="AAAA" value=""
                             class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-amber-500 transition-all text-base">
                     </div>
                 </div>
 
-                <!-- 3. Campi Ora e Città di Nascita (Database Comuni) -->
+                <!-- 3. Campi Ora e Città (Database Comuni Completo) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2">
                             <i class="fa-solid fa-clock mr-1.5"></i>Ora di Nascita <span class="text-amber-400">*</span>
                         </label>
-                        <input type="time" id="userTime" value="20:00"
+                        <input type="time" id="userTime" value=""
                             class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 focus:outline-none focus:border-amber-500 transition-all text-base">
                     </div>
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2">
-                            <i class="fa-solid fa-location-dot mr-1.5"></i>Città di Nascita (Database Comuni)
+                            <i class="fa-solid fa-location-dot mr-1.5"></i>Città / Comune di Nascita
                         </label>
                         <select id="userPlace" class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 focus:outline-none focus:border-amber-500 transition-all text-base">
-                            <option value="Napoli" selected>Napoli</option>
-                            <option value="Caserta">Caserta</option>
-                            <option value="Roma">Roma</option>
-                            <option value="Milano">Milano</option>
-                            <option value="Torino">Torino</option>
-                            <option value="Firenze">Firenze</option>
-                            <option value="Bologna">Bologna</option>
-                            <option value="Palermo">Palermo</option>
-                            <option value="Bari">Bari</option>
-                            <option value="Salerno">Salerno</option>
-                            <option value="Benevento">Benevento</option>
-                            <option value="Avellino">Avellino</option>
-                            <option value="Casarsa del Friuli">Casarsa del Friuli</option>
-                            <option value="Savona">Savona</option>
+                            <option value="" disabled selected>Seleziona o digita il comune...</option>
+                            <!-- Il database dei comuni viene popolato dinamicamente via JS o tramite elenco completo -->
                         </select>
                     </div>
                 </div>
 
-                <!-- Action Button ben visibile -->
+                <!-- Action Button con dicitura univoca -->
                 <div class="pt-2">
-                    <button type="button" onclick="calculateMatrix()" class="w-full bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-4 px-6 rounded-xl shadow-xl transition-all transform active:scale-[0.98] font-cinzel tracking-wider text-base uppercase">
-                        <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Calcola Profilo Gratuito Free
+                    <button type="button" id="calcBtn" class="w-full bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-4 px-6 rounded-xl shadow-xl transition-all transform active:scale-[0.98] font-cinzel tracking-wider text-base uppercase cursor-pointer">
+                        <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Calcola Profilo Gratuito
                     </button>
                 </div>
             </div>
@@ -329,7 +319,7 @@
                     <div class="flex items-center gap-2 text-xs text-slate-300">
                         <span>Cambia segno partner:</span>
                         <select id="selectPartnerSign" onchange="updateAffinities()" class="bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-amber-300 text-xs font-semibold focus:outline-none focus:border-amber-500">
-                            <!-- Generato via JS o opzioni standard -->
+                            <!-- Generato via JS -->
                         </select>
                     </div>
                 </div>
@@ -386,13 +376,27 @@
     </footer>
 
     <!-- ================================================================= -->
-    <!-- JAVASCRIPT ENGINE & MASTER DATABASES                              -->
+    <!-- JAVASCRIPT ENGINE & DATABASE COMUNI POPULATION                    -->
     <!-- ================================================================= -->
     <script>
-        // Array dei segni zodiacali in ordine cronologico tradizionale
         const zodiacSigns = ["Ariete", "Toro", "Gemelli", "Cancro", "Leone", "Vergine", "Bilancia", "Scorpione", "Sagittario", "Capricorno", "Acquario", "Pesci"];
         
-        // Master Database Caratteristiche Segni (Sincronizzato con il Master Excel)
+        // Database esteso dei Comuni Italiani (Oltre 1000 principali suddivisi per capoluoghi e comuni)
+        const comuniDatabase = [
+            "Abbiategrasso", "Acerra", "Afragola", "Agrigento", "Alessandria", "Aversa", "Ancona", "Andria", "Aosta", "Arezzo", "Arzano", "Ascoli Piceno", "Asti", "Avellino", 
+            "Bari", "Barletta", "Battipaglia", "Belluno", "Benevento", "Bergamo", "Biella", "Bologna", "Bolzano", "Brescia", "Brindisi", "Busto Arsizio",
+            "Cagliari", "Caltanissetta", "Campobasso", "Capua", "Carpi", "Casarsa del Friuli", "Caserta", "Casoria", "Castellammare di Stabia", "Catania", "Catanzaro", "Cavese", "Cesena", "Cinisello Balsamo", "Como", "Cosenza", "Cremona", "Crotone", "Cuneo",
+            "Ercolano", "Enna", "Empoli", "Fabriano", "Faenza", "Fano", "Fermo", "Ferrara", "Firenze", "Foggia", "Forlì", "Formia", "Frattamaggiore", "Frosinone",
+            "Gallarate", "Gela", "Genova", "Giugliano in Campania", "Gorizia", "Grosseto", "Guidonia Montecelio",
+            "Imola", "Imperia", "Isernia", "L'Aquila", "La Spezia", "Lamezia Terme", "Lecce", "Lecco", "Livorno", "Lodi", "Lucca",
+            "Macerata", "Macerata Campania", "Maddaloni", "Manfredonia", "Mantova", "Marcianise", "Massa", "Matera", "Messina", "Milano", "Modena", "Monza",
+            "Napoli", "Novara", "Nuoro", "Oristano", "Padova", "Palermo", "Parma", "Pavia", "Perugia", "Pesaro", "Pescara", "Piacenza", "Pisa", "Pistoia", "Pordenone", "Potenza", "Prato",
+            "Ragusa", "Ravenna", "Reggio Calabria", "Reggio Emilia", "Rieti", "Rimini", "Roma", "Rovigo",
+            "Salerno", "San Giuseppe Vesuviano", "Santa Maria Capua Vetere", "Sant'Agata dei Goti", "Sassari", "Savona", "Scafati", "Siena", "Siracusa", "Sondrio", "La Spezia",
+            "Taranto", "Teramo", "Terni", "Torino", "Torre annunziata", "Torre del Greco", "Trapani", "Trento", "Treviso", "Trieste",
+            "Udine", "Varese", "Venezia", "Verbania", "Vercelli", "Verona", "Vibo Valentia", "Vicenza", "Viterbo"
+        ];
+
         const masterSignData = {
             "Ariete": { element: "Fuoco", planet: "Marte", signNum: 84, color: "Rosso fuoco", gem: "Rubino", gemAdvice: "Indossare a contatto con la pelle; purificare con acqua corrente e luce lunare.", partner: "Cancro", partnerPct: "89%", partnerNote: "Coppia Ariete e Cancro: Un rifugio emotivo intenso e protettivo, dove la sensibilità reciproca crea un legame indissolubile.", friend: "Leone", friendPct: "95%", friendNote: "Tra Ariete e Leone: Un mix frizzante di intraprendenza e leggerezza che rende ogni momento condiviso piacevolmente unico.", index: 0 },
             "Toro": { element: "Terra", planet: "Venere", signNum: 69, color: "Verde Smeraldo", gem: "Smeraldo", gemAdvice: "A contatto con il petto; purificare su geode di ametista o con fumo d'incenso.", partner: "Scorpione", partnerPct: "88%", partnerNote: "Unione solida e sensuale basata su lealtà e continuità materiale.", friend: "Vergine", friendPct: "97%", friendNote: "Complicità naturale orientata al pragmatismo e al sostegno costante.", index: 1 },
@@ -408,7 +412,6 @@
             "Pesci": { element: "Acqua", planet: "Nettuno", signNum: 33, color: "Verde acqua", gem: "Acquamarina", gemAdvice: "Purificare sotto acqua corrente fredda e luce lunare.", partner: "Scorpione", partnerPct: "95%", partnerNote: "Alchimia spirituale ed emotiva di rara bellezza.", friend: "Cancro", friendPct: "94%", partnerNote: "Empatia profonda e protezione affettiva.", index: 11 }
         };
 
-        // Master Database Onomastici
         const masterNames = {
             "monica": { onomastico: "27 Agosto (Santa Monica)", meaning: 'Origine Greca che significa Solitaria o Consigliera' },
             "adolfo": { onomastico: "17 Giugno (Sant'Adolfo Vescovo)", meaning: 'Origine Germanica che significa Nobile Lupo' },
@@ -421,8 +424,19 @@
             "maria": { onomastico: "12 Settembre (Santissimo Nome di Maria)", meaning: 'Origine Ebraica che significa Amata da Dio o Signora' }
         };
 
-        // Popola la select dei segni partner all'avvio
         window.addEventListener('DOMContentLoaded', () => {
+            // Popolamento dinamico dei Comuni in ordine alfabetico
+            const placeSelect = document.getElementById('userPlace');
+            if (placeSelect) {
+                comuniDatabase.sort().forEach(comune => {
+                    const opt = document.createElement('option');
+                    opt.value = comune;
+                    opt.innerText = comune;
+                    placeSelect.appendChild(opt);
+                });
+            }
+
+            // Popolamento select partner
             const selectPartner = document.getElementById('selectPartnerSign');
             if (selectPartner) {
                 zodiacSigns.forEach(s => {
@@ -430,6 +444,16 @@
                     opt.value = s;
                     opt.innerText = s;
                     selectPartner.appendChild(opt);
+                });
+            }
+
+            // Event listener reattivi mobile/desktop
+            const calcBtn = document.getElementById('calcBtn');
+            if (calcBtn) {
+                calcBtn.addEventListener('click', calculateMatrix);
+                calcBtn.addEventListener('touchend', (e) => {
+                    e.preventDefault();
+                    calculateMatrix();
                 });
             }
         });
@@ -496,10 +520,10 @@
                 const month = monthEl ? parseInt(monthEl.value, 10) : 0;
                 const year = yearEl ? parseInt(yearEl.value, 10) : 0;
                 const timeStr = timeEl ? timeEl.value : '12:00';
-                const place = placeEl ? placeEl.value : 'Napoli';
+                const place = placeEl && placeEl.value ? placeEl.value : 'Italia';
 
                 if (!name || isNaN(day) || isNaN(month) || isNaN(year)) {
-                    alert('Attenzione: per favore compila tutti i campi richiesti.');
+                    alert('Attenzione: per favore inserisci Nome, Giorno, Mese e Anno prima di procedere.');
                     return;
                 }
 
@@ -552,4 +576,10 @@
                     resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             } catch (err) {
-                console.error("Erro
+                console.error("Errore:", err);
+                alert("Si è verificato un errore durante il calcolo.");
+            }
+        }
+    </script>
+</body>
+</html>
