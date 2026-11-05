@@ -34,13 +34,9 @@
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; color: #f8fafc; }
         .font-cinzel { font-family: 'Cinzel', serif; }
-        .glass-card { background: rgba(9, 13, 22, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(245, 158, 11, 0.2); }
+        .glass-card { background: rgba(9, 13, 22, 0.90); backdrop-filter: blur(16px); border: 1px solid rgba(245, 158, 11, 0.25); }
         .glow-gold { box-shadow: 0 0 35px -5px rgba(245, 158, 11, 0.3); }
-        input[type="date"]::-webkit-calendar-picker-indicator,
-        input[type="time"]::-webkit-calendar-picker-indicator {
-            filter: invert(100%) sepia(50%) saturate(1000%) hue-rotate(340deg);
-            cursor: pointer;
-        }
+        select option { background-color: #090d16; color: #f8fafc; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
@@ -73,10 +69,10 @@
         <!-- Hero Intro Section -->
         <div class="text-center mb-8">
             <h2 class="text-3xl sm:text-4xl font-bold mb-3 text-amber-200 font-cinzel tracking-wide">
-                Il Tuo Profilo Astrale Completo
+                IL TUO PROFILO ASTRALE
             </h2>
             <p class="text-slate-400 text-sm sm:text-base max-w-lg mx-auto">
-                Inserisci nome, giorno, mese, anno, ora e città di nascita per generare l'analisi dettagliata estratta direttamente dal Master Geodinamico.
+                Inserisci nome, giorno, mese, anno, ora e seleziona la città di nascita per generare l'analisi dettagliata estratta direttamente dal Master Geodinamico.
             </p>
         </div>
 
@@ -130,7 +126,7 @@
                     </div>
                 </div>
 
-                <!-- 3. Campi Ora e Città di Nascita (Ora Menù a Tendina) -->
+                <!-- 3. Campi Ora e Città di Nascita (Database Comuni) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2">
@@ -141,22 +137,85 @@
                     </div>
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2">
-                            <i class="fa-solid fa-location-dot mr-1.5"></i>Città di Nascita
+                            <i class="fa-solid fa-location-dot mr-1.5"></i>Città di Nascita (Database Comuni)
                         </label>
                         <select id="userPlace" class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 focus:outline-none focus:border-amber-500 transition-all text-base">
-                            <option value="Napoli" selected>Napoli</option>
-                            <option value="Caserta">Caserta</option>
-                            <option value="Roma">Roma</option>
-                            <option value="Milano">Milano</option>
-                            <option value="Torino">Torino</option>
-                            <option value="Firenze">Firenze</option>
-                            <option value="Bologna">Bologna</option>
-                            <option value="Palermo">Palermo</option>
-                            <option value="Bari">Bari</option>
-                            <option value="Salerno">Salerno</option>
+                            <optgroup label="Campania">
+                                <option value="Napoli" selected>Napoli</option>
+                                <option value="Caserta">Caserta</option>
+                                <option value="Salerno">Salerno</option>
+                                <option value="Avellino">Avellino</option>
+                                <option value="Benevento">Benevento</option>
+                                <option value="Aversa">Aversa</option>
+                                <option value="Santa Maria Capua Vetere">Santa Maria Capua Vetere</option>
+                                <option value="Marcianise">Marcianise</option>
+                                <option value="Afragola">Afragola</option>
+                                <option value="Giugliano in Campania">Giugliano in Campania</option>
+                                <option value="Pozzuoli">Pozzuoli</option>
+                                <option value="Torre del Greco">Torre del Greco</option>
+                                <option value="Castellammare di Stabia">Castellammare di Stabia</option>
+                            </optgroup>
+                            <optgroup label="Principali Città Italiane">
+                                <option value="Roma">Roma</option>
+                                <option value="Milano">Milano</option>
+                                <option value="Torino">Torino</option>
+                                <option value="Firenze">Firenze</option>
+                                <option value="Bologna">Bologna</option>
+                                <option value="Palermo">Palermo</option>
+                                <option value="Bari">Bari</option>
+                                <option value="Venezia">Venezia</option>
+                                <option value="Genova">Genova</option>
+                                <option value="Catania">Catania</option>
+                                <option value="Verona">Verona</option>
+                                <option value="Messina">Messina</option>
+                                <option value="Padova">Padova</option>
+                                <option value="Trieste">Trieste</option>
+                                <option value="Brescia">Brescia</option>
+                                <option value="Parma">Parma</option>
+                                <option value="Taranto">Taranto</option>
+                                <option value="Prato">Prato</option>
+                                <option value="Modena">Modena</option>
+                                <option value="Reggio Calabria">Reggio Calabria</option>
+                                <option value="Perugia">Perugia</option>
+                                <option value="Livorno">Livorno</option>
+                                <option value="Cagliari">Cagliari</option>
+                                <option value="Foggia">Foggia</option>
+                                <option value="Rimini">Rimini</option>
+                                <option value="Salerno">Salerno</option>
+                                <option value="Ferrara">Ferrara</option>
+                                <option value="Latina">Latina</option>
+                                <option value="Monza">Monza</option>
+                                <option value="Pescara">Pescara</option>
+                                <option value="Bergamo">Bergamo</option>
+                                <option value="Siracusa">Siracusa</option>
+                                <option value="Trento">Trento</option>
+                                <option value="Sassari">Sassari</option>
+                                <option value="Ancona">Ancona</option>
+                                <option value="Pisa">Pisa</option>
+                                <option value="Lecce">Lecce</option>
+                                <option value="Lucca">Lucca</option>
+                                <option value="Como">Como</option>
+                                <option value="Potenza">Potenza</option>
+                                <option value="Campobasso">Campobasso</option>
+                            </optgroup>
                         </select>
                     </div>
                 </div>
 
-                <!-- Action Button -->
-                <button type="button" onclick="calculateMatrix()" class="w-full bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 hover:from-a
+                <!-- Action Button (Sempre visibile) -->
+                <button type="button" onclick="calculateMatrix()" class="w-full bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-4 px-6 rounded-xl shadow-xl transition-all transform active:scale-[0.98] font-cinzel tracking-wider text-base uppercase mt-3 cursor-pointer">
+                    <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Calcola Il Tuo Profilo Gratuito
+                </button>
+            </div>
+        </div>
+
+        <!-- Results Dashboard Box (Hidden by default) -->
+        <div id="resultBox" class="hidden glass-card rounded-2xl p-6 sm:p-8 shadow-2xl mb-8 space-y-8 border border-amber-500/40">
+            
+            <!-- Intestazione Risultato -->
+            <div class="border-b border-slate-800 pb-4 flex justify-between items-center">
+                <div>
+                    <span class="text-[11px] uppercase tracking-widest text-amber-400 font-semibold block">AstroMatrix Dashboard</span>
+                    <h3 class="text-2xl font-bold text-slate-100 font-cinzel" id="resProfileName">Profilo Utente</h3>
+                </div>
+                <span class="bg-emerald-500/10 text
