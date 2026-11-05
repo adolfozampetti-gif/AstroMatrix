@@ -3,111 +3,290 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AstroMatrix - Dashboard Astrologica</title>
+    <title>AstroMatrix - Dashboard Geodinamica</title>
     <style>
+        :root {
+            --bg-color: #0d0f12;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            --gold-primary: #f0b429;
+            --gold-hover: #d99f1f;
+            --text-main: #c9d1d9;
+            --text-light: #8b949e;
+            --accent-red: #da3633;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 30px auto;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
             padding: 20px;
-            background-color: #f4f4f9;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
         }
-        h2 {
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            box-sizing: border-box;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            color: var(--accent-red);
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            color: var(--gold-primary);
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .badge-free {
+            background-color: rgba(240, 180, 41, 0.1);
+            color: var(--gold-primary);
+            border: 1px solid var(--gold-primary);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .title-section {
             text-align: center;
-            color: #333;
+            margin-bottom: 25px;
         }
+
+        .title-section h1 {
+            color: #ffffff;
+            font-size: 26px;
+            margin: 0 0 10px 0;
+            letter-spacing: 1px;
+        }
+
+        .title-section p {
+            color: var(--text-light);
+            font-size: 13px;
+            margin: 0;
+            line-height: 1.4;
+        }
+
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
+
         label {
             display: block;
-            margin-bottom: 5px;
+            color: var(--gold-primary);
+            font-size: 12px;
             font-weight: bold;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
-        input[type="text"], input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
+
+        input[type="text"], input[type="number"], select {
             width: 100%;
             padding: 12px;
-            background-color: #007bff;
-            color: white;
+            background-color: #0d0f12;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: #ffffff;
+            font-size: 15px;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+        }
+
+        .row-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr 1fr;
+            gap: 15px;
+        }
+
+        .row-double {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 500px) {
+            .row-grid, .row-double {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--gold-primary);
+            color: #0d0f12;
             border: none;
-            border-radius: 4px;
-            font-size: 16px;
+            border-radius: 6px;
+            padding: 14px;
+            font-size: 15px;
+            font-weight: bold;
             cursor: pointer;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: background-color 0.2s, transform 0.1s;
+            margin-top: 10px;
         }
-        button:hover {
-            background-color: #0056b3;
+
+        .btn-submit:hover {
+            background-color: var(--gold-hover);
         }
+
+        .btn-submit:active {
+            transform: scale(0.99);
+        }
+
         #risultato {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #ffffff;
-            border: 1px solid #ddd;
+            margin-top: 25px;
+            background-color: #0d0f12;
+            border: 1px solid var(--border-color);
             border-radius: 8px;
+            padding: 20px;
             display: none;
         }
+
         .result-title {
-            font-size: 20px;
-            color: #007bff;
-            margin-bottom: 10px;
+            color: var(--gold-primary);
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
             text-align: center;
-            border-bottom: 2px solid #007bff;
-            padding-bottom: 5px;
         }
-        .result-section {
-            margin-bottom: 10px;
-            font-size: 15px;
+
+        .result-item {
+            margin-bottom: 12px;
+            font-size: 14px;
             line-height: 1.5;
         }
-        .numbers-box {
-            text-align: center;
-            font-size: 22px;
-            font-weight: bold;
-            color: #d9534f;
-            background: #fff3cd;
-            padding: 10px;
-            border-radius: 5px;
-            margin-top: 15px;
+
+        .result-item strong {
+            color: #ffffff;
         }
-        .error {
-            color: #dc3545;
+
+        .numbers-box {
+            background: rgba(240, 180, 41, 0.08);
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 20px;
+            letter-spacing: 2px;
+        }
+
+        .error-msg {
+            color: var(--accent-red);
             text-align: center;
             font-weight: bold;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
 
-    <h2>AstroMatrix - Dashboard</h2>
-
-    <form id="numeriForm">
-        <div class="form-group">
-            <label for="nome">Nome o Nome Completo:</label>
-            <input type="text" id="nome" required placeholder="Es. Adolfo">
+    <div class="container">
+        <div class="header">
+            <div class="logo-area">
+                <span class="logo-icon">✶</span>
+                <span class="logo-text">ASTROMATRIX</span>
+            </div>
+            <div class="badge-free">FREE EDITION</div>
         </div>
 
-        <div class="form-group">
-            <label for="comune">Comune di Nascita:</label>
-            <input type="text" id="comune" required placeholder="Es. Napoli">
+        <div class="title-section">
+            <h1>IL TUO PROFILO ASTRALE</h1>
+            <p>Inserisci nome, giorno, mese, anno, ora e città di nascita per generare l'analisi dettagliata estratta direttamente dal Master Geodinamico.</p>
         </div>
 
-        <div class="form-group">
-            <label for="anno">Anno di Nascita (YYYY):</label>
-            <input type="number" id="anno" min="1900" max="2099" required placeholder="Es. 1955">
-        </div>
+        <form id="astromatrixForm">
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" required placeholder="Es. Monica">
+            </div>
 
-        <button type="button" onclick="calcolaAstroMatrix()">Genera Profilo</button>
-    </form>
+            <div class="row-grid">
+                <div class="form-group">
+                    <label for="giorno">Giorno (1-31)</label>
+                    <input type="number" id="giorno" min="1" max="31" required placeholder="29">
+                </div>
+                <div class="form-group">
+                    <label for="mese">Mese di Nascita</label>
+                    <select id="mese" required>
+                        <option value="">Seleziona</option>
+                        <option value="1">Gennaio</option>
+                        <option value="2">Febbraio</option>
+                        <option value="3" selected>Marzo</option>
+                        <option value="4">Aprile</option>
+                        <option value="5">Maggio</option>
+                        <option value="6">Giugno</option>
+                        <option value="7">Luglio</option>
+                        <option value="8">Agosto</option>
+                        <option value="9">Settembre</option>
+                        <option value="10">Ottobre</option>
+                        <option value="11">Novembre</option>
+                        <option value="12">Dicembre</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="anno">Anno (AAAA)</label>
+                    <input type="number" id="anno" min="1900" max="2026" required placeholder="1956">
+                </div>
+            </div>
 
-    <div id="risultato"></div>
+            <div class="row-double">
+                <div class="form-group">
+                    <label for="ora">Ora di Nascita *</label>
+                    <input type="text" id="ora" placeholder="Es. 16:00">
+                </div>
+                <div class="form-group">
+                    <label for="comune">Città / Comune di Nascita</label>
+                    <input type="text" id="comune" required placeholder="Napoli">
+                </div>
+            </div>
+
+            <button type="button" class="btn-submit" onclick="calcolaProfiloAstro()">% Calcola Profilo Gratuito</button>
+        </form>
+
+        <div id="risultato"></div>
+    </div>
 
     <script>
         const databaseComuni = {
@@ -116,18 +295,18 @@
         };
 
         const datiZodiacali = [
-            { segno: "Capricorno", inizio: [12, 22], fine: [1, 19], pietra: "Rubino", colore: "Nero / Grigio", affinita: "Toro e Vergine", oroscopo: "La concretezza e la determinazione guidano ogni passo verso traguardi importanti." },
-            { segno: "Acquario", inizio: [1, 20], fine: [2, 18], pietra: "Ametista", colore: "Blu Elettrico", affinita: "Gemelli e Bilancia", oroscopo: "Originalità e visione del futuro aprono nuove strade inattese." },
-            { segno: "Pesci", inizio: [2, 19], fine: [3, 20], pietra: "Acquamarina", colore: "Verde Acqua", affinita: "Cancro e Scorpione", oroscopo: "L'intuito profondo e la sensibilità guidano le scelte con ispirazione artistica." },
-            { segno: "Ariete", inizio: [3, 21], fine: [4, 19], pietra: "Diamante", colore: "Rosso Fuoco", affinita: "Leone e Sagittario", oroscopo: "L'energia vitale e lo spirito pionieristico superano qualsiasi ostacolo." },
-            { segno: "Toro", inizio: [4, 20], fine: [5, 20], pietra: "Smeraldo", colore: "Verde", affinita: "Vergine e Capricorno", oroscopo: "Stabilità e amore per il bello consolidano ogni progetto di vita." },
-            { segno: "Gemelli", inizio: [5, 21], fine: [6, 20], pietra: "Agata", colore: "Giallo", affinita: "Bilancia e Acquario", oroscopo: "Versatilità e ingegno brillante facilitano la comunicazione e i contatti." },
-            { segno: "Cancro", inizio: [6, 21], fine: [7, 22], pietra: "Perla", colore: "Bianco / Argento", affinita: "Scorpione e Pesci", oroscopo: "La memoria e i legami affettivi profondi offrono protezione e forza interiore." },
-            { segno: "Leone", inizio: [7, 23], fine: [8, 22], pietra: "Topazio", colore: "Oro / Arancione", affinita: "Ariete e Sagittario", oroscopo: "Carisma e generosità illuminano la scena e attraggono grandi soddisfazioni." },
-            { segno: "Vergine", inizio: [8, 23], fine: [9, 22], pietra: "Zaffiro", colore: "Marrone / Blu Scuro", affinita: "Toro e Capricorno", oroscopo: "Precisione e analisi meticolosa portano a risultati eccellenti e duraturi." },
-            { segno: "Bilancia", inizio: [9, 23], fine: [10, 22], pietra: "Opale", colore: "Rosa / Celeste", affinita: "Gemelli e Acquario", oroscopo: "Senso dell'armonia e diplomazia creano equilibrio in ogni relazione." },
-            { segno: "Scorpione", inizio: [10, 23], fine: [11, 21], pietra: "Topazio", colore: "Rosso Scuro / Nero", affinita: "Cancro e Pesci", oroscopo: "Passione intensa e magnetismo rivelano verità nascoste e grandi potenzialità." },
-            { segno: "Sagittario", inizio: [11, 22], fine: [12, 21], pietra: "Turchese", colore: "Blu Scuro / Viola", affinita: "Ariete e Leone", oroscopo: "Ottimismo e spirito d'avventura allargano gli orizzonti verso nuove mete." }
+            { segno: "Capricorno", pietra: "Rubino", colore: "Nero / Grigio", affinita: "Toro e Vergine", oroscopo: "La concretezza e la determinazione guidano ogni passo verso traguardi di grande valore." },
+            { segno: "Acquario", pietra: "Ametista", colore: "Blu Elettrico", affinita: "Gemelli e Bilancia", oroscopo: "Originalità e visione del futuro aprono nuove e inattese strade evolutive." },
+            { segno: "Pesci", pietra: "Acquamarina", colore: "Verde Acqua", affinita: "Cancro e Scorpione", oroscopo: "L'intuito profondo e la sensibilità guidano le scelte con ispirazione creativa." },
+            { segno: "Ariete", pietra: "Diamante", colore: "Rosso Fuoco", affinita: "Leone e Sagittario", oroscopo: "L'energia vitale e lo spirito pionieristico superano brillantemente qualsiasi ostacolo." },
+            { segno: "Toro", pietra: "Smeraldo", colore: "Verde", affinita: "Vergine e Capricorno", oroscopo: "Stabilità e amore per l'armonia consolidano ogni progetto di vita e di benessere." },
+            { segno: "Gemelli", pietra: "Agata", colore: "Giallo", affinita: "Bilancia e Acquario", oroscopo: "Versatilità e ingegno brillante facilitano la comunicazione e le relazioni interpersonali." },
+            { segno: "Cancro", pietra: "Perla", colore: "Bianco / Argento", affinita: "Scorpione e Pesci", oroscopo: "La memoria e i legami affettivi profondi offrono protezione e forza interiore duratura." },
+            { segno: "Leone", pietra: "Topazio", colore: "Oro / Arancione", affinita: "Ariete e Sagittario", oroscopo: "Carisma e generosità illuminano la scena e attraggono grandi soddisfazioni personali." },
+            { segno: "Vergine", pietra: "Zaffiro", colore: "Marrone / Blu Scuro", affinita: "Toro e Capricorno", oroscopo: "Precisione e analisi meticolosa portano a risultati eccellenti e concreti." },
+            { segno: "Bilancia", pietra: "Opale", colore: "Rosa / Celeste", affinita: "Gemelli e Acquario", oroscopo: "Il senso dell'equilibrio e la diplomazia creano armonia in ogni contesto." },
+            { segno: "Scorpione", pietra: "Topazio Scuro", colore: "Rosso Scuro / Nero", affinita: "Cancro e Pesci", oroscopo: "Passione intensa e magnetismo rivelano profonde verità e grandi potenzialità nascoste." },
+            { segno: "Sagittario", pietra: "Turchese", colore: "Blu Scuro / Viola", affinita: "Ariete e Leone", oroscopo: "Ottimismo e spirito d'avventura allargano gli orizzonti verso nuove ed entusiasmanti mete." }
         ];
 
         function riduciA90(valore) {
@@ -144,28 +323,47 @@
             return somma;
         }
 
-        function determinaSegno(nome) {
-            // Assegnazione basata sul valore del nome per simulare l'estrazione coerente se non si inserisce il giorno/mese esatto
-            let index = calcolaValoreTesto(nome) % 12;
-            return datiZodiacali[index];
+        function determinaSegnoDaData(giorno, mese) {
+            // Logica standard di assegnazione segno zodiacale in base a giorno e mese
+            giorno = parseInt(giorno, 10);
+            mese = parseInt(mese, 10);
+
+            if ((mese === 3 && giorno >= 21) || (mese === 4 && giorno <= 19)) return 3; // Ariete
+            if ((mese === 4 && giorno >= 20) || (mese === 5 && giorno <= 20)) return 4; // Toro
+            if ((mese === 5 && giorno >= 21) || (mese === 6 && giorno <= 20)) return 5; // Gemelli
+            if ((mese === 6 && giorno >= 21) || (mese === 7 && giorno <= 22)) return 6; // Cancro
+            if ((mese === 7 && giorno >= 23) || (mese === 8 && giorno <= 22)) return 7; // Leone
+            if ((mese === 8 && giorno >= 23) || (mese === 9 && giorno <= 22)) return 8; // Vergine
+            if ((mese === 9 && giorno >= 23) || (mese === 10 && giorno <= 22)) return 9; // Bilancia
+            if ((mese === 10 && giorno >= 23) || (mese === 11 && giorno <= 21)) return 10; // Scorpione
+            if ((mese === 11 && giorno >= 22) || (mese === 12 && giorno <= 21)) return 11; // Sagittario
+            if ((mese === 12 && giorno >= 22) || (mese === 1, giorno <= 19)) return 0; // Capricorno
+            if ((mese === 1 && giorno >= 20) || (mese === 2 && giorno <= 18)) return 1; // Acquario
+            return 2; // Pesci
         }
 
-        function calcolaAstroMatrix() {
+        function calcolaProfiloAstro() {
             const nomeInput = document.getElementById('nome').value.trim();
-            const comuneInput = document.getElementById('comune').value.trim();
+            const giornoInput = document.getElementById('giorno').value.trim();
+            const meseInput = document.getElementById('mese').value.trim();
             const annoInput = document.getElementById('anno').value.trim();
+            const oraInput = document.getElementById('ora').value.trim();
+            const comuneInput = document.getElementById('comune').value.trim();
             const divRisultato = document.getElementById('risultato');
 
-            if (!nomeInput || !comuneInput || !annoInput) {
+            if (!nomeInput || !giornoInput || !meseInput || !annoInput || !comuneInput) {
                 divRisultato.style.display = 'block';
-                divRisultato.innerHTML = '<div class="error">Compilare tutti i campi correttamente.</div>';
+                divRisultato.innerHTML = '<div class="error-msg">Si prega di compilare tutti i campi obbligatori.</div>';
                 return;
             }
 
             const anno = parseInt(annoInput, 10);
-            if (isNaN(anno) || anno < 1900 || anno > 2099) {
+            const giorno = parseInt(giornoInput, 10);
+            const mese = parseInt(meseInput, 10);
+
+            if (isNaN(anno) || anno < 1900 || anno > 2026 || isNaN(giorno) || giorno < 1 || giorno > 31) {
                 divRisultato.style.display = 'block';
-                divRisultato.innerHTML = '<div class="error">Inserire un anno di nascita valido a 4 cifre.</div>';
+                divRisultato.innerHTML = '<div class="error-msg">Verificare che i valori numerici di data siano validi.</div>';
                 return;
             }
 
@@ -173,24 +371,26 @@
             let valoreComune = databaseComuni[comuneKey] !== undefined ? databaseComuni[comuneKey] : calcolaValoreTesto(comuneKey);
             const valoreNome = calcolaValoreTesto(nomeInput);
 
-            // Numeri Astrali
-            const num1 = riduciA90(valoreNome + anno);
-            const num2 = riduciA90(valoreComune + (anno % 100));
-            const num3 = riduciA90(valoreNome + valoreComune + anno);
+            // Calcolo Numeri Astrali
+            const num1 = riduciA90(valoreNome + anno + giorno);
+            const num2 = riduciA90(valoreComune + (anno % 100) + mese);
+            const num3 = riduciA90(valoreNome + valoreComune + anno + giorno + mese);
 
-            // Profilo Astrologico
-            const profilo = determinaSegno(nomeInput);
+            // Estrazione Profilo Zodiacale
+            const indiceSegno = determinaSegnoDaData(giorno, mese);
+            const profilo = datiZodiacali[indiceSegno];
 
             divRisultato.style.display = 'block';
             divRisultato.innerHTML = `
-                <div class="result-title">Profilo per ${nomeInput} (${anno})</div>
-                <div class="result-section"><strong>Segno / Archetipo:</strong> ${profilo.segno}</div>
-                <div class="result-section"><strong>Oroscopo & Tendenze:</strong> ${profilo.oroscopo}</div>
-                <div class="result-section"><strong>Pietra Preziosa:</strong> ${profilo.pietra}</div>
-                <div class="result-section"><strong>Colore Guida:</strong> ${profilo.colore}</div>
-                <div class="result-section"><strong>Affinità Emozionale:</strong> ${profilo.affinita}</div>
+                <div class="result-title">ANALISI MASTER GEODINAMICO PER ${nomeInput.toUpperCase()}</div>
+                <div class="result-item"><strong>Data e Luogo:</strong> ${giorno}/${mese}/${anno} ore ${oraInput || 'N.D.'} - ${comuneInput}</div>
+                <div class="result-item"><strong>Segno Zodiacale / Archetipo:</strong> ${profilo.segno}</div>
+                <div class="result-item"><strong>Oroscopo & Tendenze:</strong> ${profilo.oroscopo}</div>
+                <div class="result-item"><strong>Pietra Preziosa:</strong> ${profilo.pietra}</div>
+                <div class="result-item"><strong>Colore Guida:</strong> ${profilo.colore}</div>
+                <div class="result-item"><strong>Affinità Emozionale:</strong> ${profilo.affinita}</div>
                 <div class="numbers-box">
-                    Numeri Astrali: ${num1} - ${num2} - ${num3}
+                    NUMERI ASTRALI: ${num1} - ${num2} - ${num3}
                 </div>
             `;
         }
