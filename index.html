@@ -5,7 +5,7 @@
     <!-- METADATI E CONFIGURAZIONE HEAD PRINCIPALE                         -->
     <!-- ================================================================= -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>AstroMatrix FREE - Dashboard Astrologica & Geodinamica</title>
     
     <!-- Tailwind CSS CDN -->
@@ -50,19 +50,14 @@
             font-family: 'Cinzel', serif; 
         }
         .glass-card { 
-            background: rgba(9, 13, 22, 0.92); 
+            background: rgba(9, 13, 22, 0.95); 
             backdrop-filter: blur(16px); 
             border: 1px solid rgba(245, 158, 11, 0.25); 
         }
         .glow-gold { 
             box-shadow: 0 0 35px -5px rgba(245, 158, 11, 0.3); 
         }
-        input[type="date"]::-webkit-calendar-picker-indicator,
-        input[type="time"]::-webkit-calendar-picker-indicator {
-            filter: invert(100%) sepia(50%) saturate(1000%) hue-rotate(340deg);
-            cursor: pointer;
-        }
-        button, select, input {
+        input, select, button {
             touch-action: manipulation;
         }
         ::-webkit-scrollbar {
@@ -79,7 +74,9 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
 
-    <!-- TOP HEADER NAVIGATION -->
+    <!-- ================================================================= -->
+    <!-- TOP HEADER NAVIGATION                                             -->
+    <!-- ================================================================= -->
     <header class="bg-slate-900/90 backdrop-blur-md border-b border-slate-800 py-4 px-6 sticky top-0 z-50">
         <div class="max-w-4xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-3">
@@ -101,7 +98,9 @@
         </div>
     </header>
 
-    <!-- MAIN CONTENT AREA -->
+    <!-- ================================================================= -->
+    <!-- MAIN CONTENT AREA                                                 -->
+    <!-- ================================================================= -->
     <main class="max-w-3xl mx-auto p-4 sm:p-6 w-full flex-grow my-6">
         
         <!-- Hero Intro Section -->
@@ -114,7 +113,9 @@
             </p>
         </div>
 
-        <!-- INPUT FORM CARD -->
+        <!-- ============================================================= -->
+        <!-- INPUT FORM CARD                                               -->
+        <!-- ============================================================= -->
         <div class="glass-card rounded-2xl p-6 sm:p-8 shadow-2xl mb-8 glow-gold">
             <div class="space-y-5">
                 
@@ -165,7 +166,7 @@
                     </div>
                 </div>
 
-                <!-- 3. Campi Ora e Città a inserimento libero -->
+                <!-- 3. Ora e Città di Nascita (Input di testo libero) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2">
@@ -178,23 +179,26 @@
                         <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2">
                             <i class="fa-solid fa-location-dot mr-1.5"></i>Città / Comune di Nascita
                         </label>
-                        <input type="text" id="userPlace" placeholder="Es. Napoli, Caserta, Roma..." value=""
-                            class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-amber-500 transition-all text-base">
+                        <input type="text" id="userPlace" placeholder="Es. Scafati, Vietri, Napoli..." value=""
+                            class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all text-base">
                     </div>
                 </div>
 
                 <!-- Action Button -->
-                <div class="pt-2">
-                    <button type="button" id="calcBtn" class="w-full bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-4 px-6 rounded-xl shadow-xl transition-all transform active:scale-[0.98] font-cinzel tracking-wider text-base uppercase cursor-pointer">
-                        <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>CALCOLA PROFILO GRATUITO
+                <div class="pt-3">
+                    <button type="button" id="calcBtn" class="w-full bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-4 px-6 rounded-xl shadow-xl transition-all transform active:scale-[0.98] font-cinzel tracking-wider text-base uppercase cursor-pointer select-none">
+                        <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Calcola Profilo Gratuito
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- RESULTS DASHBOARD BOX -->
+        <!-- ============================================================= -->
+        <!-- RESULTS DASHBOARD BOX (Hidden by default)                     -->
+        <!-- ============================================================= -->
         <div id="resultBox" class="hidden glass-card rounded-2xl p-6 sm:p-8 shadow-2xl mb-8 space-y-8 border border-amber-500/40">
             
+            <!-- Intestazione Risultato -->
             <div class="border-b border-slate-800 pb-4 flex justify-between items-center">
                 <div>
                     <span class="text-[11px] uppercase tracking-widest text-amber-400 font-semibold block">AstroMatrix Dashboard</span>
@@ -268,7 +272,7 @@
                     <p id="resGemAdvice">-</p>
                 </div>
 
-                <!-- Numeri Geodinamici unici e stabili -->
+                <!-- Numeri Geodinamici -->
                 <div class="bg-gradient-to-r from-amber-500/10 via-amber-600/5 to-amber-500/10 p-4 rounded-xl border border-amber-500/30 text-center">
                     <span class="text-xs font-bold text-amber-400 uppercase tracking-widest block mb-2 font-cinzel">
                         <i class="fa-solid fa-cubes mr-1"></i>Numeri Geodinamici di Matrice
@@ -313,6 +317,7 @@
                 </div>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                    <!-- Affinità di Coppia -->
                     <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
                         <div class="flex justify-between items-center mb-2">
                             <span class="text-xs font-bold text-amber-400 uppercase">Affinità di Coppia</span>
@@ -322,6 +327,7 @@
                         <p class="text-xs text-slate-400 leading-relaxed" id="resCoupleNote">-</p>
                     </div>
 
+                    <!-- Affinità tra Amici -->
                     <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
                         <div class="flex justify-between items-center mb-2">
                             <span class="text-xs font-bold text-amber-400 uppercase">Affinità Amicizia</span>
@@ -348,7 +354,9 @@
 
     </main>
 
-    <!-- FOOTER SECTION -->
+    <!-- ================================================================= -->
+    <!-- FOOTER SECTION                                                    -->
+    <!-- ================================================================= -->
     <footer class="bg-slate-900/90 border-t border-slate-800 py-5 px-6 text-xs text-slate-500 mt-12">
         <div class="max-w-4xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
             <p>&copy; 2026 AstroMatrix FREE - Tutti i diritti riservati.</p>
@@ -359,7 +367,9 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT ENGINE & UNIQUE STABLE NUMBERS GENERATOR -->
+    <!-- ================================================================= -->
+    <!-- JAVASCRIPT ENGINE                                                 -->
+    <!-- ================================================================= -->
     <script>
         const zodiacSigns = ["Ariete", "Toro", "Gemelli", "Cancro", "Leone", "Vergine", "Bilancia", "Scorpione", "Sagittario", "Capricorno", "Acquario", "Pesci"];
         
@@ -390,7 +400,26 @@
             "maria": { onomastico: "12 Settembre (Santissimo Nome di Maria)", meaning: 'Origine Ebraica che significa Amata da Dio o Signora' }
         };
 
+        // GESTIONE CONTATORE DINAMICO VISITE (Incrementa di 1 ogni visita)
+        function initVisitCounter() {
+            const baseCounter = 1290;
+            let currentVisits = localStorage.getItem('astromatrix_visits');
+            if (!currentVisits) {
+                currentVisits = baseCounter + 1;
+            } else {
+                currentVisits = parseInt(currentVisits, 10) + 1;
+            }
+            localStorage.setItem('astromatrix_visits', currentVisits);
+            const countEl = document.getElementById('visitCount');
+            if (countEl) {
+                countEl.innerText = currentVisits.toLocaleString('it-IT');
+            }
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
+            initVisitCounter();
+
+            // Popolamento select partner
             const selectPartner = document.getElementById('selectPartnerSign');
             if (selectPartner) {
                 zodiacSigns.forEach(s => {
@@ -401,19 +430,19 @@
                 });
             }
 
+            // Attivazione pulsante sia per Click che per Touch (Mobile)
             const calcBtn = document.getElementById('calcBtn');
             if (calcBtn) {
-                calcBtn.addEventListener('click', calculateMatrix);
-                calcBtn.addEventListener('touchend', (e) => {
+                const triggerCalculation = (e) => {
                     e.preventDefault();
                     calculateMatrix();
-                });
+                };
+                calcBtn.addEventListener('click', triggerCalculation);
+                calcBtn.addEventListener('touchend', triggerCalculation);
             }
         });
 
         let currentUserZodiac = null;
-        let cachedGeoNumbers = null;
-        let lastInputSignature = "";
 
         function getZodiacDetails(day, month) {
             if ((month == 3 && day >= 21) || (month == 4 && day <= 19)) return masterSignData["Ariete"];
@@ -446,5 +475,112 @@
             return masterNames[clean] || { onomastico: "17 Giugno / Calendario Liturgico Generale", meaning: 'Nobile indole votata alla scoperta e all\'equilibrio' };
         }
 
-        // Generatore di 5 numeri unici e stabili basati sui dati utente
-        function getStableUniqueNumbers(seedString
+        // ALGORITMO NUMERI GEODINAMICI (Imperscrutabile, privo di legami visibili con la data)
+        function generateGeodynamicNumbers(name, day, month, year, place, timeStr) {
+            const seedStr = (name + day + month + year + place + timeStr).toLowerCase();
+            let hash = 0;
+            for (let i = 0; i < seedStr.length; i++) {
+                hash = ((hash << 5) - hash) + seedStr.charCodeAt(i);
+                hash |= 0;
+            }
+            
+            const numbers = [];
+            const multipliers = [13, 37, 71, 97, 113];
+            
+            for (let k = 0; k < 5; k++) {
+                let rawVal = Math.abs((hash * multipliers[k] + (k + 1) * 179) % 90) + 1;
+                while (numbers.includes(rawVal)) {
+                    rawVal = (rawVal % 90) + 1;
+                }
+                numbers.push(rawVal);
+            }
+            return numbers.sort((a, b) => a - b).join(' - ');
+        }
+
+        function updateAffinities() {
+            const selectPartner = document.getElementById('selectPartnerSign');
+            if (!selectPartner || !currentUserZodiac) return;
+            const chosenSignName = selectPartner.value;
+            const targetData = masterSignData[chosenSignName] || currentUserZodiac;
+
+            document.getElementById('resCouplePartner').innerText = 'Partner: ' + chosenSignName;
+            document.getElementById('resCouplePct').innerText = targetData.partnerPct || '88%';
+            document.getElementById('resCoupleNote').innerText = targetData.partnerNote || ('Unione intensa basata su stima e comprensione reciproca.');
+
+            document.getElementById('resFriendPartner').innerText = 'Amico/a: ' + chosenSignName;
+            document.getElementById('resFriendPct').innerText = targetData.friendPct || '92%';
+            document.getElementById('resFriendNote').innerText = targetData.friendNote || ('Ottima sintonia amicale e condivisione di ideali.');
+        }
+
+        function calculateMatrix() {
+            try {
+                const nameEl = document.getElementById('userName');
+                const dayEl = document.getElementById('userDay');
+                const monthEl = document.getElementById('userMonth');
+                const yearEl = document.getElementById('userYear');
+                const timeEl = document.getElementById('userTime');
+                const placeEl = document.getElementById('userPlace');
+
+                const name = nameEl ? nameEl.value.trim() : '';
+                const day = dayEl ? parseInt(dayEl.value, 10) : 0;
+                const month = monthEl ? parseInt(monthEl.value, 10) : 0;
+                const year = yearEl ? parseInt(yearEl.value, 10) : 0;
+                const timeStr = timeEl ? timeEl.value : '12:00';
+                const place = placeEl && placeEl.value ? placeEl.value.trim() : 'Italia';
+
+                if (!name || isNaN(day) || isNaN(month) || isNaN(year)) {
+                    alert('Attenzione: per favore inserisci Nome, Giorno, Mese e Anno prima di procedere.');
+                    return;
+                }
+
+                document.getElementById('resProfileName').innerText = name.toUpperCase() + ' (' + place.toUpperCase() + ')';
+
+                const zodiac = getZodiacDetails(day, month);
+                currentUserZodiac = zodiac;
+                const signName = zodiacSigns[zodiac.index];
+                const ascendant = calculateAscendant(zodiac.index, timeStr);
+                const nameInfo = getNamesDetails(name);
+
+                const selectPartner = document.getElementById('selectPartnerSign');
+                if (selectPartner) {
+                    selectPartner.value = zodiac.partner;
+                }
+
+                // 1. Anagrafica & Etimologia
+                document.getElementById('resOnomastico').innerText = nameInfo.onomastico;
+                document.getElementById('resMeaning').innerText = nameInfo.meaning;
+
+                // 2. Profilo Astrologico
+                document.getElementById('resZodiac').innerText = signName;
+                document.getElementById('resAscendant').innerText = ascendant;
+                document.getElementById('resElement').innerText = zodiac.element;
+                document.getElementById('resPlanet').innerText = zodiac.planet;
+                document.getElementById('resSignNumber').innerText = zodiac.signNum;
+                document.getElementById('resColor').innerText = zodiac.color;
+                document.getElementById('resGem').innerText = zodiac.gem;
+                document.getElementById('resGemAdvice').innerText = zodiac.gemAdvice;
+
+                // Numeri Geodinamici calcolati con la nuova formula misteriosa
+                document.getElementById('resGeoNumbers').innerText = generateGeodynamicNumbers(name, day, month, year, place, timeStr);
+
+                // 3. Oroscopo Settimanale FREE
+                document.getElementById('resWeeklyWeather').innerText = 'Per il Sole in ' + signName + ': La spinta dinamica e diretta dell\'Ascendente ' + ascendant + ' accelera i tempi di reazione e l\'efficacia delle tue scelte.';
+                document.getElementById('resWisdom').innerText = 'Messaggio per ' + signName + ' con Ascendente ' + ascendant + ': L\'Ascendente ' + ascendant + ' ti chiede di agire con coraggio senza attendere il consenso altrui.';
+                document.getElementById('resActionAdvice').innerText = 'Azione per ' + signName + ': Inizia una nuova attività di petto entro i primi giorni della settimana.';
+
+                // 4. Affinità
+                updateAffinities();
+
+                const resultBox = document.getElementById('resultBox');
+                if (resultBox) {
+                    resultBox.classList.remove('hidden');
+                    resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            } catch (err) {
+                console.error("Errore:", err);
+                alert("Si è verificato un errore durante il calcolo.");
+            }
+        }
+    </script>
+</body>
+</html>
