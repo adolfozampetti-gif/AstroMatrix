@@ -154,9 +154,9 @@
                     </div>
                 </div>
 
-                <!-- Action Button (Senza la parola Master) -->
-                <button type="button" onclick="calculateMatrix()" class="w-full bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-4 px-6 rounded-xl shadow-xl transition-all transform active:scale-[0.98] font-cinzel tracking-wider text-base uppercase mt-3">
-                    <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Calcola Il Tuo Profilo Gratuito
+                <!-- Action Button Aggiornato (Senza Master, con FREE) -->
+                <button type="button" onclick="calculateMatrix()" class="w-full bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-4 px-6 rounded-xl shadow-xl transition-all transform active:scale-[0.98] font-cinzel tracking-wider text-base uppercase mt-3 cursor-pointer">
+                    <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Calcola Profilo Gratuito FREE
                 </button>
             </div>
         </div>
@@ -180,7 +180,7 @@
             <!-- SEZIONE 1: Anagrafica & Etimologia -->
             <div>
                 <h4 class="text-sm font-bold text-amber-400 font-cinzel uppercase tracking-wider mb-3">
-                    <i class="fa-solid fa-address-card mr-2"></i>Identità & Etimologia del Nome[cite: 1]
+                    <i class="fa-solid fa-address-card mr-2"></i>Identità & Etimologia del Nome[span_0](start_span)[span_0](end_span)
                 </h4>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                     <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
@@ -197,7 +197,7 @@
             <!-- SEZIONE 2: Profilo Astrologico Completo -->
             <div>
                 <h4 class="text-sm font-bold text-amber-400 font-cinzel uppercase tracking-wider mb-3">
-                    <i class="fa-solid fa-sun mr-2"></i>Profilo Astrologico[cite: 1]
+                    <i class="fa-solid fa-sun mr-2"></i>Profilo Astrologico[span_1](start_span)[span_1](end_span)
                 </h4>
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm mb-4">
                     <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800">
@@ -235,7 +235,7 @@
 
                 <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800 text-xs text-slate-300 mb-4">
                     <span class="text-[11px] text-amber-400 font-bold block uppercase mb-1">
-                        <i class="fa-solid fa-gem mr-1"></i>Consiglio d'Uso & Purificazione Pietra[cite: 1]
+                        <i class="fa-solid fa-gem mr-1"></i>Consiglio d'Uso & Purificazione Pietra[span_2](start_span)[span_2](end_span)
                     </span>
                     <p id="resGemAdvice">-</p>
                 </div>
@@ -243,7 +243,7 @@
                 <!-- Numeri Geodinamici / Pinquina -->
                 <div class="bg-gradient-to-r from-amber-500/10 via-amber-600/5 to-amber-500/10 p-4 rounded-xl border border-amber-500/30 text-center">
                     <span class="text-xs font-bold text-amber-400 uppercase tracking-widest block mb-2 font-cinzel">
-                        <i class="fa-solid fa-cubes mr-1"></i>Numeri Geodinamici di Matrice[cite: 1]
+                        <i class="fa-solid fa-cubes mr-1"></i>Numeri Geodinamici di Matrice[span_3](start_span)[span_3](end_span)
                     </span>
                     <p class="text-xl sm:text-2xl font-bold text-amber-300 font-cinzel tracking-wider" id="resGeoNumbers">-- - -- - -- - -- - --</p>
                 </div>
@@ -252,19 +252,19 @@
             <!-- SEZIONE 3: Oroscopo Settimanale FREE -->
             <div>
                 <h4 class="text-sm font-bold text-amber-400 font-cinzel uppercase tracking-wider mb-3">
-                    <i class="fa-solid fa-feather-pointed mr-2"></i>Oroscopo Settimanale FREE[cite: 1]
+                    <i class="fa-solid fa-feather-pointed mr-2"></i>Oroscopo Settimanale FREE[span_4](start_span)[span_4](end_span)
                 </h4>
                 <div class="space-y-3 text-sm">
                     <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
-                        <span class="text-xs text-amber-400 font-bold uppercase block mb-1">Clima Settimanale[cite: 1]</span>
+                        <span class="text-xs text-amber-400 font-bold uppercase block mb-1">Clima Settimanale[span_5](start_span)[span_5](end_span)</span>
                         <p class="text-slate-200" id="resWeeklyWeather">-</p>
                     </div>
                     <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
-                        <span class="text-xs text-amber-400 font-bold uppercase block mb-1">Pillola di Saggezza[cite: 1]</span>
+                        <span class="text-xs text-amber-400 font-bold uppercase block mb-1">Pillola di Saggezza[span_6](start_span)[span_6](end_span)</span>
                         <p class="text-slate-200 italic" id="resWisdom">-</p>
                     </div>
                     <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
-                        <span class="text-xs text-amber-400 font-bold uppercase block mb-1">Consiglio Pratico[cite: 1]</span>
+                        <span class="text-xs text-amber-400 font-bold uppercase block mb-1">Consiglio Pratico[span_7](start_span)[span_7](end_span)</span>
                         <p class="text-slate-200" id="resActionAdvice">-</p>
                     </div>
                 </div>
@@ -273,13 +273,13 @@
             <!-- SEZIONE 4: Le Affinità del Segno -->
             <div>
                 <h4 class="text-sm font-bold text-amber-400 font-cinzel uppercase tracking-wider mb-3">
-                    <i class="fa-solid fa-heart mr-2"></i>Le Affinità del Segno[cite: 1]
+                    <i class="fa-solid fa-heart mr-2"></i>Le Affinità del Segno[span_8](start_span)[span_8](end_span)
                 </h4>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                     <!-- Affinità di Coppia -->
                     <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
                         <div class="flex justify-between items-center mb-2">
-                            <span class="text-xs font-bold text-amber-400 uppercase">Affinità di Coppia[cite: 1]</span>
+                            <span class="text-xs font-bold text-amber-400 uppercase">Affinità di Coppia[span_9](start_span)[span_9](end_span)</span>
                             <span class="text-xs bg-rose-500/20 text-rose-300 px-2.5 py-0.5 rounded-full border border-rose-500/30 font-bold" id="resCouplePct">-%</span>
                         </div>
                         <p class="font-bold text-slate-100 text-base mb-1" id="resCouplePartner">Partner: -</p>
@@ -289,7 +289,7 @@
                     <!-- Affinità tra Amici -->
                     <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
                         <div class="flex justify-between items-center mb-2">
-                            <span class="text-xs font-bold text-amber-400 uppercase">Affinità Amicizia[cite: 1]</span>
+                            <span class="text-xs font-bold text-amber-400 uppercase">Affinità Amicizia[span_10](start_span)[span_10](end_span)</span>
                             <span class="text-xs bg-sky-500/20 text-sky-300 px-2.5 py-0.5 rounded-full border border-sky-500/30 font-bold" id="resFriendPct">-%</span>
                         </div>
                         <p class="font-bold text-slate-100 text-base mb-1" id="resFriendPartner">Amico/a: -</p>
@@ -330,19 +330,142 @@
     <!-- JAVASCRIPT ENGINE & DATABASES              -->
     <!-- ========================================== -->
     <script>
-        // Array dei segni zodiacali di riferimento
         const zodiacSigns = ["Ariete", "Toro", "Gemelli", "Cancro", "Leone", "Vergine", "Bilancia", "Scorpione", "Sagittario", "Capricorno", "Acquario", "Pesci"];
         
-        // Master Database Caratteristiche Segni (Sincronizzato con il Master Excel)
+        // Master Database Caratteristiche Segni[span_11](start_span)[span_11](end_span)
         const masterSignData = {
-            "Ariete": { element: "Fuoco", planet: "Marte", signNum: 84, color: "Rosso fuoco", gem: "Rubino", gemAdvice: "Indossare a contatto con la pelle; purificare con acqua corrente e luce lunare[cite: 1].", partner: "Cancro", partnerPct: "89%", partnerNote: "Coppia Ariete (fuoco) e Cancro (acqua): Un rifugio emotivo intenso e protettivo, dove la sensibilità reciproca crea un legame indissolubile[cite: 1].", friend: "Leone", friendPct: "95%", friendNote: "Tra Ariete (fuoco) e Leone (fuoco): Un mix frizzante di intraprendenza e leggerezza che rende ogni momento condiviso piacevolmente unico[cite: 1].", index: 0 },
-            "Toro": { element: "Terra", planet: "Venere", signNum: 69, color: "Verde Smeraldo", gem: "Smeraldo", gemAdvice: "A contatto con il petto; purificare su geode di ametista o con fumo d'incenso[cite: 1].", partner: "Scorpione", partnerPct: "88%", partnerNote: "Unione solida e sensuale basata su lealtà e continuità materiale[cite: 1].", friend: "Vergine", friendPct: "97%", friendNote: "Complicità naturale orientata al pragmatismo e al sostegno costante[cite: 1].", index: 1 },
-            "Gemelli": { element: "Aria", planet: "Mercurio", signNum: 77, color: "Giallo vivo", gem: "Agata", gemAdvice: "Portare in tasca o come ciondolo; purificare sotto acqua tiepida senza sale[cite: 1].", partner: "Sagittario", partnerPct: "93%", partnerNote: "Intesa brillante e dinamica che stimola la scoperta reciproca[cite: 1].", friend: "Bilancia", friendPct: "90%", friendNote: "Dialogo fluido, vivace e privo di noia[cite: 1].", index: 2 },
-            "Cancro": { element: "Acqua", planet: "Luna", signNum: 13, color: "Argento / Bianco", gem: "Perla", gemAdvice: "Indossare come anello o collana; purificare con luce lunare delicata[cite: 1].", partner: "Scorpione", partnerPct: "95%", partnerNote: "Profonda empatia emotiva e rifugio sicuro duraturo[cite: 1].", friend: "Toro", friendPct: "97%", friendNote: "Presenza rassicurante e cura reciproca[cite: 1].", index: 3 },
-            "Leone": { element: "Fuoco", planet: "Sole", signNum: 41, color: "Oro / Arancio", gem: "Diamante / Zircone", gemAdvice: "Montato in oro; purificare con luce solare del mattino[cite: 1].", partner: "Ariete", partnerPct: "94%", partnerNote: "Intesa immediata e travolgente che stimola l'azione e la gioia condivisa[cite: 1].", friend: "Sagittario", friendPct: "96%", friendNote: "Entusiasmo contagioso e voglia di condividere grandi traguardi[cite: 1].", index: 4 },
-            "Vergine": { element: "Terra", planet: "Mercurio", signNum: 28, color: "Grigio Perla", gem: "Zaffiro", gemAdvice: "Indossare all'anulare o indice; purificare con acqua e pietra di quarzo[cite: 1].", partner: "Capricorno", partnerPct: "91%", partnerNote: "Affidabilità, cura dei dettagli e grande intesa strategica[cite: 1].", friend: "Toro", friendPct: "89%", friendNote: "Sostegno reciproco basato sulla concretezza[cite: 1].", index: 5 },
-            "Bilancia": { element: "Aria", planet: "Venere", signNum: 79, color: "Rosa / Blu cobalto", gem: "Opale", gemAdvice: "Evitare sbalzi termici; purificare alla luce soffusa della Luna crescente[cite: 1].", partner: "Gemelli", partnerPct: "92%", partnerNote: "Sintonia romantica ed elegante orientata all'armonia[cite: 1].", friend: "Acquario", friendPct: "90%", friendNote: "Condivisione di ideali e stimoli culturali[cite: 1].", index: 6 },
-            "Scorpione": { element: "Acqua", planet: "Plutone", signNum: 38, color: "Rosso scuro / Nero", gem: "Topazio / Agata Fuoco", gemAdvice: "Indossare a diretto contatto; purificare con incenso di sandalo[cite: 1].", partner: "Cancro", partnerPct: "96%", partnerNote: "Legame magnetico e viscerale di straordinaria intensità[cite: 1].", friend: "Pesci", friendPct: "95%", friendNote: "Comprensione intuitiva priva di filtri[cite: 1].", index: 7 },
-            "Sagittario": { element: "Fuoco", planet: "Giove", signNum: 56, color: "Blu scuro / Porpora", gem: "Turchese", gemAdvice: "Ottimo come amuleto da viaggio; purificare con argilla o fumo d'erbe[cite: 1].", partner: "Leone", partnerPct: "91%", partnerNote: "Amore avventuroso e stimolante che guarda sempre avanti[cite: 1].", friend: "Ariete", friendPct: "88%", friendNote: "Energia inesauribile e spirito di squadra[cite: 1].", index: 8 },
-            "Capricorno": { element: "Terra", planet: "Saturno", signNum: 24, color: "Nero / Marrone", gem: "Onice", gemAdvice: "Indossare a sinistra; purificare con acqua corrente e terra[cite: 1].", partner: "Toro", partnerPct: "95%", partnerNote: "Unione indistruttibile fondata su maturità ed eleganza[cite: 1].", friend: "Vergine", friendPct: "92%", friendNote: "Rispetto reciproco e chiarezza d'intenti[cite: 1].", index: 9 },
-            "Acquario": { element: "Aria", planet: "Urano", signNum: 55, color: "Blu elettrico", gem: "Ametista", gemAdvice: "Purificare su geode di quarzo o fumo di salvia bianca[cite: 1].", partner: "Gemelli", partnerPct: "90%", partnerNote: "Libertà condivisa e affinità intellettuale profonda[cite: 1]
+            "Ariete": { element: "Fuoco", planet: "Marte", signNum: 84, color: "Rosso fuoco", gem: "Rubino", gemAdvice: "Indossare a contatto con la pelle; purificare con acqua corrente e luce lunare[span_12](start_span)[span_12](end_span).", partner: "Cancro", partnerPct: "89%", partnerNote: "Coppia Ariete (fuoco) e Cancro (acqua): Un rifugio emotivo intenso e protettivo, dove la sensibilità reciproca crea un legame indissolubile[span_13](start_span)[span_13](end_span).", friend: "Leone", friendPct: "95%", friendNote: "Tra Ariete (fuoco) e Leone (fuoco): Un mix frizzante di intraprendenza e leggerezza che rende ogni momento condiviso piacevolmente unico[span_14](start_span)[span_14](end_span).", index: 0 },
+            "Toro": { element: "Terra", planet: "Venere", signNum: 69, color: "Verde Smeraldo", gem: "Smeraldo", gemAdvice: "A contatto con il petto; purificare su geode di ametista o con fumo d'incenso[span_15](start_span)[span_15](end_span).", partner: "Scorpione", partnerPct: "88%", partnerNote: "Unione solida e sensuale basata su lealtà e continuità materiale[span_16](start_span)[span_16](end_span).", friend: "Vergine", friendPct: "97%", friendNote: "Complicità naturale orientata al pragmatismo e al sostegno costante[span_17](start_span)[span_17](end_span).", index: 1 },
+            "Gemelli": { element: "Aria", planet: "Mercurio", signNum: 77, color: "Giallo vivo", gem: "Agata", gemAdvice: "Portare in tasca o come ciondolo; purificare sotto acqua tiepida senza sale[span_18](start_span)[span_18](end_span).", partner: "Sagittario", partnerPct: "93%", partnerNote: "Intesa brillante e dinamica che stimola la scoperta reciproca[span_19](start_span)[span_19](end_span).", friend: "Bilancia", friendPct: "90%", friendNote: "Dialogo fluido, vivace e privo di noia[span_20](start_span)[span_20](end_span).", index: 2 },
+            "Cancro": { element: "Acqua", planet: "Luna", signNum: 13, color: "Argento / Bianco", gem: "Perla", gemAdvice: "Indossare come anello o collana; purificare con luce lunare delicata[span_21](start_span)[span_21](end_span).", partner: "Scorpione", partnerPct: "95%", partnerNote: "Profonda empatia emotiva e rifugio sicuro duraturo[span_22](start_span)[span_22](end_span).", friend: "Toro", friendPct: "97%", friendNote: "Presenza rassicurante e cura reciproca[span_23](start_span)[span_23](end_span).", index: 3 },
+            "Leone": { element: "Fuoco", planet: "Sole", signNum: 41, color: "Oro / Arancio", gem: "Diamante / Zircone", gemAdvice: "Montato in oro; purificare con luce solare del mattino[span_24](start_span)[span_24](end_span).", partner: "Ariete", partnerPct: "94%", partnerNote: "Intesa immediata e travolgente che stimola l'azione e la gioia condivisa[span_25](start_span)[span_25](end_span).", friend: "Sagittario", friendPct: "96%", friendNote: "Entusiasmo contagioso e voglia di condividere grandi traguardi[span_26](start_span)[span_26](end_span).", index: 4 },
+            "Vergine": { element: "Terra", planet: "Mercurio", signNum: 28, color: "Grigio Perla", gem: "Zaffiro", gemAdvice: "Indossare all'anulare o indice; purificare con acqua e pietra di quarzo[span_27](start_span)[span_27](end_span).", partner: "Capricorno", partnerPct: "91%", partnerNote: "Affidabilità, cura dei dettagli e grande intesa strategica[span_28](start_span)[span_28](end_span).", friend: "Toro", friendPct: "89%", friendNote: "Sostegno reciproco basato sulla concretezza[span_29](start_span)[span_29](end_span).", index: 5 },
+            "Bilancia": { element: "Aria", planet: "Venere", signNum: 79, color: "Rosa / Blu cobalto", gem: "Opale", gemAdvice: "Evitare sbalzi termici; purificare alla luce soffusa della Luna crescente[span_30](start_span)[span_30](end_span).", partner: "Gemelli", partnerPct: "92%", partnerNote: "Sintonia romantica ed elegante orientata all'armonia[span_31](start_span)[span_31](end_span).", friend: "Acquario", friendPct: "90%", friendNote: "Condivisione di ideali e stimoli culturali[span_32](start_span)[span_32](end_span).", index: 6 },
+            "Scorpione": { element: "Acqua", planet: "Plutone", signNum: 38, color: "Rosso scuro / Nero", gem: "Topazio / Agata Fuoco", gemAdvice: "Indossare a diretto contatto; purificare con incenso di sandalo[span_33](start_span)[span_33](end_span).", partner: "Cancro", partnerPct: "96%", partnerNote: "Legame magnetico e viscerale di straordinaria intensità[span_34](start_span)[span_34](end_span).", friend: "Pesci", friendPct: "95%", friendNote: "Comprensione intuitiva priva di filtri[span_35](start_span)[span_35](end_span).", index: 7 },
+            "Sagittario": { element: "Fuoco", planet: "Giove", signNum: 56, color: "Blu scuro / Porpora", gem: "Turchese", gemAdvice: "Ottimo come amuleto da viaggio; purificare con argilla o fumo d'erbe[span_36](start_span)[span_36](end_span).", partner: "Leone", partnerPct: "91%", partnerNote: "Amore avventuroso e stimolante che guarda sempre avanti[span_37](start_span)[span_37](end_span).", friend: "Ariete", friendPct: "88%", friendNote: "Energia inesauribile e spirito di squadra[span_38](start_span)[span_38](end_span).", index: 8 },
+            "Capricorno": { element: "Terra", planet: "Saturno", signNum: 24, color: "Nero / Marrone", gem: "Onice", gemAdvice: "Indossare a sinistra; purificare con acqua corrente e terra[span_39](start_span)[span_39](end_span).", partner: "Toro", partnerPct: "95%", partnerNote: "Unione indistruttibile fondata su maturità ed eleganza[span_40](start_span)[span_40](end_span).", friend: "Vergine", friendPct: "92%", friendNote: "Rispetto reciproco e chiarezza d'intenti[span_41](start_span)[span_41](end_span).", index: 9 },
+            "Acquario": { element: "Aria", planet: "Urano", signNum: 55, color: "Blu elettrico", gem: "Ametista", gemAdvice: "Purificare su geode di quarzo o fumo di salvia bianca[span_42](start_span)[span_42](end_span).", partner: "Gemelli", partnerPct: "90%", partnerNote: "Libertà condivisa e affinità intellettuale profonda[span_43](start_span)[span_43](end_span).", friend: "Bilancia", friendPct: "93%", friendNote: "Armonia di idee e progetti creativi[span_44](start_span)[span_44](end_span).", index: 10 },
+            "Pesci": { element: "Acqua", planet: "Nettuno", signNum: 33, color: "Verde acqua", gem: "Acquamarina", gemAdvice: "Purificare sotto acqua corrente fredda e luce lunare[span_45](start_span)[span_45](end_span).", partner: "Scorpione", partnerPct: "95%", partnerNote: "Alchimia spirituale ed emotiva di rara bellezza[span_46](start_span)[span_46](end_span).", friend: "Cancro", friendPct: "94%", friendNote: "Empatia profonda e protezione affettiva[span_47](start_span)[span_47](end_span).", index: 11 }
+        };
+
+        // Master Database Onomastici[span_48](start_span)[span_48](end_span)
+        const masterNames = {
+            "adolfo": { onomastico: "17 Giugno (Sant'Adolfo Vescovo)", meaning: 'Origine Germanica che significa "Nobile Lupo[span_49](start_span)"[span_49](end_span)' },
+            "monica": { onomastico: "27 Agosto (Santa Monica)", meaning: 'Origine Greca che significa "Solitaria" o "Consigliera"' },
+            "mario": { onomastico: "19 Gennaio (San Mario Martire)", meaning: 'Origine Latina che significa "Uomo del mare" o "Guerriero"' },
+            "anna": { onomastico: "26 Luglio (Santi Gioacchino e Anna)", meaning: 'Origine Ebraica che significa "Grazia" o "Misericordiosa"' },
+            "giovanni": { onomastico: "24 Giugno (San Giovanni Battista)", meaning: 'Origine Ebraica che significa "Dono del Signore"' },
+            "francesco": { onomastico: "4 Ottobre (San Francesco d'Assisi)", meaning: 'Origine Germanica che significa "Uomo libero"' },
+            "antonio": { onomastico: "13 Giugno (Sant'Antonio da Padova)", meaning: 'Origine Greca che significa "Inestimabile"' },
+            "giuseppe": { onomastico: "19 Marzo (San Giuseppe Patriarca)", meaning: 'Origine Ebraica che significa "Egli aggiungerà"' },
+            "maria": { onomastico: "12 Settembre (Santissimo Nome di Maria)", meaning: 'Origine Ebraica che significa "Amata da Dio" o "Signora"' }
+        };
+
+        function getZodiacDetails(day, month) {
+            if ((month == 3 && day >= 21) || (month == 4 && day <= 19)) return masterSignData["Ariete"];
+            if ((month == 4 && day >= 20) || (month == 5 && day <= 20)) return masterSignData["Toro"];
+            if ((month == 5 && day >= 21) || (month == 6 && day <= 20)) return masterSignData["Gemelli"];
+            if ((month == 6 && day >= 21) || (month == 7 && day <= 22)) return masterSignData["Cancro"];
+            if ((month == 7 && day >= 23) || (month == 8 && day <= 22)) return masterSignData["Leone"];
+            if ((month == 8 && day >= 23) || (month == 9 && day <= 22)) return masterSignData["Vergine"];
+            if ((month == 9 && day >= 23) || (month == 10 && day <= 22)) return masterSignData["Bilancia"];
+            if ((month == 10 && day >= 23) || (month == 11 && day <= 21)) return masterSignData["Scorpione"];
+            if ((month == 11 && day >= 22) || (month == 12 && day <= 21)) return masterSignData["Sagittario"];
+            if ((month == 12 && day >= 22) || (month == 1 && day <= 19)) return masterSignData["Capricorno"];
+            if ((month == 1 && day >= 20) || (month == 2 && day <= 18)) return masterSignData["Acquario"];
+            return masterSignData["Pesci"];
+        }
+
+        function calculateAscendant(sunIndex, timeStr) {
+            if (!timeStr) return zodiacSigns[sunIndex];
+            const parts = timeStr.split(':');
+            const hours = parseInt(parts[0], 10) || 12;
+            const minutes = parseInt(parts[1], 10) || 0;
+            const totalHours = hours + (minutes / 60);
+            const offset = Math.floor(totalHours / 2);
+            return zodiacSigns[(sunIndex + offset) % 12];
+        }
+
+        function getNamesDetails(name) {
+            if (!name) return { onomastico: "17 Giugno / Calendario Liturgico Generale[span_50](start_span)[span_50](end_span)", meaning: 'Nobile indole votata alla scoperta e all\'equilibrio' };
+            const clean = name.trim().split(" ")[0].toLowerCase();
+            return masterNames[clean] || { onomastico: "17 Giugno / Calendario Liturgico Generale[span_51](start_span)[span_51](end_span)", meaning: 'Nobile indole votata alla scoperta e all\'equilibrio' };
+        }
+
+        function calculateMatrix() {
+            try {
+                const nameEl = document.getElementById('userName');
+                const dayEl = document.getElementById('userDay');
+                const monthEl = document.getElementById('userMonth');
+                const yearEl = document.getElementById('userYear');
+                const timeEl = document.getElementById('userTime');
+                const placeEl = document.getElementById('userPlace');
+
+                const name = nameEl ? nameEl.value.trim() : '';
+                const day = dayEl ? parseInt(dayEl.value, 10) : 0;
+                const month = monthEl ? parseInt(monthEl.value, 10) : 0;
+                const year = yearEl ? parseInt(yearEl.value, 10) : 0;
+                const timeStr = timeEl ? timeEl.value : '12:00';
+                const place = placeEl ? placeEl.value.trim() : '';
+
+                if (!name || isNaN(day) || isNaN(month) || isNaN(year) || !place) {
+                    alert('Attenzione: per favore compila tutti i campi richiesti (Nome, Giorno, Mese, Anno, Ora e Città di nascita).');
+                    return;
+                }
+
+                document.getElementById('resProfileName').innerText = name.toUpperCase() + ' (' + place.toUpperCase() + ')';
+
+                const zodiac = getZodiacDetails(day, month);
+                const ascendant = calculateAscendant(zodiac.index, timeStr);
+                const nameInfo = getNamesDetails(name);
+
+                // 1. Identità & Etimologia
+                document.getElementById('resOnomastico').innerText = nameInfo.onomastico;
+                document.getElementById('resMeaning').innerText = nameInfo.meaning;
+
+                // 2. Profilo Astrologico
+                const signName = zodiacSigns[zodiac.index];
+                document.getElementById('resZodiac').innerText = signName;
+                document.getElementById('resAscendant').innerText = ascendant;
+                document.getElementById('resElement').innerText = zodiac.element;
+                document.getElementById('resPlanet').innerText = zodiac.planet;
+                document.getElementById('resSignNumber').innerText = zodiac.signNum;
+                document.getElementById('resColor').innerText = zodiac.color;
+                document.getElementById('resGem').innerText = zodiac.gem;
+                document.getElementById('resGemAdvice').innerText = zodiac.gemAdvice;
+
+                // Numeri Geodinamici / Pinquina (Master Excel)
+                const n1 = ((day * 3 + name.length) % 90) || 74;
+                const n2 = month < 10 ? '0' + month : month;
+                const n3 = (day % 90) || 25;
+                const n4 = 50;
+                const n5 = 72;
+                document.getElementById('resGeoNumbers').innerText = n1 + ' - ' + n2 + ' - ' + n3 + ' - ' + n4 + ' - ' + n5;
+
+                // 3. Oroscopo Settimanale FREE[span_52](start_span)[span_52](end_span)
+                document.getElementById('resWeeklyWeather').innerText = 'Per il Sole in ' + signName + ': La spinta dinamica e diretta dell\'Ascendente ' + ascendant + ' accelera i tempi di reazione e l\'efficacia delle tue scelte[span_53](start_span)[span_53](end_span).';
+                document.getElementById('resWisdom').innerText = 'Messaggio per ' + signName + ' con Ascendente ' + ascendant + ': L\'Ascendente ' + ascendant + ' ti chiede di agire con coraggio senza attendere il consenso altrui[span_54](start_span)[span_54](end_span).';
+                document.getElementById('resActionAdvice').innerText = 'Azione per ' + signName + ': Inizia una nuova attività di petto entro i primi giorni della settimana[span_55](start_span)[span_55](end_span).';
+
+                // 4. Affinità del Segno
+                document.getElementById('resCouplePartner').innerText = 'Partner: ' + zodiac.partner;
+                document.getElementById('resCouplePct').innerText = zodiac.partnerPct;
+                document.getElementById('resCoupleNote').innerText = zodiac.partnerNote;
+
+                document.getElementById('resFriendPartner').innerText = 'Amico/a: ' + zodiac.friend;
+                document.getElementById('resFriendPct').innerText = zodiac.friendPct;
+                document.getElementById('resFriendNote').innerText = zodiac.friendNote;
+
+                const resultBox = document.getElementById('resultBox');
+                if (resultBox) {
+                    resultBox.classList.remove('hidden');
+                    resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            } catch (err) {
+                console.error("Errore durante il calcolo:", err);
+                alert("Si è verificato un problema durante l'elaborazione dei dati.");
+            }
+        }
+    </script>
+</body>
+</html>
