@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generatore Tre Numeri</title>
+    <title>AstroMatrix - Dashboard Astrologica</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 500px;
-            margin: 50px auto;
+            max-width: 600px;
+            margin: 30px auto;
             padding: 20px;
             background-color: #f4f4f9;
             border-radius: 8px;
@@ -35,7 +35,7 @@
         }
         button {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background-color: #007bff;
             color: white;
             border: none;
@@ -48,21 +48,45 @@
         }
         #risultato {
             margin-top: 20px;
-            padding: 15px;
-            background-color: #e9ecef;
-            border-radius: 4px;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            display: none;
+        }
+        .result-title {
+            font-size: 20px;
+            color: #007bff;
+            margin-bottom: 10px;
             text-align: center;
-            font-size: 18px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+        }
+        .result-section {
+            margin-bottom: 10px;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        .numbers-box {
+            text-align: center;
+            font-size: 22px;
             font-weight: bold;
+            color: #d9534f;
+            background: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
         }
         .error {
             color: #dc3545;
+            text-align: center;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <h2>Calcolo Tre Numeri</h2>
+    <h2>AstroMatrix - Dashboard</h2>
 
     <form id="numeriForm">
         <div class="form-group">
@@ -80,21 +104,31 @@
             <input type="number" id="anno" min="1900" max="2099" required placeholder="Es. 1955">
         </div>
 
-        <button type="button" onclick="calcolaNumeri()">Calcola Numeri</button>
+        <button type="button" onclick="calcolaAstroMatrix()">Genera Profilo</button>
     </form>
 
     <div id="risultato"></div>
 
     <script>
-        // Mappa dei valori associati ai comuni principali (espandibile)
         const databaseComuni = {
-            "NAPOLI": 18,
-            "CASERTA": 12,
-            "SAVONA": 7,
-            "UDINE": 15,
-            "ROMA": 9,
-            "MILANO": 5
+            "NAPOLI": 18, "CASERTA": 12, "SAVONA": 7, "UDINE": 15,
+            "ROMA": 9, "MILANO": 5, "TORINO": 6, "BOLOGNA": 11, "FIRENZE": 14
         };
+
+        const datiZodiacali = [
+            { segno: "Capricorno", inizio: [12, 22], fine: [1, 19], pietra: "Rubino", colore: "Nero / Grigio", affinita: "Toro e Vergine", oroscopo: "La concretezza e la determinazione guidano ogni passo verso traguardi importanti." },
+            { segno: "Acquario", inizio: [1, 20], fine: [2, 18], pietra: "Ametista", colore: "Blu Elettrico", affinita: "Gemelli e Bilancia", oroscopo: "Originalità e visione del futuro aprono nuove strade inattese." },
+            { segno: "Pesci", inizio: [2, 19], fine: [3, 20], pietra: "Acquamarina", colore: "Verde Acqua", affinita: "Cancro e Scorpione", oroscopo: "L'intuito profondo e la sensibilità guidano le scelte con ispirazione artistica." },
+            { segno: "Ariete", inizio: [3, 21], fine: [4, 19], pietra: "Diamante", colore: "Rosso Fuoco", affinita: "Leone e Sagittario", oroscopo: "L'energia vitale e lo spirito pionieristico superano qualsiasi ostacolo." },
+            { segno: "Toro", inizio: [4, 20], fine: [5, 20], pietra: "Smeraldo", colore: "Verde", affinita: "Vergine e Capricorno", oroscopo: "Stabilità e amore per il bello consolidano ogni progetto di vita." },
+            { segno: "Gemelli", inizio: [5, 21], fine: [6, 20], pietra: "Agata", colore: "Giallo", affinita: "Bilancia e Acquario", oroscopo: "Versatilità e ingegno brillante facilitano la comunicazione e i contatti." },
+            { segno: "Cancro", inizio: [6, 21], fine: [7, 22], pietra: "Perla", colore: "Bianco / Argento", affinita: "Scorpione e Pesci", oroscopo: "La memoria e i legami affettivi profondi offrono protezione e forza interiore." },
+            { segno: "Leone", inizio: [7, 23], fine: [8, 22], pietra: "Topazio", colore: "Oro / Arancione", affinita: "Ariete e Sagittario", oroscopo: "Carisma e generosità illuminano la scena e attraggono grandi soddisfazioni." },
+            { segno: "Vergine", inizio: [8, 23], fine: [9, 22], pietra: "Zaffiro", colore: "Marrone / Blu Scuro", affinita: "Toro e Capricorno", oroscopo: "Precisione e analisi meticolosa portano a risultati eccellenti e duraturi." },
+            { segno: "Bilancia", inizio: [9, 23], fine: [10, 22], pietra: "Opale", colore: "Rosa / Celeste", affinita: "Gemelli e Acquario", oroscopo: "Senso dell'armonia e diplomazia creano equilibrio in ogni relazione." },
+            { segno: "Scorpione", inizio: [10, 23], fine: [11, 21], pietra: "Topazio", colore: "Rosso Scuro / Nero", affinita: "Cancro e Pesci", oroscopo: "Passione intensa e magnetismo rivelano verità nascoste e grandi potenzialità." },
+            { segno: "Sagittario", inizio: [11, 22], fine: [12, 21], pietra: "Turchese", colore: "Blu Scuro / Viola", affinita: "Ariete e Leone", oroscopo: "Ottimismo e spirito d'avventura allargano gli orizzonti verso nuove mete." }
+        ];
 
         function riduciA90(valore) {
             let res = valore % 90;
@@ -110,43 +144,55 @@
             return somma;
         }
 
-        function calcolaNumeri() {
+        function determinaSegno(nome) {
+            // Assegnazione basata sul valore del nome per simulare l'estrazione coerente se non si inserisce il giorno/mese esatto
+            let index = calcolaValoreTesto(nome) % 12;
+            return datiZodiacali[index];
+        }
+
+        function calcolaAstroMatrix() {
             const nomeInput = document.getElementById('nome').value.trim();
             const comuneInput = document.getElementById('comune').value.trim();
             const annoInput = document.getElementById('anno').value.trim();
             const divRisultato = document.getElementById('risultato');
 
-            // Validazione campi vuoti
             if (!nomeInput || !comuneInput || !annoInput) {
-                divRisultato.innerHTML = '<span class="error">Compilare tutti i campi.</span>';
+                divRisultato.style.display = 'block';
+                divRisultato.innerHTML = '<div class="error">Compilare tutti i campi correttamente.</div>';
                 return;
             }
 
-            // Validazione anno
             const anno = parseInt(annoInput, 10);
             if (isNaN(anno) || anno < 1900 || anno > 2099) {
-                divRisultato.innerHTML = '<span class="error">Inserire un anno di nascita valido a 4 cifre.</span>';
+                divRisultato.style.display = 'block';
+                divRisultato.innerHTML = '<div class="error">Inserire un anno di nascita valido a 4 cifre.</div>';
                 return;
             }
 
-            // Validazione e lookup comune
             const comuneKey = comuneInput.toUpperCase();
-            let valoreComune = databaseComuni[comuneKey];
-
-            if (valoreComune === undefined) {
-                // Se il comune non è nel database fisso, calcola un valore dinamico coerente dal testo
-                valoreComune = calcolaValoreTesto(comuneKey);
-            }
-
-            // Calcolo del valore del nome
+            let valoreComune = databaseComuni[comuneKey] !== undefined ? databaseComuni[comuneKey] : calcolaValoreTesto(comuneKey);
             const valoreNome = calcolaValoreTesto(nomeInput);
 
-            // Algoritmo di calcolo dei 3 numeri (range 1 - 90)
+            // Numeri Astrali
             const num1 = riduciA90(valoreNome + anno);
             const num2 = riduciA90(valoreComune + (anno % 100));
             const num3 = riduciA90(valoreNome + valoreComune + anno);
 
-            divRisultato.innerHTML = `I tuoi tre numeri sono: <br><span style="color:#007bff; font-size:24px;">${num1} - ${num2} - ${num3}</span>`;
+            // Profilo Astrologico
+            const profilo = determinaSegno(nomeInput);
+
+            divRisultato.style.display = 'block';
+            divRisultato.innerHTML = `
+                <div class="result-title">Profilo per ${nomeInput} (${anno})</div>
+                <div class="result-section"><strong>Segno / Archetipo:</strong> ${profilo.segno}</div>
+                <div class="result-section"><strong>Oroscopo & Tendenze:</strong> ${profilo.oroscopo}</div>
+                <div class="result-section"><strong>Pietra Preziosa:</strong> ${profilo.pietra}</div>
+                <div class="result-section"><strong>Colore Guida:</strong> ${profilo.colore}</div>
+                <div class="result-section"><strong>Affinità Emozionale:</strong> ${profilo.affinita}</div>
+                <div class="numbers-box">
+                    Numeri Astrali: ${num1} - ${num2} - ${num3}
+                </div>
+            `;
         }
     </script>
 
