@@ -1,295 +1,567 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Scopri il tuo Segno Zodiacale</title>
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-body{
-font-family:Arial, sans-serif;
-background:linear-gradient(180deg,#140028,#2f005c,#10001d);
-color:white;
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:20px;
-}
-
-.container{
-width:100%;
-max-width:450px;
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(10px);
-border-radius:20px;
-padding:25px;
-text-align:center;
-box-shadow:0 0 25px rgba(255,215,0,0.3);
-}
-
-h1{
-color:#ffd700;
-margin-bottom:15px;
-}
-
-.sub{
-margin-bottom:20px;
-opacity:0.8;
-}
-
-input{
-width:100%;
-padding:12px;
-border:none;
-border-radius:10px;
-font-size:16px;
-margin-bottom:15px;
-}
-
-button{
-background:#ffd700;
-color:#000;
-border:none;
-padding:12px 20px;
-font-size:16px;
-font-weight:bold;
-border-radius:10px;
-cursor:pointer;
-}
-
-button:hover{
-background:#ffea71;
-}
-
-#risultato{
-margin-top:25px;
-text-align:left;
-}
-
-.card{
-background:rgba(255,255,255,0.1);
-padding:15px;
-border-radius:15px;
-}
-
-.card h2{
-color:#ffd700;
-margin-bottom:10px;
-text-align:center;
-}
-
-.info{
-margin:8px 0;
-}
-
-footer{
-margin-top:20px;
-font-size:12px;
-opacity:0.7;
-text-align:center;
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AstroMatrix FREE - Dashboard Astrologica</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Cinzel:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        astroBg: '#0b0f19',
+                        astroCard: '#131b2e',
+                        astroBorder: '#2a3654',
+                        astroGold: '#d4af37',
+                        astroGoldHover: '#aa8822',
+                        astroPurple: '#6b46c1',
+                        astroTeal: '#0d9488'
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Cinzel', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0b0f19;
+            color: #e2e8f0;
+            background-image: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #0b0f19 80%);
+            background-attachment: fixed;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #fff3a7 0%, #d4af37 50%, #9a7b1c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border-box {
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(212, 175, 55, 0.05);
+        }
+        .card-glass {
+            background: rgba(19, 27, 46, 0.88);
+            backdrop-filter: blur(12px);
+        }
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; color: black !important; }
+            .card-glass { background: white !important; border: 1px solid #ccc !important; color: black !important; }
+            .gold-gradient-text { -webkit-text-fill-color: #9a7b1c !important; }
+        }
+    </style>
 </head>
+<body class="min-h-screen font-sans pb-12 antialiased">
 
-<body>
+    <!-- Header / Navbar -->
+    <header class="w-full border-b border-astroBorder bg-astroBg/90 backdrop-blur sticky top-0 z-50 no-print">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-star text-2xl text-astroGold"></i>
+                <h1 class="font-serif text-2xl font-bold tracking-wider gold-gradient-text">ASTROMATRIX <span class="text-xs px-2.5 py-0.5 bg-astroGold/20 text-astroGold rounded-full font-sans tracking-normal border border-astroGold/30">FREE</span></h1>
+            </div>
+            <div class="flex items-center space-x-2">
+                <button id="pwaInstallBtn" onclick="installPWA()" class="hidden text-xs bg-astroPurple hover:bg-purple-700 text-white font-semibold py-2 px-3.5 rounded-lg border border-purple-400/30 transition flex items-center gap-2">
+                    <i class="fa-solid fa-download"></i> Installa App
+                </button>
+            </div>
+        </div>
+    </header>
 
-<div class="container">
+    <main class="max-w-5xl mx-auto px-4 mt-8">
 
-<h1>🔮 Segno Zodiacale</h1>
+        <!-- Banner Introduttivo -->
+        <div class="text-center mb-10 no-print">
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-white mb-2">Calcola la tua Dashboard Astrologica</h2>
+            <p class="text-slate-400 max-w-xl mx-auto text-sm md:text-base">Inserisci i tuoi dati anagrafici per generare la tua matrice personale e l'oroscopo settimanale basato sulle 144 combinazioni uniche.</p>
+        </div>
 
-<p class="sub">
-Inserisci la tua data di nascita
-</p>
+        <!-- FORM INPUT ANAGRAFICA -->
+        <div class="card-glass rounded-2xl p-6 md:p-8 gold-border-box mb-10 no-print">
+            <form id="astroForm" onsubmit="processMatrix(event)" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Nome -->
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-astroGold font-bold mb-2" for="nome">Nome o Soprannome *</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400"><i class="fa-solid fa-user"></i></span>
+                            <input type="text" id="nome" required placeholder="Es. Adolfo" class="w-full pl-10 pr-4 py-3 bg-slate-900/80 border border-astroBorder rounded-xl focus:outline-none focus:border-astroGold text-white transition placeholder-slate-500">
+                        </div>
+                    </div>
 
-<input type="date" id="data">
+                    <!-- Città di Nascita -->
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-astroGold font-bold mb-2" for="citta">Città di Nascita *</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400"><i class="fa-solid fa-location-dot"></i></span>
+                            <input type="text" id="citta" required placeholder="Es. Napoli" class="w-full pl-10 pr-4 py-3 bg-slate-900/80 border border-astroBorder rounded-xl focus:outline-none focus:border-astroGold text-white transition placeholder-slate-500">
+                        </div>
+                    </div>
 
-<button onclick="calcolaSegno()">
-Scopri il tuo segno
-</button>
+                    <!-- Data di Nascita -->
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-astroGold font-bold mb-2">Data di Nascita *</label>
+                        <div class="grid grid-cols-3 gap-2">
+                            <select id="giorno" required class="bg-slate-900/80 border border-astroBorder rounded-xl py-3 px-2 text-white text-sm focus:outline-none focus:border-astroGold">
+                                <option value="">Giorno</option>
+                            </select>
+                            <select id="mese" required class="bg-slate-900/80 border border-astroBorder rounded-xl py-3 px-2 text-white text-sm focus:outline-none focus:border-astroGold">
+                                <option value="">Mese</option>
+                                <option value="1">Gennaio</option>
+                                <option value="2">Febbraio</option>
+                                <option value="3">Marzo</option>
+                                <option value="4">Aprile</option>
+                                <option value="5">Maggio</option>
+                                <option value="6">Giugno</option>
+                                <option value="7">Luglio</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Settembre</option>
+                                <option value="10">Ottobre</option>
+                                <option value="11">Novembre</option>
+                                <option value="12">Dicembre</option>
+                            </select>
+                            <input type="number" id="anno" required placeholder="Anno" min="1900" max="2026" class="bg-slate-900/80 border border-astroBorder rounded-xl py-3 px-3 text-white text-sm focus:outline-none focus:border-astroGold placeholder-slate-500">
+                        </div>
+                    </div>
 
-<div id="risultato"></div>
+                    <!-- Ora di Nascita -->
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-astroGold font-bold mb-2" for="ora">Fascia Oraria di Nascita *</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400"><i class="fa-solid fa-clock"></i></span>
+                            <select id="ora" required class="w-full pl-10 pr-4 py-3 bg-slate-900/80 border border-astroBorder rounded-xl focus:outline-none focus:border-astroGold text-white transition">
+                                <option value="">Seleziona orario...</option>
+                                <option value="0">00:00 - 02:00 (Notte)</option>
+                                <option value="2">02:00 - 04:00 (Notte)</option>
+                                <option value="4">04:00 - 06:00 (Alba)</option>
+                                <option value="6">06:00 - 08:00 (Mattino presto)</option>
+                                <option value="8">08:00 - 10:00 (Mattino)</option>
+                                <option value="10">10:00 - 12:00 (Tarda Mattina)</option>
+                                <option value="12">12:00 - 14:00 (Mezzogiorno)</option>
+                                <option value="14">14:00 - 16:00 (Pomeriggio)</option>
+                                <option value="16">16:00 - 18:00 (Tardo Pomeriggio)</option>
+                                <option value="18">18:00 - 20:00 (Tramonto)</option>
+                                <option value="20">20:00 - 22:00 (Sera)</option>
+                                <option value="22">22:00 - 24:00 (Notte)</option>
+                            </select>
+                        </div>
+                    </div>
 
-<footer>
-Creato da Adolfo ✨
-</footer>
+                </div>
 
-</div>
+                <div class="text-center pt-4">
+                    <button type="submit" class="w-full md:w-auto px-10 py-4 bg-gradient-to-r from-astroGold via-amber-500 to-astroGold hover:from-amber-400 hover:to-yellow-500 text-slate-950 font-bold font-serif text-lg rounded-xl shadow-lg shadow-amber-500/20 transform hover:-translate-y-0.5 transition active:translate-y-0">
+                        ✨ CALCOLA DASHBOARD ASTROMATRIX
+                    </button>
+                </div>
+            </form>
+        </div>
 
-<script>
+        <!-- SCHEDA RISULTATI DASHBOARD FREE -->
+        <div id="dashboardResult" class="hidden space-y-8 mb-12">
+            
+            <!-- Intestazione Risultati -->
+            <div class="flex flex-col md:flex-row justify-between items-center bg-slate-900/90 border border-astroBorder rounded-2xl p-6 gold-border-box">
+                <div>
+                    <span class="text-xs uppercase tracking-widest text-astroGold font-semibold">Profilo Personalizzato</span>
+                    <h3 id="resMatriceTitolo" class="font-serif text-3xl font-bold text-white">AstroMatrix di <span id="resNomeHeader" class="gold-gradient-text"></span></h3>
+                    <p class="text-xs text-slate-400 mt-1">Generato il <span id="resDataOggi"></span> | Edizione FREE</p>
+                </div>
+                <div class="mt-4 md:mt-0 flex flex-wrap gap-2 no-print">
+                    <button onclick="shareWhatsApp()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold px-4 py-2.5 rounded-lg flex items-center gap-2 transition">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Condividi
+                    </button>
+                    <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold px-4 py-2.5 rounded-lg border border-slate-600 flex items-center gap-2 transition">
+                        <i class="fa-solid fa-print"></i> Stampa / PDF
+                    </button>
+                </div>
+            </div>
 
-const segni = {
+            <!-- SEZIONE 1: IDENTITÀ & DATI PERSONALI -->
+            <div class="card-glass rounded-2xl p-6 border border-astroBorder">
+                <div class="flex items-center space-x-3 mb-6 pb-3 border-b border-astroBorder/60">
+                    <div class="w-8 h-8 rounded-lg bg-astroGold/20 flex items-center justify-center text-astroGold font-bold">1</div>
+                    <h4 class="font-serif text-xl font-bold text-white">Identità & Dati Personali</h4>
+                </div>
 
-"Ariete":{
-emoji:"♈",
-descrizione:"Coraggioso, impulsivo e pieno di energia.",
-colore:"Rosso",
-numero:"9",
-compatibile:"Leone e Sagittario"
-},
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+                    <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                        <span class="text-xs text-slate-400 block mb-1">Nome Completo</span>
+                        <span id="resNome" class="font-semibold text-white text-base"></span>
+                    </div>
 
-"Toro":{
-emoji:"♉",
-descrizione:"Affidabile, concreto e amante della stabilità.",
-colore:"Verde",
-numero:"6",
-compatibile:"Vergine e Capricorno"
-},
+                    <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                        <span class="text-xs text-slate-400 block mb-1">Onomastico</span>
+                        <span id="resOnomastico" class="font-semibold text-amber-300"></span>
+                    </div>
 
-"Gemelli":{
-emoji:"♊",
-descrizione:"Curioso, intelligente e comunicativo.",
-colore:"Giallo",
-numero:"5",
-compatibile:"Bilancia e Acquario"
-},
+                    <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800 sm:col-span-2 lg:col-span-1">
+                        <span class="text-xs text-slate-400 block mb-1">Significato del Nome</span>
+                        <span id="resSignificatoNome" class="text-slate-200 text-xs leading-relaxed"></span>
+                    </div>
 
-"Cancro":{
-emoji:"♋",
-descrizione:"Sensibile, protettivo e intuitivo.",
-colore:"Argento",
-numero:"2",
-compatibile:"Scorpione e Pesci"
-},
+                    <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                        <span class="text-xs text-slate-400 block mb-1">Dati di Nascita</span>
+                        <span id="resNascitaDettaglio" class="font-medium text-slate-200"></span>
+                    </div>
 
-"Leone":{
-emoji:"♌",
-descrizione:"Carismatico, generoso e leader naturale.",
-colore:"Oro",
-numero:"1",
-compatibile:"Ariete e Sagittario"
-},
+                    <div class="bg-gradient-to-br from-indigo-950/60 to-slate-900/90 p-4 rounded-xl border border-indigo-800/50">
+                        <span class="text-xs text-indigo-300 block mb-1">Segno Zodiacale</span>
+                        <span id="resSegno" class="font-serif text-lg font-bold text-astroGold"></span>
+                    </div>
 
-"Vergine":{
-emoji:"♍",
-descrizione:"Precisa, pratica e organizzata.",
-colore:"Beige",
-numero:"5",
-compatibile:"Toro e Capricorno"
-},
+                    <div class="bg-gradient-to-br from-purple-950/60 to-slate-900/90 p-4 rounded-xl border border-purple-800/50">
+                        <span class="text-xs text-purple-300 block mb-1">Ascendente Calcolato</span>
+                        <span id="resAscendente" class="font-serif text-lg font-bold text-purple-300"></span>
+                    </div>
+                </div>
+            </div>
 
-"Bilancia":{
-emoji:"♎",
-descrizione:"Equilibrata, elegante e diplomatica.",
-colore:"Rosa",
-numero:"6",
-compatibile:"Gemelli e Acquario"
-},
+            <!-- SEZIONE 2: PROFILO ASTROLOGICO, SIMBOLI & NUMERI GEODINAMICI -->
+            <div class="card-glass rounded-2xl p-6 border border-astroBorder">
+                <div class="flex items-center space-x-3 mb-6 pb-3 border-b border-astroBorder/60">
+                    <div class="w-8 h-8 rounded-lg bg-astroGold/20 flex items-center justify-center text-astroGold font-bold">2</div>
+                    <h4 class="font-serif text-xl font-bold text-white">Profilo Astrologico, Simboli & Numeri</h4>
+                </div>
 
-"Scorpione":{
-emoji:"♏",
-descrizione:"Intenso, passionale e determinato.",
-colore:"Bordeaux",
-numero:"8",
-compatibile:"Cancro e Pesci"
-},
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                    <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                        <span class="text-xs text-slate-400 block mb-1"><i class="fa-solid fa-fire text-amber-500 mr-1"></i> Elemento</span>
+                        <span id="resElemento" class="font-semibold text-white"></span>
+                    </div>
 
-"Sagittario":{
-emoji:"♐",
-descrizione:"Ottimista, avventuroso e libero.",
-colore:"Viola",
-numero:"3",
-compatibile:"Ariete e Leone"
-},
+                    <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                        <span class="text-xs text-slate-400 block mb-1"><i class="fa-solid fa-globe text-blue-400 mr-1"></i> Pianeta Guida</span>
+                        <span id="resPianeta" class="font-semibold text-white"></span>
+                    </div>
 
-"Capricorno":{
-emoji:"♑",
-descrizione:"Ambizioso, disciplinato e responsabile.",
-colore:"Marrone",
-numero:"8",
-compatibile:"Toro e Vergine"
-},
+                    <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                        <span class="text-xs text-slate-400 block mb-1"><i class="fa-solid fa-palette text-pink-400 mr-1"></i> Colore Fortunato</span>
+                        <span id="resColore" class="font-semibold text-white"></span>
+                    </div>
 
-"Acquario":{
-emoji:"♒",
-descrizione:"Originale, indipendente e innovativo.",
-colore:"Blu",
-numero:"4",
-compatibile:"Gemelli e Bilancia"
-},
+                    <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                        <span class="text-xs text-slate-400 block mb-1"><i class="fa-solid fa-gem text-teal-400 mr-1"></i> Pietra Preziosa</span>
+                        <span id="resPietra" class="font-semibold text-white"></span>
+                    </div>
+                </div>
 
-"Pesci":{
-emoji:"♓",
-descrizione:"Empatico, creativo e sognatore.",
-colore:"Turchese",
-numero:"7",
-compatibile:"Cancro e Scorpione"
-}
-};
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                        <span class="text-xs text-astroGold block mb-1 uppercase tracking-wider font-semibold">Modo d'Uso della Pietra</span>
+                        <p id="resModoUso" class="text-xs text-slate-300 leading-relaxed"></p>
+                    </div>
 
-function trovaSegno(g,m){
+                    <div class="bg-gradient-to-r from-amber-950/30 to-slate-900/80 p-4 rounded-xl border border-amber-900/40 flex flex-col justify-center">
+                        <span class="text-xs text-astroGold block mb-1 uppercase tracking-wider font-semibold"><i class="fa-solid fa-hashtag mr-1"></i> Numeri Geodinamici Personali</span>
+                        <span id="resNumeriGeodinamici" class="font-mono text-xl font-bold text-amber-300 tracking-widest mt-1"></span>
+                    </div>
+                </div>
+            </div>
 
-if((m==3&&g>=21)||(m==4&&g<=19)) return "Ariete";
-if((m==4&&g>=20)||(m==5&&g<=20)) return "Toro";
-if((m==5&&g>=21)||(m==6&&g<=20)) return "Gemelli";
-if((m==6&&g>=21)||(m==7&&g<=22)) return "Cancro";
-if((m==7&&g>=23)||(m==8&&g<=22)) return "Leone";
-if((m==8&&g>=23)||(m==9&&g<=22)) return "Vergine";
-if((m==9&&g>=23)||(m==10&&g<=22)) return "Bilancia";
-if((m==10&&g>=23)||(m==11&&g<=21)) return "Scorpione";
-if((m==11&&g>=22)||(m==12&&g<=21)) return "Sagittario";
-if((m==12&&g>=22)||(m==1&&g<=19)) return "Capricorno";
-if((m==1&&g>=20)||(m==2&&g<=18)) return "Acquario";
+            <!-- SEZIONE 3: OROSCOPO SETTIMANALE FREE (144 Combinazioni) -->
+            <div class="card-glass rounded-2xl p-6 border border-astroBorder gold-border-box">
+                <div class="flex items-center justify-between mb-6 pb-3 border-b border-astroBorder/60">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-astroGold/20 flex items-center justify-center text-astroGold font-bold">3</div>
+                        <div>
+                            <h4 class="font-serif text-xl font-bold text-white">Oroscopo Settimanale FREE</h4>
+                            <span class="text-xs text-astroGold">Combinazione: <span id="resCombinazioneBadge" class="font-semibold"></span></span>
+                        </div>
+                    </div>
+                    <span class="hidden sm:block text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-full">Matrice Settimanale Attiva</span>
+                </div>
 
-return "Pesci";
-}
+                <div class="space-y-4">
+                    <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-800">
+                        <h5 class="text-xs uppercase tracking-wider text-astroGold font-bold mb-2"><i class="fa-solid fa-cloud-sun mr-2"></i>Clima Settimanale</h5>
+                        <p id="resClimaSettimanale" class="text-sm text-slate-200 leading-relaxed"></p>
+                    </div>
 
-function calcolaSegno(){
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-800">
+                            <h5 class="text-xs uppercase tracking-wider text-purple-400 font-bold mb-2"><i class="fa-solid fa-quote-left mr-2"></i>Pillola di Saggezza</h5>
+                            <p id="resPillolaSaggezza" class="text-sm text-purple-200 italic leading-relaxed"></p>
+                        </div>
 
-let valore=document.getElementById("data").value;
+                        <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-800">
+                            <h5 class="text-xs uppercase tracking-wider text-teal-400 font-bold mb-2"><i class="fa-solid fa-compass mr-2"></i>Consiglio Pratico</h5>
+                            <p id="resConsiglioPratico" class="text-sm text-teal-200 leading-relaxed"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-if(!valore){
-alert("Inserisci una data");
-return;
-}
+            <!-- SEZIONE 4: AFFINITÀ DI COPPIA & AMICI (BASE) -->
+            <div class="card-glass rounded-2xl p-6 border border-astroBorder">
+                <div class="flex items-center space-x-3 mb-6 pb-3 border-b border-astroBorder/60">
+                    <div class="w-8 h-8 rounded-lg bg-astroGold/20 flex items-center justify-center text-astroGold font-bold">4</div>
+                    <h4 class="font-serif text-xl font-bold text-white">Affinità di Coppia & Amici (Test Base)</h4>
+                </div>
 
-let data=new Date(valore);
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Affinità Partner -->
+                    <div class="bg-slate-900/60 p-5 rounded-xl border border-slate-800 space-y-4">
+                        <h5 class="text-xs uppercase tracking-wider text-pink-400 font-bold"><i class="fa-solid fa-heart mr-2"></i>Affinità di Coppia</h5>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Seleziona il segno del partner:</label>
+                            <select id="selectPartner" onchange="calcAffinita()" class="w-full bg-slate-900 border border-slate-700 rounded-lg py-2.5 px-3 text-white text-sm focus:outline-none focus:border-pink-500">
+                            </select>
+                        </div>
+                        <div class="pt-2 border-t border-slate-800 flex justify-between items-center">
+                            <span class="text-xs text-slate-400">Compatibilità di coppia:</span>
+                            <span id="resPercPartner" class="font-serif text-2xl font-bold text-pink-400">--%</span>
+                        </div>
+                        <p id="resNotaPartner" class="text-xs text-slate-300 italic"></p>
+                    </div>
 
-let giorno=data.getDate();
-let mese=data.getMonth()+1;
+                    <!-- Affinità Amici -->
+                    <div class="bg-slate-900/60 p-5 rounded-xl border border-slate-800 space-y-4">
+                        <h5 class="text-xs uppercase tracking-wider text-sky-400 font-bold"><i class="fa-solid fa-user-group mr-2"></i>Affinità di Amicizia</h5>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Seleziona il segno dell'amico/a:</label>
+                            <select id="selectAmico" onchange="calcAffinita()" class="w-full bg-slate-900 border border-slate-700 rounded-lg py-2.5 px-3 text-white text-sm focus:outline-none focus:border-sky-500">
+                            </select>
+                        </div>
+                        <div class="pt-2 border-t border-slate-800 flex justify-between items-center">
+                            <span class="text-xs text-slate-400">Sintonia relazionale:</span>
+                            <span id="resPercAmico" class="font-serif text-2xl font-bold text-sky-400">--%</span>
+                        </div>
+                        <p id="resNotaAmico" class="text-xs text-slate-300 italic"></p>
+                    </div>
 
-let segno=trovaSegno(giorno,mese);
+                </div>
+            </div>
 
-let info=segni[segno];
+            <!-- Call to Action PREMIUM -->
+            <div class="bg-gradient-to-r from-purple-950 via-slate-900 to-indigo-950 p-6 rounded-2xl border border-purple-500/30 text-center no-print">
+                <h4 class="font-serif text-xl font-bold text-amber-300 mb-2">Vuoi scoprire la Matrice Alchemica e il Profilo Evolutivo?</h4>
+                <p class="text-xs text-slate-300 max-w-2xl mx-auto mb-4">Sblocca la versione PREMIUM per accedere all'oroscopo esteso, alla lezione karmica, al consiglio della guida interiore e all'analisi profonda delle affinità.</p>
+                <button onclick="alert('Puoi accedere alla versione PREMIUM o richiedere il report completo contattandoci nel nostro gruppo Facebook AstroMatrix!')" class="px-6 py-2.5 bg-astroGold hover:bg-amber-400 text-slate-950 text-xs font-bold rounded-lg transition shadow-md">
+                    Scopri AstroMatrix PREMIUM
+                </button>
+            </div>
 
-document.getElementById("risultato").innerHTML=`
+        </div>
 
-<div class="card">
+    </main>
 
-<h2>${info.emoji} ${segno}</h2>
+    <!-- Footer -->
+    <footer class="max-w-5xl mx-auto px-4 mt-12 pt-6 border-t border-astroBorder/40 text-center text-xs text-slate-500 no-print">
+        <p>© 2026 AstroMatrix - Dashboard Astrologica Geodinamica. Tutti i diritti riservati.</p>
+    </footer>
 
-<div class="info"><strong>Personalità:</strong><br>
-${info.descrizione}
-</div>
+    <!-- SCRIPT MOTORE ASTROMATRIX -->
+    <script>
+        // Database dei Segni e Caratteristiche Base
+        const SEGNI = [
+            { nome: 'Ariete', inizio: [3, 21], fine: [4, 19], elemento: 'Fuoco', pianeta: 'Marte', colore: 'Rosso Fuoco', pietra: 'Rubino', uso: 'Indossare a contatto con la pelle durante i momenti decisionali.', num: 84 },
+            { nome: 'Toro', inizio: [4, 20], fine: [5, 20], elemento: 'Terra', pianeta: 'Venere', colore: 'Verde Smeraldo', pietra: 'Smeraldo', uso: 'Tenere sul comodino o vicino ad oggetti personali di valore.', num: 42 },
+            { nome: 'Gemelli', inizio: [5, 21], fine: [6, 20], elemento: 'Aria', pianeta: 'Mercurio', colore: 'Giallo Lucente', pietra: 'Agata Gialla', uso: 'Portare nella borsa durante viaggi e incontri di lavoro.', num: 15 },
+            { nome: 'Cancro', inizio: [6, 21], fine: [7, 22], elemento: 'Acqua', pianeta: 'Luna', colore: 'Argento Moon', pietra: 'Pietra di Luna', uso: 'Ricaricare alla luce lunare ed esporre durante la meditazione.', num: 99 },
+            { nome: 'Leone', inizio: [7, 23], fine: [8, 22], elemento: 'Fuoco', pianeta: 'Sole', colore: 'Oro Solare', pietra: 'Topazio Imperiale', uso: 'Tenere esposto alla luce diretta del sole prima dell uso.', num: 77 },
+            { nome: 'Vergine', inizio: [8, 23], fine: [9, 22], elemento: 'Terra', pianeta: 'Mercurio', colore: 'Grigio Perla / Marrone', pietra: 'Diaspro Verde', uso: 'Tenere vicino alla postazione di studio o lavoro quotidiano.', num: 33 },
+            { nome: 'Bilancia', inizio: [9, 23], fine: [10, 22], elemento: 'Aria', pianeta: 'Venere', colore: 'Rosa Pastello / Azzurro', pietra: 'Quarzo Rosa', uso: 'Mantenere al centro del petto durante momenti di forte stress.', num: 61 },
+            { nome: 'Scorpione', inizio: [10, 23], fine: [11, 21], elemento: 'Acqua', pianeta: 'Plutone & Marte', colore: 'Nero Antracite / Porpora', pietra: 'Ossidiana Nera', uso: 'Utilizzare come amuleto protettivo durante i momenti di cambiamento.', num: 13 },
+            { nome: 'Sagittario', inizio: [11, 22], fine: [12, 21], elemento: 'Fuoco', pianeta: 'Giove', colore: 'Blu Scuro / Viola', pietra: 'Turchese', uso: 'Portare sempre con sé durante viaggi o nuove avventure.', num: 55 },
+            { nome: 'Capricorno', inizio: [12, 22], fine: [1, 19], elemento: 'Terra', pianeta: 'Saturno', colore: 'Marrone Scuro / Nero', pietra: 'Onyx Nero', uso: 'Tenere vicino per stimolare la concentrazione e la disciplina.', num: 10 },
+            { nome: 'Acquario', inizio: [1, 20], fine: [2, 18], elemento: 'Aria', pianeta: 'Urano', colore: 'Blu Elettrico', pietra: 'Ametista', uso: 'Posizionare vicino a dispositivi tecnologici per armonizzare.', num: 22 },
+            { nome: 'Pesci', inizio: [2, 19], fine: [3, 20], elemento: 'Acqua', pianeta: 'Nettuno', colore: 'Verde Acqua / Viola', pietra: 'Acquamarina', uso: 'Tenere vicino all acqua o durante il bagno rilassante.', num: 90 }
+        ];
 
-<div class="info">
-🎨 <strong>Colore fortunato:</strong> ${info.colore}
-</div>
+        // Database Nomi ed Onomastici
+        const ONOMASTICI = {
+            'ADOLFO': { giorno: '17 Giugno / 27 Settembre', significato: 'Origine germanica: "Nobile Lupo", simboleggia forza, lealtà e spirito di protezione.' },
+            'MARIA': { giorno: '12 Settembre', significato: 'Origine ebraica: "Amata da Dio" o "Goccia di mare", indica grazia e intuizione.' },
+            'GIUSEPPE': { giorno: '19 Marzo', significato: 'Origine ebraica: "Dio aggiungerà", simboleggia provvidenza, cura e perseveranza.' },
+            'ANTONIO': { giorno: '13 Giugno / 17 Gennaio', significato: 'Origine latina: "Inestimabile", valore, coraggio e tenacia profonda.' },
+            'FRANCESCO': { giorno: '4 Ottobre', significato: 'Origine germanica: "Uomo libero", attitudine alla pace e spirito nobile.' },
+            'GIOVANNI': { giorno: '24 Giugno', significato: 'Origine ebraica: "Dono del Signore", saggezza e predisposizione alla guida.' },
+            'LUIGI': { giorno: '21 Giugno', significato: 'Origine germanica: "Famoso guerriero", integrità, forza e determinazione.' },
+            'ROBERTO': { giorno: '17 Settembre', significato: 'Origine germanica: "Illustre per fama", acume mentale e presenza forte.' }
+        };
 
-<div class="info">
-🔢 <strong>Numero fortunato:</strong> ${info.numero}
-</div>
+        // Generatore Matrice Oroscopo FREE (144 Combinazioni dinamiche per Ascendente)
+        function getOroscopoCombinato(segno, ascendente) {
+            const trattiAscendente = {
+                'Ariete': { dinamica: "La spinta dinamica e diretta dell'Ascendente Ariete accelera i tempi di reazione.", consiglio: "Inizia una nuova attività di petto entro i primi giorni della settimana.", saggezza: "Il coraggio apre strade dove prima c'erano soltanto ostacoli." },
+                'Toro': { dinamica: "La stabilità e la concretezza dell'Ascendente Toro rallentano il ritmo verso la sicurezza.", consiglio: "Dedica tempo al consolidamento delle risorse materiali e al benessere fisico.", saggezza: "La pazienza è l'albero la cui radice è amara ma i frutti sono dolci." },
+                'Gemelli': { dinamica: "La vivacità e la curiosità dell'Ascendente Gemelli moltiplicano le connessioni sociali.", consiglio: "Focalizza i tuoi pensieri ed evita di disperdere energie in troppi progetti.", saggezza: "La vera comunicazione nasce prima di tutto dall'ascolto profondo." },
+                'Cancro': { dinamica: "La sensibilità e l'empatia dell'Ascendente Cancro accentuano l'intuizione naturale.", consiglio: "Proteggi la tua sfera emotiva da interferenze o ambienti negativi.", saggezza: "Nelle profondità dell'anima risiede la tua vera protezione." },
+                'Leone': { dinamica: "Il carisma e la vitalità dell'Ascendente Leone stimolano la leadership personale.", consiglio: "Mostra con generosità i tuoi talenti senza timore del giudizio.", saggezza: "La vera luce risplende per scaldare gli altri, non per abbagliare." },
+                'Vergine': { dinamica: "La precisione e il senso pratico dell'Ascendente Vergine chiedono ordine e metodo.", consiglio: "Organizza la tua agenda settimanale stabilendo priorità chiare.", saggezza: "L'ordine interiore si riflette in ogni piccola azione quotidiana." },
+                'Bilancia': { dinamica: "La ricerca di armonia e la diplomazia dell'Ascendente Bilancia mettono al centro le relazioni.", consiglio: "Cerca accordi win-win ed evita inutili contrapposizioni o toni bruschi.", saggezza: "L'equilibrio è l'arte sottile di fluttuare senza mai cadere." },
+                'Scorpione': { dinamica: "L'intensità e la determinazione dell'Ascendente Scorpione spingono al rinnovamento.", consiglio: "Elimina ciò che è superfluo per rigenerare appieno le tue energie.", saggezza: "Ogni autentica rinascita richiede il coraggio di lasciar andare." },
+                'Sagittario': { dinamica: "L'ottimismo e lo spirito di ricerca dell'Ascendente Sagittario ampliano gli orizzonti.", consiglio: "Pianifica un nuovo traguardo o uno studio che stimoli la tua mente.", saggezza: "La freccia scagliata con fede e chiarezza raggiunge sempre la meta." },
+                'Capricorno': { dinamica: "La tenacia e la disciplina dell'Ascendente Capricorno rafforzano la struttura.", consiglio: "Concentrati sugli obiettivi professionali o personali a lungo termine.", saggezza: "La vetta appartiene a chi cammina con passo costante e sicuro." },
+                'Acquario': { dinamica: "L'originalità e l'indipendenza dell'Ascendente Acquario portano soluzioni inedite.", consiglio: "Sperimenta un approccio fuori dagli schemi per risolvere una questione sospesa.", saggezza: "La libertà di pensiero è la scintilla che genera il futuro." },
+                'Pesci': { dinamica: "La profonda percezione e la creatività dell'Ascendente Pesci arricchiscono l'ispirazione.", consiglio: "Ascolta i segnali dell'intuito e concediti momenti di ricarica.", saggezza: "L'universo parla sottovoce a chi sa ascoltare il silenzio." }
+            };
 
-<div class="info">
-💕 <strong>Compatibilità:</strong> ${info.compatibile}
-</div>
+            const data = trattiAscendente[ascendente] || trattiAscendente['Ariete'];
+            return {
+                clima: `Il Sole nel tuo segno (${segno}) interagisce direttamente con le qualità dell'Ascendente ${ascendente}. ${data.dinamica}`,
+                saggezza: `${data.saggezza}`,
+                consiglio: `${data.consiglio}`
+            };
+        }
 
-</div>
+        // Inizializzazione controlli
+        document.addEventListener("DOMContentLoaded", function() {
+            const selectGiorno = document.getElementById('giorno');
+            for(let i=1; i<=31; i++) {
+                let opt = document.createElement('option');
+                opt.value = i;
+                opt.textContent = i;
+                selectGiorno.appendChild(opt);
+            }
 
-`;
+            const selectPartner = document.getElementById('selectPartner');
+            const selectAmico = document.getElementById('selectAmico');
 
-}
+            SEGNI.forEach(s => {
+                let opt1 = document.createElement('option');
+                opt1.value = s.nome;
+                opt1.textContent = s.nome;
+                selectPartner.appendChild(opt1);
 
-</script>
+                let opt2 = document.createElement('option');
+                opt2.value = s.nome;
+                opt2.textContent = s.nome;
+                selectAmico.appendChild(opt2);
+            });
 
+            document.getElementById('resDataOggi').textContent = new Date().toLocaleDateString('it-IT');
+        });
+
+        // Calcolo Segno
+        function getSegno(giorno, mese) {
+            for (let s of SEGNI) {
+                if ((mese === s.inizio[1] && giorno >= s.inizio[0]) || (mese === s.fine[1] && giorno <= s.fine[0])) {
+                    return s;
+                }
+            }
+            return SEGNI[0];
+        }
+
+        // Calcolo Ascendente basato sulla fascia oraria
+        function getAscendente(segnoNome, ora) {
+            const idxSegno = SEGNI.findIndex(s => s.nome === segnoNome);
+            const offsetOra = Math.floor(parseInt(ora) / 2);
+            const idxAscendente = (idxSegno + offsetOra) % 12;
+            return SEGNI[idxAscendente].nome;
+        }
+
+        // Elaborazione Generale Dashboard FREE
+        function processMatrix(event) {
+            event.preventDefault();
+
+            const nome = document.getElementById('nome').value.trim();
+            const citta = document.getElementById('citta').value.trim();
+            const giorno = parseInt(document.getElementById('giorno').value);
+            const mese = parseInt(document.getElementById('mese').value);
+            const anno = parseInt(document.getElementById('anno').value);
+            const ora = document.getElementById('ora').value;
+
+            // Calcoli astrologici
+            const segnoObj = getSegno(giorno, mese);
+            const ascendenteNome = getAscendente(segnoObj.nome, ora);
+
+            // Onomastico e significato
+            const nomeUp = nome.toUpperCase();
+            const infoOnomastico = ONOMASTICI[nomeUp] || { giorno: 'Consultare Calendario Santi', significato: 'Nome di grande fascino e tradizione, simbolo di forte carattere e sensibilità.' };
+
+            // Numeri geodinamici
+            const numGeodinamici = `${segnoObj.num}-${giorno.toString().padStart(2, '0')}-${mese.toString().padStart(2, '0')}-${anno.toString().slice(-2)}`;
+
+            // SEZIONE 1
+            document.getElementById('resNomeHeader').textContent = nome;
+            document.getElementById('resNome').textContent = nome;
+            document.getElementById('resOnomastico').textContent = infoOnomastico.giorno;
+            document.getElementById('resSignificatoNome').textContent = infoOnomastico.significato;
+            document.getElementById('resNascitaDettaglio').textContent = `${giorno}/${mese}/${anno} (~${ora}:00) - ${citta}`;
+            document.getElementById('resSegno').textContent = segnoObj.nome;
+            document.getElementById('resAscendente').textContent = ascendenteNome;
+
+            // SEZIONE 2
+            document.getElementById('resElemento').textContent = segnoObj.elemento;
+            document.getElementById('resPianeta').textContent = segnoObj.pianeta;
+            document.getElementById('resColore').textContent = segnoObj.colore;
+            document.getElementById('resPietra').textContent = segnoObj.pietra;
+            document.getElementById('resModoUso').textContent = segnoObj.uso;
+            document.getElementById('resNumeriGeodinamici').textContent = numGeodinamici;
+
+            // SEZIONE 3
+            const oroscopoData = getOroscopoCombinato(segnoObj.nome, ascendenteNome);
+            document.getElementById('resCombinazioneBadge').textContent = `${segnoObj.nome} + Asc. ${ascendenteNome}`;
+            document.getElementById('resClimaSettimanale').textContent = oroscopoData.clima;
+            document.getElementById('resPillolaSaggezza').textContent = oroscopoData.saggezza;
+            document.getElementById('resConsiglioPratico').textContent = oroscopoData.consiglio;
+
+            // SEZIONE 4
+            calcAffinita();
+
+            // Mostra Risultati
+            const resDiv = document.getElementById('dashboardResult');
+            resDiv.classList.remove('hidden');
+            resDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Calcolo Affinità
+        function calcAffinita() {
+            const partner = document.getElementById('selectPartner').value;
+            const amico = document.getElementById('selectAmico').value;
+
+            let percP = 72 + (partner.length * 3) % 26;
+            let percA = 78 + (amico.length * 4) % 20;
+
+            document.getElementById('resPercPartner').textContent = percP + '%';
+            document.getElementById('resNotaPartner').textContent = percP > 85 ? 'Elevata sintonia affettiva, intesa spontanea e forte magnetismo.' : 'Buona intesa, richiede dialogo continuo per superare i piccoli contrasti.';
+
+            document.getElementById('resPercAmico').textContent = percA + '%';
+            document.getElementById('resNotaAmico').textContent = percA > 85 ? 'Complicità eccellente, lealtà e condivisione di ideali.' : 'Affinità positiva per uscite, collaborazioni e tempo libero.';
+        }
+
+        // Condivisione WhatsApp
+        function shareWhatsApp() {
+            const nome = document.getElementById('resNome').textContent;
+            const segno = document.getElementById('resSegno').textContent;
+            const asc = document.getElementById('resAscendente').textContent;
+            const text = `✨ Ho appena generato la mia Dashboard AstroMatrix FREE!%0ANome: ${nome}%0ASegno: ${segno} (Ascendente ${asc})%0ACalcola gratis anche la tua matrice astrologica!`;
+            window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+        }
+
+        // Supporto PWA Install
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            const btn = document.getElementById('pwaInstallBtn');
+            if(btn) btn.classList.remove('hidden');
+        });
+
+        function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('App installata con successo!');
+                    }
+                    deferredPrompt = null;
+                });
+            }
+        }
+    </script>
 </body>
 </html>
