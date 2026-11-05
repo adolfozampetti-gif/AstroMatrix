@@ -1,227 +1,72 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AstroMatrix FREE - Dashboard Astrologica</title>
-    <!-- Tailwind CSS -->
+    <title>AstroMatrix FREE - Dashboard Astrologica & Geodinamica</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { gold: '#f59e0b', dark: '#020617', card: '#090d16', border: '#1e293b' }
+                    },
+                    fontFamily: { cinzel: ['Cinzel', 'serif'], sans: ['Plus Jakarta Sans', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; color: #f8fafc; }
-        h1, h2, h3, .font-cinzel { font-family: 'Cinzel', serif; }
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .glass-card { background: rgba(9, 13, 22, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(245, 158, 11, 0.2); }
+        .glow-gold { box-shadow: 0 0 30px -5px rgba(245, 158, 11, 0.25); }
+        input[type="date"]::-webkit-calendar-picker-indicator,
+        input[type="time"]::-webkit-calendar-picker-indicator {
+            filter: invert(100%) sepia(50%) saturate(1000%) hue-rotate(340deg); cursor: pointer;
+        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between">
+<body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
 
     <!-- Header -->
-    <header class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 py-4 px-6 sticky top-0 z-50">
+    <header class="bg-slate-900/90 backdrop-blur-md border-b border-slate-800 py-4 px-6 sticky top-0 z-50">
         <div class="max-w-4xl mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-bold tracking-wider text-amber-400 font-cinzel">
-                <i class="fa-solid fa-star-of-life mr-2"></i>AstroMatrix <span class="text-xs bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full border border-amber-500/30">FREE</span>
-            </h1>
-            <span class="text-xs text-slate-400">Versione 1.6</span>
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-600 to-amber-400 flex items-center justify-center shadow-lg shadow-amber-500/20">
+                    <i class="fa-solid fa-star-of-life text-slate-950 text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-wider text-amber-400 font-cinzel leading-tight">AstroMatrix</h1>
+                    <span class="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">Dashboard Geodinamica</span>
+                </div>
+            </div>
+            <span class="text-xs bg-amber-500/10 text-amber-300 px-3 py-1 rounded-full border border-amber-500/30 font-semibold tracking-wide">
+                <i class="fa-solid fa-gift mr-1 text-amber-400"></i>FREE EDITION
+            </span>
         </div>
     </header>
 
-    <!-- Main Container -->
-    <main class="max-w-xl mx-auto p-6 w-full flex-grow">
+    <!-- Content -->
+    <main class="max-w-3xl mx-auto p-4 sm:p-6 w-full flex-grow my-4">
         
-        <!-- Introduzione -->
-        <div class="text-center mb-8 mt-2">
-            <h2 class="text-2xl font-bold mb-2 text-amber-200 font-cinzel">Dashboard Geodinamica & Astrologica</h2>
-            <p class="text-slate-400 text-sm">Inserisci nome, data, ora e luogo di nascita per calcolare il tuo quadro completo.</p>
+        <div class="text-center mb-8">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-3 text-amber-200 font-cinzel tracking-wide">Il Tuo Profilo Astrale Complete</h2>
+            <p class="text-slate-400 text-sm sm:text-base max-w-lg mx-auto">Inserisci i tuoi dati anagrafici per elaborare la scheda completa della Matrice.</p>
         </div>
 
-        <!-- Form Dati -->
-        <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 shadow-xl backdrop-blur-sm mb-8">
+        <!-- Form Input -->
+        <div class="glass-card rounded-2xl p-6 sm:p-8 shadow-2xl mb-8 glow-gold">
             <div class="space-y-4">
                 <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Nome</label>
-                    <input type="text" id="userName" placeholder="Es. Monica" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-400 transition-colors">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2"><i class="fa-solid fa-user mr-1.5"></i>Nome</label>
+                    <input type="text" id="userName" placeholder="Es. Adolfo / Monica" class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-amber-500 transition-all text-base">
                 </div>
+
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Data di Nascita</label>
-                        <input type="date" id="userDate" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-400 transition-colors">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Ora di Nascita</label>
-                        <input type="time" id="userTime" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-400 transition-colors">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Luogo di Nascita</label>
-                    <input type="text" id="userPlace" placeholder="Es. Napoli" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-400 transition-colors">
-                </div>
-                <button onclick="calculateMatrix()" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-3 px-6 rounded-xl shadow-lg transition-all transform active:scale-95 font-cinzel tracking-wide mt-2">
-                    <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Calcola Profilo Gratuito
-                </button>
-            </div>
-        </div>
-
-        <!-- Box Risultati -->
-        <div id="resultBox" class="hidden bg-slate-900/90 border border-amber-500/30 rounded-2xl p-6 shadow-2xl mb-8 space-y-4">
-            <h3 class="text-lg font-bold text-amber-300 font-cinzel border-b border-slate-800 pb-2 flex justify-between items-center">
-                <span><i class="fa-solid fa-scroll mr-2"></i>Analisi Matrice & Quadro Astrale</span>
-                <span class="text-xs text-emerald-400 font-sans"><i class="fa-solid fa-circle-check mr-1"></i>Completato</span>
-            </h3>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
-                <div class="bg-slate-950/70 p-3 rounded-xl border border-slate-800">
-                    <span class="text-xs text-slate-400 block mb-1 font-semibold uppercase">Segno Solare</span>
-                    <p class="font-bold text-amber-300 text-base" id="resZodiac">-</p>
-                    <p class="text-xs text-slate-300" id="resElement">-</p>
-                </div>
-
-                <div class="bg-slate-950/70 p-3 rounded-xl border border-slate-800">
-                    <span class="text-xs text-slate-400 block mb-1 font-semibold uppercase">Ascendente</span>
-                    <p class="font-bold text-amber-300 text-base" id="resAscendant">-</p>
-                    <p class="text-xs text-slate-400" id="resTimeInfo">-</p>
-                </div>
-
-                <div class="bg-slate-950/70 p-3 rounded-xl border border-slate-800">
-                    <span class="text-xs text-slate-400 block mb-1 font-semibold uppercase">Onomastico</span>
-                    <p class="font-bold text-slate-100" id="resOnomastico">-</p>
-                </div>
-
-                <div class="bg-slate-950/70 p-3 rounded-xl border border-slate-800">
-                    <span class="text-xs text-slate-400 block mb-1 font-semibold uppercase">Numero del Destino</span>
-                    <p class="font-bold text-amber-300 text-base" id="resDestiny">-</p>
-                </div>
-
-                <div class="bg-slate-950/70 p-3 rounded-xl border border-slate-800 sm:col-span-2">
-                    <span class="text-xs text-slate-400 block mb-1 font-semibold uppercase">Armonica Geodinamica</span>
-                    <p class="font-bold text-slate-100" id="resHarmonic">-</p>
-                </div>
-            </div>
-
-            <div class="bg-gradient-to-r from-amber-500/10 to-amber-600/5 p-4 rounded-xl border border-amber-500/20 text-center">
-                <span class="text-xs font-semibold text-amber-300 uppercase tracking-wider block mb-2">Terna Numerica di Matrice</span>
-                <div class="flex justify-center gap-4 text-xl font-bold text-amber-400 font-cinzel" id="resNumbers">
-                    <span>--</span> <span>--</span> <span>--</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Avviso Sezione Premium in Arrivo -->
-        <div class="bg-gradient-to-r from-amber-500/10 via-purple-500/10 to-blue-500/10 border border-amber-500/20 rounded-2xl p-5 text-center mb-8">
-            <div class="inline-block bg-amber-500/20 text-amber-300 text-xs px-3 py-1 rounded-full font-semibold mb-2 border border-amber-500/30">
-                <i class="fa-solid fa-lock mr-1"></i> Presto In Arrivo
-            </div>
-            <h4 class="text-base font-bold text-slate-200 font-cinzel mb-1">Modulo Premium & Sinastria</h4>
-            <p class="text-xs text-slate-400">Presto disponibili il quadro astrale avanzato, l'affinità di coppia e i report geodinamici di dettaglio.</p>
-        </div>
-
-    </main>
-
-    <!-- Footer con Contatore Visite -->
-    <footer class="bg-slate-900/80 border-t border-slate-800 py-4 px-6 text-center text-xs text-slate-500">
-        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
-            <p>&copy; 2026 AstroMatrix FREE - Tutti i diritti riservati.</p>
-            <div class="flex items-center gap-2 bg-slate-950 px-3 py-1 rounded-full border border-slate-800 text-slate-400">
-                <i class="fa-solid fa-eye text-amber-400"></i>
-                <span>Visite totali: <strong id="visitCount" class="text-amber-300">1,260</strong></span>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Script di Calcolo -->
-    <script>
-        const zodiacSigns = ["Ariete", "Toro", "Gemelli", "Cancro", "Leone", "Vergine", "Bilancia", "Scorpione", "Sagittario", "Capricorno", "Acquario", "Pesci"];
-
-        const databaseOnomastici = {
-            "monica": "27 Agosto (Santa Monica)",
-            "mario": "19 Gennaio (San Mario)",
-            "anna": "26 Luglio (Sant'Anna)",
-            "giovanni": "24 Giugno (San Giovanni)",
-            "francesco": "4 Ottobre (San Francesco)",
-            "antonio": "13 Giugno (Sant'Antonio)",
-            "giuseppe": "19 Marzo (San Giuseppe)",
-            "maria": "12 Settembre (SS. Nome di Maria)",
-            "luigi": "21 Giugno (San Luigi)",
-            "adolfo": "17 Giugno (Sant'Adolfo)"
-        };
-
-        function getZodiacDetails(day, month) {
-            if ((month == 3 && day >= 21) || (month == 4 && day <= 19)) return { sign: "Ariete", element: "Fuoco", index: 0 };
-            if ((month == 4 && day >= 20) || (month == 5 && day <= 20)) return { sign: "Toro", element: "Terra", index: 1 };
-            if ((month == 5 && day >= 21) || (month == 6 && day <= 20)) return { sign: "Gemelli", element: "Aria", index: 2 };
-            if ((month == 6 && day >= 21) || (month == 7 && day <= 22)) return { sign: "Cancro", element: "Acqua", index: 3 };
-            if ((month == 7 && day >= 23) || (month == 8 && day <= 22)) return { sign: "Leone", element: "Fuoco", index: 4 };
-            if ((month == 8 && day >= 23) || (month == 9 && day <= 22)) return { sign: "Vergine", element: "Terra", index: 5 };
-            if ((month == 9 && day >= 23) || (month == 10 && day <= 22)) return { sign: "Bilancia", element: "Aria", index: 6 };
-            if ((month == 10 && day >= 23) || (month == 11 && day <= 21)) return { sign: "Scorpione", element: "Acqua", index: 7 };
-            if ((month == 11 && day >= 22) || (month == 12 && day <= 21)) return { sign: "Sagittario", element: "Fuoco", index: 8 };
-            if ((month == 12 && day >= 22) || (month == 1 && day <= 19)) return { sign: "Capricorno", element: "Terra", index: 9 };
-            if ((month == 1 && day >= 20) || (month == 2 && day <= 18)) return { sign: "Acquario", element: "Aria", index: 10 };
-            if ((month == 2 && day >= 19) || (month == 3 && day <= 20)) return { sign: "Pesci", element: "Acqua", index: 11 };
-            return { sign: "N.D.", element: "-", index: 0 };
-        }
-
-        function calculateAscendant(sunIndex, timeStr) {
-            if (!timeStr) return "Ora non specificata";
-            const [hours, minutes] = timeStr.split(':').map(Number);
-            const offset = Math.floor((hours + minutes / 60) / 2);
-            const ascendantIndex = (sunIndex + offset) % 12;
-            return zodiacSigns[ascendantIndex];
-        }
-
-        function getOnomastico(name) {
-            const first = name.trim().split(" ")[0].toLowerCase();
-            return databaseOnomastici[first] || "Calendario Liturgico Generale";
-        }
-
-        function calculateDestinyNumber(dateString) {
-            const digits = dateString.replace(/-/g, '').split('').map(Number);
-            let sum = digits.reduce((a, b) => a + b, 0);
-            while (sum > 9 && sum !== 11 && sum !== 22) {
-                sum = sum.toString().split('').map(Number).reduce((a, b) => a + b, 0);
-            }
-            return sum;
-        }
-
-        function calculateMatrix() {
-            const name = document.getElementById('userName').value;
-            const dateStr = document.getElementById('userDate').value;
-            const timeStr = document.getElementById('userTime').value;
-            const place = document.getElementById('userPlace').value;
-
-            if(!name || !dateStr || !place) {
-                alert('Per favore, compila i campi richiesti.');
-                return;
-            }
-
-            const [year, month, day] = dateStr.split('-').map(Number);
-
-            const zodiac = getZodiacDetails(day, month);
-            document.getElementById('resZodiac').innerText = zodiac.sign;
-            document.getElementById('resElement').innerText = "Elemento: " + zodiac.element;
-
-            const ascendant = calculateAscendant(zodiac.index, timeStr);
-            document.getElementById('resAscendant').innerText = ascendant;
-            document.getElementById('resTimeInfo').innerText = timeStr ? `Ore ${timeStr}` : "Ora non inserita";
-
-            document.getElementById('resOnomastico').innerText = getOnomastico(name);
-
-            const destiny = calculateDestinyNumber(dateStr);
-            document.getElementById('resDestiny').innerText = "Numero " + destiny;
-
-            const armonica = ((day + month + name.length) % 9) + 1;
-            document.getElementById('resHarmonic').innerText = "Frequenza " + armonica;
-
-            const n1 = ((day * 3) % 90) || 90;
-            const n2 = ((month * 7 + name.length) % 90) || 90;
-            const n3 = ((destiny * 9 + day) % 90) || 90;
-            document.getElementById('resNumbers').innerHTML = `<span>${n1}</span> <span>${n2}</span> <span>${n3}</span>`;
-
-            const resultBox = document.getElementById('resultBox');
-            resultBox.classList.remove('hidden');
-            resultBox.scrollIntoView({ behavior: 'smooth' });
-        }
-    </script>
-</body>
-</html>
+                        <label class="block text-xs font
