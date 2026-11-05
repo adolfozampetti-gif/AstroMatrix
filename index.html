@@ -34,9 +34,13 @@
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; color: #f8fafc; }
         .font-cinzel { font-family: 'Cinzel', serif; }
-        .glass-card { background: rgba(9, 13, 22, 0.90); backdrop-filter: blur(16px); border: 1px solid rgba(245, 158, 11, 0.25); }
+        .glass-card { background: rgba(9, 13, 22, 0.92); backdrop-filter: blur(16px); border: 1px solid rgba(245, 158, 11, 0.25); }
         .glow-gold { box-shadow: 0 0 35px -5px rgba(245, 158, 11, 0.3); }
-        select option { background-color: #090d16; color: #f8fafc; }
+        input[type="date"]::-webkit-calendar-picker-indicator,
+        input[type="time"]::-webkit-calendar-picker-indicator {
+            filter: invert(100%) sepia(50%) saturate(1000%) hue-rotate(340deg);
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
@@ -72,7 +76,7 @@
                 IL TUO PROFILO ASTRALE
             </h2>
             <p class="text-slate-400 text-sm sm:text-base max-w-lg mx-auto">
-                Inserisci nome, giorno, mese, anno, ora e seleziona la città di nascita per generare l'analisi dettagliata estratta direttamente dal Master Geodinamico.
+                Inserisci nome, giorno, mese, anno, ora e città di nascita per generare l'analisi dettagliata estratta direttamente dal Master Geodinamico.
             </p>
         </div>
 
@@ -140,72 +144,28 @@
                             <i class="fa-solid fa-location-dot mr-1.5"></i>Città di Nascita (Database Comuni)
                         </label>
                         <select id="userPlace" class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 focus:outline-none focus:border-amber-500 transition-all text-base">
-                            <optgroup label="Campania">
-                                <option value="Napoli" selected>Napoli</option>
-                                <option value="Caserta">Caserta</option>
-                                <option value="Salerno">Salerno</option>
-                                <option value="Avellino">Avellino</option>
-                                <option value="Benevento">Benevento</option>
-                                <option value="Aversa">Aversa</option>
-                                <option value="Santa Maria Capua Vetere">Santa Maria Capua Vetere</option>
-                                <option value="Marcianise">Marcianise</option>
-                                <option value="Afragola">Afragola</option>
-                                <option value="Giugliano in Campania">Giugliano in Campania</option>
-                                <option value="Pozzuoli">Pozzuoli</option>
-                                <option value="Torre del Greco">Torre del Greco</option>
-                                <option value="Castellammare di Stabia">Castellammare di Stabia</option>
-                            </optgroup>
-                            <optgroup label="Principali Città Italiane">
-                                <option value="Roma">Roma</option>
-                                <option value="Milano">Milano</option>
-                                <option value="Torino">Torino</option>
-                                <option value="Firenze">Firenze</option>
-                                <option value="Bologna">Bologna</option>
-                                <option value="Palermo">Palermo</option>
-                                <option value="Bari">Bari</option>
-                                <option value="Venezia">Venezia</option>
-                                <option value="Genova">Genova</option>
-                                <option value="Catania">Catania</option>
-                                <option value="Verona">Verona</option>
-                                <option value="Messina">Messina</option>
-                                <option value="Padova">Padova</option>
-                                <option value="Trieste">Trieste</option>
-                                <option value="Brescia">Brescia</option>
-                                <option value="Parma">Parma</option>
-                                <option value="Taranto">Taranto</option>
-                                <option value="Prato">Prato</option>
-                                <option value="Modena">Modena</option>
-                                <option value="Reggio Calabria">Reggio Calabria</option>
-                                <option value="Perugia">Perugia</option>
-                                <option value="Livorno">Livorno</option>
-                                <option value="Cagliari">Cagliari</option>
-                                <option value="Foggia">Foggia</option>
-                                <option value="Rimini">Rimini</option>
-                                <option value="Salerno">Salerno</option>
-                                <option value="Ferrara">Ferrara</option>
-                                <option value="Latina">Latina</option>
-                                <option value="Monza">Monza</option>
-                                <option value="Pescara">Pescara</option>
-                                <option value="Bergamo">Bergamo</option>
-                                <option value="Siracusa">Siracusa</option>
-                                <option value="Trento">Trento</option>
-                                <option value="Sassari">Sassari</option>
-                                <option value="Ancona">Ancona</option>
-                                <option value="Pisa">Pisa</option>
-                                <option value="Lecce">Lecce</option>
-                                <option value="Lucca">Lucca</option>
-                                <option value="Como">Como</option>
-                                <option value="Potenza">Potenza</option>
-                                <option value="Campobasso">Campobasso</option>
-                            </optgroup>
+                            <option value="Napoli" selected>Napoli</option>
+                            <option value="Caserta">Caserta</option>
+                            <option value="Roma">Roma</option>
+                            <option value="Milano">Milano</option>
+                            <option value="Torino">Torino</option>
+                            <option value="Firenze">Firenze</option>
+                            <option value="Bologna">Bologna</option>
+                            <option value="Palermo">Palermo</option>
+                            <option value="Bari">Bari</option>
+                            <option value="Salerno">Salerno</option>
+                            <option value="Benevento">Benevento</option>
+                            <option value="Avellino">Avellino</option>
                         </select>
                     </div>
                 </div>
 
-                <!-- Action Button (Sempre visibile) -->
-                <button type="button" onclick="calculateMatrix()" class="w-full bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-4 px-6 rounded-xl shadow-xl transition-all transform active:scale-[0.98] font-cinzel tracking-wider text-base uppercase mt-3 cursor-pointer">
-                    <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Calcola Il Tuo Profilo Gratuito
-                </button>
+                <!-- Action Button ben visibile -->
+                <div class="pt-2">
+                    <button type="button" onclick="calculateMatrix()" class="w-full bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-4 px-6 rounded-xl shadow-xl transition-all transform active:scale-[0.98] font-cinzel tracking-wider text-base uppercase">
+                        <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Calcola Profilo Gratuito Free
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -218,4 +178,335 @@
                     <span class="text-[11px] uppercase tracking-widest text-amber-400 font-semibold block">AstroMatrix Dashboard</span>
                     <h3 class="text-2xl font-bold text-slate-100 font-cinzel" id="resProfileName">Profilo Utente</h3>
                 </div>
-                <span class="bg-emerald-500/10 text
+                <span class="bg-emerald-500/10 text-emerald-400 text-xs px-3 py-1 rounded-full border border-emerald-500/20 font-medium">
+                    <i class="fa-solid fa-check-circle mr-1"></i>Sincronizzato
+                </span>
+            </div>
+
+            <!-- SEZIONE 1: Anagrafica & Etimologia -->
+            <div>
+                <h4 class="text-sm font-bold text-amber-400 font-cinzel uppercase tracking-wider mb-3">
+                    <i class="fa-solid fa-address-card mr-2"></i>Identità & Etimologia del Nome
+                </h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                    <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
+                        <span class="text-xs text-slate-400 font-semibold block uppercase">Onomastico Ufficiale</span>
+                        <p class="font-bold text-slate-100 mt-1" id="resOnomastico">-</p>
+                    </div>
+                    <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
+                        <span class="text-xs text-slate-400 font-semibold block uppercase">Significato del Nome</span>
+                        <p class="text-slate-300 mt-1 italic" id="resMeaning">-</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEZIONE 2: Profilo Astrologico Completo -->
+            <div>
+                <h4 class="text-sm font-bold text-amber-400 font-cinzel uppercase tracking-wider mb-3">
+                    <i class="fa-solid fa-sun mr-2"></i>Profilo Astrologico
+                </h4>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm mb-4">
+                    <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800">
+                        <span class="text-[11px] text-slate-400 font-semibold block uppercase">Segno Solare</span>
+                        <p class="font-bold text-amber-300 text-base font-cinzel mt-1" id="resZodiac">-</p>
+                    </div>
+                    <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800">
+                        <span class="text-[11px] text-slate-400 font-semibold block uppercase">Ascendente</span>
+                        <p class="font-bold text-amber-300 text-base font-cinzel mt-1" id="resAscendant">-</p>
+                    </div>
+                    <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800">
+                        <span class="text-[11px] text-slate-400 font-semibold block uppercase">Elemento</span>
+                        <p class="font-bold text-slate-200 mt-1" id="resElement">-</p>
+                    </div>
+                    <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800">
+                        <span class="text-[11px] text-slate-400 font-semibold block uppercase">Pianeta Guida</span>
+                        <p class="font-bold text-slate-200 mt-1" id="resPlanet">-</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm mb-4">
+                    <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800">
+                        <span class="text-[11px] text-slate-400 font-semibold block uppercase">Numero del Segno</span>
+                        <p class="font-bold text-amber-300 text-lg font-cinzel" id="resSignNumber">-</p>
+                    </div>
+                    <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800">
+                        <span class="text-[11px] text-slate-400 font-semibold block uppercase">Colore Guida</span>
+                        <p class="font-bold text-slate-200" id="resColor">-</p>
+                    </div>
+                    <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800">
+                        <span class="text-[11px] text-slate-400 font-semibold block uppercase">Pietra Preziosa</span>
+                        <p class="font-bold text-amber-300" id="resGem">-</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800 text-xs text-slate-300 mb-4">
+                    <span class="text-[11px] text-amber-400 font-bold block uppercase mb-1">
+                        <i class="fa-solid fa-gem mr-1"></i>Consiglio d'Uso & Purificazione Pietra
+                    </span>
+                    <p id="resGemAdvice">-</p>
+                </div>
+
+                <!-- Numeri Geodinamici -->
+                <div class="bg-gradient-to-r from-amber-500/10 via-amber-600/5 to-amber-500/10 p-4 rounded-xl border border-amber-500/30 text-center">
+                    <span class="text-xs font-bold text-amber-400 uppercase tracking-widest block mb-2 font-cinzel">
+                        <i class="fa-solid fa-cubes mr-1"></i>Numeri Geodinamici di Matrice
+                    </span>
+                    <p class="text-xl sm:text-2xl font-bold text-amber-300 font-cinzel tracking-wider" id="resGeoNumbers">-- - -- - -- - -- - --</p>
+                </div>
+            </div>
+
+            <!-- SEZIONE 3: Oroscopo Settimanale FREE -->
+            <div>
+                <h4 class="text-sm font-bold text-amber-400 font-cinzel uppercase tracking-wider mb-3">
+                    <i class="fa-solid fa-feather-pointed mr-2"></i>Oroscopo Settimanale FREE
+                </h4>
+                <div class="space-y-3 text-sm">
+                    <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
+                        <span class="text-xs text-amber-400 font-bold uppercase block mb-1">Clima Settimanale</span>
+                        <p class="text-slate-200" id="resWeeklyWeather">-</p>
+                    </div>
+                    <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
+                        <span class="text-xs text-amber-400 font-bold uppercase block mb-1">Pillola di Saggezza</span>
+                        <p class="text-slate-200 italic" id="resWisdom">-</p>
+                    </div>
+                    <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
+                        <span class="text-xs text-amber-400 font-bold uppercase block mb-1">Consiglio Pratico</span>
+                        <p class="text-slate-200" id="resActionAdvice">-</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEZIONE 4: Le Affinità del Segno (Con scelta interattiva del Partner e dell'Amico) -->
+            <div>
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-3 gap-2">
+                    <h4 class="text-sm font-bold text-amber-400 font-cinzel uppercase tracking-wider">
+                        <i class="fa-solid fa-heart mr-2"></i>Le Affinità del Segno
+                    </h4>
+                    <div class="flex items-center gap-2 text-xs text-slate-300">
+                        <span>Cambia segno partner:</span>
+                        <select id="selectPartnerSign" onchange="updateAffinities()" class="bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-amber-300 text-xs font-semibold focus:outline-none focus:border-amber-500">
+                            <!-- Generato via JS o opzioni standard -->
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                    <!-- Affinità di Coppia -->
+                    <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-bold text-amber-400 uppercase">Affinità di Coppia</span>
+                            <span class="text-xs bg-rose-500/20 text-rose-300 px-2.5 py-0.5 rounded-full border border-rose-500/30 font-bold" id="resCouplePct">-%</span>
+                        </div>
+                        <p class="font-bold text-slate-100 text-base mb-1" id="resCouplePartner">Partner: -</p>
+                        <p class="text-xs text-slate-400 leading-relaxed" id="resCoupleNote">-</p>
+                    </div>
+
+                    <!-- Affinità tra Amici -->
+                    <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-bold text-amber-400 uppercase">Affinità Amicizia</span>
+                            <span class="text-xs bg-sky-500/20 text-sky-300 px-2.5 py-0.5 rounded-full border border-sky-500/30 font-bold" id="resFriendPct">-%</span>
+                        </div>
+                        <p class="font-bold text-slate-100 text-base mb-1" id="resFriendPartner">Amico/a: -</p>
+                        <p class="text-xs text-slate-400 leading-relaxed" id="resFriendNote">-</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SEZIONE PREMIUM Banner -->
+        <div class="bg-gradient-to-r from-amber-500/10 via-indigo-500/10 to-purple-500/10 border border-amber-500/20 rounded-2xl p-6 text-center backdrop-blur-sm shadow-xl">
+            <div class="inline-block bg-amber-500/20 text-amber-300 text-xs px-3 py-1 rounded-full font-bold mb-3 border border-amber-500/30 tracking-wider">
+                <i class="fa-solid fa-lock mr-1.5"></i>PRESTO DISPONIBILE
+            </div>
+            <h4 class="text-lg font-bold text-slate-100 font-cinzel mb-2">SEZIONE PREMIUM</h4>
+            <p class="text-xs sm:text-sm text-slate-400 max-w-md mx-auto leading-relaxed">
+                Stiamo ultimando il modulo avanzato con quadri planetari completi, affinità di coppia estese e analisi dettagliate dei cicli geodinamici storici.
+            </p>
+        </div>
+
+    </main>
+
+    <!-- Footer with Visitor Counter -->
+    <footer class="bg-slate-900/90 border-t border-slate-800 py-5 px-6 text-xs text-slate-500 mt-12">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
+            <p>&copy; 2026 AstroMatrix FREE - Tutti i diritti riservati.</p>
+            <div class="flex items-center gap-2 bg-slate-950 px-3.5 py-1.5 rounded-full border border-slate-800 text-slate-400 shadow-sm">
+                <i class="fa-solid fa-eye text-amber-400"></i>
+                <span>Visite totali: <strong id="visitCount" class="text-amber-300 font-bold">1,290</strong></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Engine Completo ed Esteso -->
+    <script>
+        const zodiacSigns = ["Ariete", "Toro", "Gemelli", "Cancro", "Leone", "Vergine", "Bilancia", "Scorpione", "Sagittario", "Capricorno", "Acquario", "Pesci"];
+        
+        const masterSignData = {
+            "Ariete": { element: "Fuoco", planet: "Marte", signNum: 84, color: "Rosso fuoco", gem: "Rubino", gemAdvice: "Indossare a contatto con la pelle; purificare con acqua corrente e luce lunare.", partner: "Cancro", partnerPct: "89%", partnerNote: "Coppia Ariete e Cancro: Un rifugio emotivo intenso e protettivo, dove la sensibilità reciproca crea un legame indissolubile.", friend: "Leone", friendPct: "95%", friendNote: "Tra Ariete e Leone: Un mix frizzante di intraprendenza e leggerezza che rende ogni momento condiviso piacevolmente unico.", index: 0 },
+            "Toro": { element: "Terra", planet: "Venere", signNum: 69, color: "Verde Smeraldo", gem: "Smeraldo", gemAdvice: "A contatto con il petto; purificare su geode di ametista o con fumo d'incenso.", partner: "Scorpione", partnerPct: "88%", partnerNote: "Unione solida e sensuale basata su lealtà e continuità materiale.", friend: "Vergine", friendPct: "97%", friendNote: "Complicità naturale orientata al pragmatismo e al sostegno costante.", index: 1 },
+            "Gemelli": { element: "Aria", planet: "Mercurio", signNum: 77, color: "Giallo vivo", gem: "Agata", gemAdvice: "Portare in tasca o come ciondolo; purificare sotto acqua tiepida senza sale.", partner: "Sagittario", partnerPct: "93%", partnerNote: "Intesa brillante e dinamica che stimola la scoperta reciproca.", friend: "Bilancia", friendPct: "90%", friendNote: "Dialogo fluido, vivace e privo di noia.", index: 2 },
+            "Cancro": { element: "Acqua", planet: "Luna", signNum: 13, color: "Argento / Bianco", gem: "Perla", gemAdvice: "Indossare come anello o collana; purificare con luce lunare delicata.", partner: "Scorpione", partnerPct: "95%", partnerNote: "Profonda empatia emotiva e rifugio sicuro duraturo.", friend: "Toro", friendPct: "97%", friendNote: "Presenza rassicurante e cura reciproca.", index: 3 },
+            "Leone": { element: "Fuoco", planet: "Sole", signNum: 41, color: "Oro / Arancio", gem: "Diamante / Zircone", gemAdvice: "Montato in oro; purificare con luce solare del mattino.", partner: "Ariete", partnerPct: "94%", partnerNote: "Intesa immediata e travolgente che stimola l'azione e la gioia condivisa.", friend: "Sagittario", friendPct: "96%", friendNote: "Entusiasmo contagioso e voglia di condividere grandi traguardi.", index: 4 },
+            "Vergine": { element: "Terra", planet: "Mercurio", signNum: 28, color: "Grigio Perla", gem: "Zaffiro", gemAdvice: "Indossare all'anulare o indice; purificare con acqua e pietra di quarzo.", partner: "Capricorno", partnerPct: "91%", partnerNote: "Affidabilità, cura dei dettagli e grande intesa strategica.", friend: "Toro", friendPct: "89%", friendNote: "Sostegno reciproco basato sulla concretezza.", index: 5 },
+            "Bilancia": { element: "Aria", planet: "Venere", signNum: 79, color: "Rosa / Blu cobalto", gem: "Opale", gemAdvice: "Evitare sbalzi termici; purificare alla luce soffusa della Luna crescente.", partner: "Gemelli", partnerPct: "92%", partnerNote: "Sintonia romantica ed elegante orientata all'armonia.", friend: "Acquario", friendPct: "90%", friendNote: "Condivisione di ideali e stimoli culturali.", index: 6 },
+            "Scorpione": { element: "Acqua", planet: "Plutone", signNum: 38, color: "Rosso scuro / Nero", gem: "Topazio / Agata Fuoco", gemAdvice: "Indossare a diretto contatto; purificare con incenso di sandalo.", partner: "Cancro", partnerPct: "96%", partnerNote: "Legame magnetico e viscerale di straordinaria intensità.", friend: "Pesci", friendPct: "95%", friendNote: "Comprensione intuitiva priva di filtri.", index: 7 },
+            "Sagittario": { element: "Fuoco", planet: "Giove", signNum: 56, color: "Blu scuro / Porpora", gem: "Turchese", gemAdvice: "Ottimo come amuleto da viaggio; purificare con argilla o fumo d'erbe.", partner: "Leone", partnerPct: "91%", partnerNote: "Amore avventuroso e stimolante che guarda sempre avanti.", friend: "Ariete", friendPct: "88%", friendNote: "Energia inesauribile e spirito di squadra.", index: 8 },
+            "Capricorno": { element: "Terra", planet: "Saturno", signNum: 24, color: "Nero / Marrone", gem: "Onice", gemAdvice: "Indossare a sinistra; purificare con acqua corrente e terra.", partner: "Toro", partnerPct: "95%", partnerNote: "Unione indistruttibile fondata su maturità ed eleganza.", friend: "Vergine", friendPct: "92%", friendNote: "Rispetto reciproco e chiarezza d'intenti.", index: 9 },
+            "Acquario": { element: "Aria", planet: "Urano", signNum: 55, color: "Blu elettrico", gem: "Ametista", gemAdvice: "Purificare su geode di quarzo o fumo di salvia bianca.", partner: "Gemelli", partnerPct: "90%", partnerNote: "Libertà condivisa e affinità intellettuale profonda.", friend: "Bilancia", friendPct: "93%", friendNote: "Armonia di idee e progetti creativi.", index: 10 },
+            "Pesci": { element: "Acqua", planet: "Nettuno", signNum: 33, color: "Verde acqua", gem: "Acquamarina", gemAdvice: "Purificare sotto acqua corrente fredda e luce lunare.", partner: "Scorpione", partnerPct: "95%", partnerNote: "Alchimia spirituale ed emotiva di rara bellezza.", friend: "Cancro", friendPct: "94%", partnerNote: "Empatia profonda e protezione affettiva.", index: 11 }
+        };
+
+        const masterNames = {
+            "monica": { onomastico: "27 Agosto (Santa Monica)", meaning: 'Origine Greca che significa Solitaria o Consigliera' },
+            "adolfo": { onomastico: "17 Giugno (Sant'Adolfo Vescovo)", meaning: 'Origine Germanica che significa Nobile Lupo' },
+            "mario": { onomastico: "19 Gennaio (San Mario Martire)", meaning: 'Origine Latina che significa Uomo del mare o Guerriero' },
+            "anna": { onomastico: "26 Luglio (Santi Gioacchino e Anna)", meaning: 'Origine Ebraica che significa Grazia o Misericordiosa' },
+            "giovanni": { onomastico: "24 Giugno (San Giovanni Battista)", meaning: 'Origine Ebraica che significa Dono del Signore' },
+            "francesco": { onomastico: "4 Ottobre (San Francesco d'Assisi)", meaning: 'Origine Germanica che significa Uomo libero' },
+            "antonio": { onomastico: "13 Giugno (Sant'Antonio da Padova)", meaning: 'Origine Greca che significa Inestimabile' },
+            "giuseppe": { onomastico: "19 Marzo (San Giuseppe Patriarca)", meaning: 'Origine Ebraica che significa Egli aggiungerà' },
+            "maria": { onomastico: "12 Settembre (Santissimo Nome di Maria)", meaning: 'Origine Ebraica che significa Amata da Dio o Signora' }
+        };
+
+        // Popola la select dei segni partner all'avvio
+        window.addEventListener('DOMContentLoaded', () => {
+            const selectPartner = document.getElementById('selectPartnerSign');
+            if (selectPartner) {
+                zodiacSigns.forEach(s => {
+                    const opt = document.createElement('option');
+                    opt.value = s;
+                    opt.innerText = s;
+                    selectPartner.appendChild(opt);
+                });
+            }
+        });
+
+        let currentUserZodiac = null;
+
+        function getZodiacDetails(day, month) {
+            if ((month == 3 && day >= 21) || (month == 4 && day <= 19)) return masterSignData["Ariete"];
+            if ((month == 4 && day >= 20) || (month == 5 && day <= 20)) return masterSignData["Toro"];
+            if ((month == 5 && day >= 21) || (month == 6 && day <= 20)) return masterSignData["Gemelli"];
+            if ((month == 6 && day >= 21) || (month == 7 && day <= 22)) return masterSignData["Cancro"];
+            if ((month == 7 && day >= 23) || (month == 8 && day <= 22)) return masterSignData["Leone"];
+            if ((month == 8 && day >= 23) || (month == 9 && day <= 22)) return masterSignData["Vergine"];
+            if ((month == 9 && day >= 23) || (month == 10 && day <= 22)) return masterSignData["Bilancia"];
+            if ((month == 10 && day >= 23) || (month == 11 && day <= 21)) return masterSignData["Scorpione"];
+            if ((month == 11 && day >= 22) || (month == 12 && day <= 21)) return masterSignData["Sagittario"];
+            if ((month == 12 && day >= 22) || (month == 1 && day <= 19)) return masterSignData["Capricorno"];
+            if ((month == 1 && day >= 20) || (month == 2 && day <= 18)) return masterSignData["Acquario"];
+            return masterSignData["Pesci"];
+        }
+
+        function calculateAscendant(sunIndex, timeStr) {
+            if (!timeStr) return zodiacSigns[sunIndex];
+            const parts = timeStr.split(':');
+            const hours = parseInt(parts[0], 10) || 12;
+            const minutes = parseInt(parts[1], 10) || 0;
+            const totalHours = hours + (minutes / 60);
+            const offset = Math.floor(totalHours / 2);
+            return zodiacSigns[(sunIndex + offset) % 12];
+        }
+
+        function getNamesDetails(name) {
+            if (!name) return { onomastico: "17 Giugno / Calendario Liturgico Generale", meaning: 'Nobile indole votata alla scoperta e all\'equilibrio' };
+            const clean = name.trim().split(" ")[0].toLowerCase();
+            return masterNames[clean] || { onomastico: "17 Giugno / Calendario Liturgico Generale", meaning: 'Nobile indole votata alla scoperta e all\'equilibrio' };
+        }
+
+        function updateAffinities() {
+            const selectPartner = document.getElementById('selectPartnerSign');
+            if (!selectPartner || !currentUserZodiac) return;
+            const chosenSignName = selectPartner.value;
+            const targetData = masterSignData[chosenSignName] || currentUserZodiac;
+
+            document.getElementById('resCouplePartner').innerText = 'Partner: ' + chosenSignName;
+            document.getElementById('resCouplePct',).innerText = targetData.partnerPct || '88%';
+            document.getElementById('resCoupleNote').innerText = targetData.partnerNote || ('Unione intensa tra ' + currentUserZodiac + ' e ' + chosenSignName + ' basata su stima e comprensione reciproca.');
+
+            document.getElementById('resFriendPartner').innerText = 'Amico/a: ' + chosenSignName;
+            document.getElementById('resFriendPct').innerText = targetData.friendPct || '92%';
+            document.getElementById('resFriendNote').innerText = targetData.friendNote || ('Ottima sintonia amicale tra ' + currentUserZodiac + ' e ' + chosenSignName + '.');
+        }
+
+        function calculateMatrix() {
+            try {
+                const nameEl = document.getElementById('userName');
+                const dayEl = document.getElementById('userDay');
+                const monthEl = document.getElementById('userMonth');
+                const yearEl = document.getElementById('userYear');
+                const timeEl = document.getElementById('userTime');
+                const placeEl = document.getElementById('userPlace');
+
+                const name = nameEl ? nameEl.value.trim() : '';
+                const day = dayEl ? parseInt(dayEl.value, 10) : 0;
+                const month = monthEl ? parseInt(monthEl.value, 10) : 0;
+                const year = yearEl ? parseInt(yearEl.value, 10) : 0;
+                const timeStr = timeEl ? timeEl.value : '12:00';
+                const place = placeEl ? placeEl.value : 'Napoli';
+
+                if (!name || isNaN(day) || isNaN(month) || isNaN(year)) {
+                    alert('Attenzione: per favore compila tutti i campi richiesti.');
+                    return;
+                }
+
+                document.getElementById('resProfileName').innerText = name.toUpperCase() + ' (' + place.toUpperCase() + ')';
+
+                const zodiac = getZodiacDetails(day, month);
+                currentUserZodiac = zodiac;
+                const signName = zodiacSigns[zodiac.index];
+                const ascendant = calculateAscendant(zodiac.index, timeStr);
+                const nameInfo = getNamesDetails(name);
+
+                // Seleziona di default il segno partner consigliato nel menu a tendina
+                const selectPartner = document.getElementById('selectPartnerSign');
+                if (selectPartner) {
+                    selectPartner.value = zodiac.partner;
+                }
+
+                // 1. Anagrafica & Etimologia
+                document.getElementById('resOnomastico').innerText = nameInfo.onomastico;
+                document.getElementById('resMeaning').innerText = nameInfo.meaning;
+
+                // 2. Profilo Astrologico
+                document.getElementById('resZodiac').innerText = signName;
+                document.getElementById('resAscendant').innerText = ascendant;
+                document.getElementById('resElement').innerText = zodiac.element;
+                document.getElementById('resPlanet').innerText = zodiac.planet;
+                document.getElementById('resSignNumber').innerText = zodiac.signNum;
+                document.getElementById('resColor').innerText = zodiac.color;
+                document.getElementById('resGem').innerText = zodiac.gem;
+                document.getElementById('resGemAdvice').innerText = zodiac.gemAdvice;
+
+                // Numeri Geodinamici
+                const n1 = ((day * 3 + name.length) % 90) || 78;
+                const n2 = month < 10 ? '0' + month : month;
+                const n3 = (day % 90) || 24;
+                const n4 = 50;
+                const n5 = 72;
+                document.getElementById('resGeoNumbers').innerText = n1 + ' - ' + n2 + ' - ' + n3 + ' - ' + n4 + ' - ' + n5;
+
+                // 3. Oroscopo Settimanale FREE
+                document.getElementById('resWeeklyWeather').innerText = 'Per il Sole in ' + signName + ': La spinta dinamica e diretta dell\'Ascendente ' + ascendant + ' accelera i tempi di reazione e l\'efficacia delle tue scelte.';
+                document.getElementById('resWisdom').innerText = 'Messaggio per ' + signName + ' con Ascendente ' + ascendant + ': L\'Ascendente ' + ascendant + ' ti chiede di agire con coraggio senza attendere il consenso altrui.';
+                document.getElementById('resActionAdvice').innerText = 'Azione per ' + signName + ': Inizia una nuova attività di petto entro i primi giorni della settimana.';
+
+                // 4. Affinità
+                updateAffinities();
+
+                // Mostra il box risultati
+                const resultBox = document.getElementById('resultBox');
+                if (resultBox) {
+                    resultBox.classList.remove('hidden');
+                    resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            } catch (err) {
+                console.error("Errore:", err);
+                alert("Si è verificato un errore durante il calcolo.");
+            }
+        }
+    </script>
+</body>
+</html>
