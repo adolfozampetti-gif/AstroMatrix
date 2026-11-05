@@ -62,7 +62,6 @@
             filter: invert(100%) sepia(50%) saturate(1000%) hue-rotate(340deg);
             cursor: pointer;
         }
-        /* Ottimizzazione touch per mobile */
         button, select, input {
             touch-action: manipulation;
         }
@@ -80,9 +79,7 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
 
-    <!-- ================================================================= -->
-    <!-- TOP HEADER NAVIGATION                                             -->
-    <!-- ================================================================= -->
+    <!-- TOP HEADER NAVIGATION -->
     <header class="bg-slate-900/90 backdrop-blur-md border-b border-slate-800 py-4 px-6 sticky top-0 z-50">
         <div class="max-w-4xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-3">
@@ -104,9 +101,7 @@
         </div>
     </header>
 
-    <!-- ================================================================= -->
-    <!-- MAIN CONTENT AREA                                                 -->
-    <!-- ================================================================= -->
+    <!-- MAIN CONTENT AREA -->
     <main class="max-w-3xl mx-auto p-4 sm:p-6 w-full flex-grow my-6">
         
         <!-- Hero Intro Section -->
@@ -119,13 +114,11 @@
             </p>
         </div>
 
-        <!-- ============================================================= -->
-        <!-- INPUT FORM CARD                                               -->
-        <!-- ============================================================= -->
+        <!-- INPUT FORM CARD -->
         <div class="glass-card rounded-2xl p-6 sm:p-8 shadow-2xl mb-8 glow-gold">
             <div class="space-y-5">
                 
-                <!-- 1. Campo Nome Azzerato -->
+                <!-- 1. Campo Nome -->
                 <div>
                     <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2">
                         <i class="fa-solid fa-user mr-1.5"></i>Nome
@@ -134,7 +127,7 @@
                         class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all text-base">
                 </div>
 
-                <!-- 2. Campi Data Azzerati -->
+                <!-- 2. Campi Data -->
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2">
@@ -172,7 +165,7 @@
                     </div>
                 </div>
 
-                <!-- 3. Campi Ora e Città (Database Comuni Completo) -->
+                <!-- 3. Campi Ora e Città a inserimento libero -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2">
@@ -185,28 +178,23 @@
                         <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2">
                             <i class="fa-solid fa-location-dot mr-1.5"></i>Città / Comune di Nascita
                         </label>
-                        <select id="userPlace" class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 focus:outline-none focus:border-amber-500 transition-all text-base">
-                            <option value="" disabled selected>Seleziona o digita il comune...</option>
-                            <!-- Il database dei comuni viene popolato dinamicamente via JS o tramite elenco completo -->
-                        </select>
+                        <input type="text" id="userPlace" placeholder="Es. Napoli, Caserta, Roma..." value=""
+                            class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-amber-500 transition-all text-base">
                     </div>
                 </div>
 
-                <!-- Action Button con dicitura univoca -->
+                <!-- Action Button -->
                 <div class="pt-2">
                     <button type="button" id="calcBtn" class="w-full bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-4 px-6 rounded-xl shadow-xl transition-all transform active:scale-[0.98] font-cinzel tracking-wider text-base uppercase cursor-pointer">
-                        <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Calcola Profilo Gratuito
+                        <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>CALCOLA PROFILO GRATUITO
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- ============================================================= -->
-        <!-- RESULTS DASHBOARD BOX (Hidden by default)                     -->
-        <!-- ============================================================= -->
+        <!-- RESULTS DASHBOARD BOX -->
         <div id="resultBox" class="hidden glass-card rounded-2xl p-6 sm:p-8 shadow-2xl mb-8 space-y-8 border border-amber-500/40">
             
-            <!-- Intestazione Risultato -->
             <div class="border-b border-slate-800 pb-4 flex justify-between items-center">
                 <div>
                     <span class="text-[11px] uppercase tracking-widest text-amber-400 font-semibold block">AstroMatrix Dashboard</span>
@@ -280,7 +268,7 @@
                     <p id="resGemAdvice">-</p>
                 </div>
 
-                <!-- Numeri Geodinamici -->
+                <!-- Numeri Geodinamici unici e stabili -->
                 <div class="bg-gradient-to-r from-amber-500/10 via-amber-600/5 to-amber-500/10 p-4 rounded-xl border border-amber-500/30 text-center">
                     <span class="text-xs font-bold text-amber-400 uppercase tracking-widest block mb-2 font-cinzel">
                         <i class="fa-solid fa-cubes mr-1"></i>Numeri Geodinamici di Matrice
@@ -310,7 +298,7 @@
                 </div>
             </div>
 
-            <!-- SEZIONE 4: Le Affinità del Segno (Con scelta interattiva del Partner e dell'Amico) -->
+            <!-- SEZIONE 4: Le Affinità del Segno -->
             <div>
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-3 gap-2">
                     <h4 class="text-sm font-bold text-amber-400 font-cinzel uppercase tracking-wider">
@@ -325,7 +313,6 @@
                 </div>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-                    <!-- Affinità di Coppia -->
                     <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
                         <div class="flex justify-between items-center mb-2">
                             <span class="text-xs font-bold text-amber-400 uppercase">Affinità di Coppia</span>
@@ -335,7 +322,6 @@
                         <p class="text-xs text-slate-400 leading-relaxed" id="resCoupleNote">-</p>
                     </div>
 
-                    <!-- Affinità tra Amici -->
                     <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
                         <div class="flex justify-between items-center mb-2">
                             <span class="text-xs font-bold text-amber-400 uppercase">Affinità Amicizia</span>
@@ -362,9 +348,7 @@
 
     </main>
 
-    <!-- ================================================================= -->
-    <!-- FOOTER SECTION                                                    -->
-    <!-- ================================================================= -->
+    <!-- FOOTER SECTION -->
     <footer class="bg-slate-900/90 border-t border-slate-800 py-5 px-6 text-xs text-slate-500 mt-12">
         <div class="max-w-4xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
             <p>&copy; 2026 AstroMatrix FREE - Tutti i diritti riservati.</p>
@@ -375,28 +359,10 @@
         </div>
     </footer>
 
-    <!-- ================================================================= -->
-    <!-- JAVASCRIPT ENGINE & DATABASE COMUNI POPULATION                    -->
-    <!-- ================================================================= -->
+    <!-- JAVASCRIPT ENGINE & UNIQUE STABLE NUMBERS GENERATOR -->
     <script>
         const zodiacSigns = ["Ariete", "Toro", "Gemelli", "Cancro", "Leone", "Vergine", "Bilancia", "Scorpione", "Sagittario", "Capricorno", "Acquario", "Pesci"];
         
-        // Database esteso dei Comuni Italiani (Oltre 1000 principali suddivisi per capoluoghi e comuni)
-        const comuniDatabase = [
-            "Abbiategrasso", "Acerra", "Afragola", "Agrigento", "Alessandria", "Aversa", "Ancona", "Andria", "Aosta", "Arezzo", "Arzano", "Ascoli Piceno", "Asti", "Avellino", 
-            "Bari", "Barletta", "Battipaglia", "Belluno", "Benevento", "Bergamo", "Biella", "Bologna", "Bolzano", "Brescia", "Brindisi", "Busto Arsizio",
-            "Cagliari", "Caltanissetta", "Campobasso", "Capua", "Carpi", "Casarsa del Friuli", "Caserta", "Casoria", "Castellammare di Stabia", "Catania", "Catanzaro", "Cavese", "Cesena", "Cinisello Balsamo", "Como", "Cosenza", "Cremona", "Crotone", "Cuneo",
-            "Ercolano", "Enna", "Empoli", "Fabriano", "Faenza", "Fano", "Fermo", "Ferrara", "Firenze", "Foggia", "Forlì", "Formia", "Frattamaggiore", "Frosinone",
-            "Gallarate", "Gela", "Genova", "Giugliano in Campania", "Gorizia", "Grosseto", "Guidonia Montecelio",
-            "Imola", "Imperia", "Isernia", "L'Aquila", "La Spezia", "Lamezia Terme", "Lecce", "Lecco", "Livorno", "Lodi", "Lucca",
-            "Macerata", "Macerata Campania", "Maddaloni", "Manfredonia", "Mantova", "Marcianise", "Massa", "Matera", "Messina", "Milano", "Modena", "Monza",
-            "Napoli", "Novara", "Nuoro", "Oristano", "Padova", "Palermo", "Parma", "Pavia", "Perugia", "Pesaro", "Pescara", "Piacenza", "Pisa", "Pistoia", "Pordenone", "Potenza", "Prato",
-            "Ragusa", "Ravenna", "Reggio Calabria", "Reggio Emilia", "Rieti", "Rimini", "Roma", "Rovigo",
-            "Salerno", "San Giuseppe Vesuviano", "Santa Maria Capua Vetere", "Sant'Agata dei Goti", "Sassari", "Savona", "Scafati", "Siena", "Siracusa", "Sondrio", "La Spezia",
-            "Taranto", "Teramo", "Terni", "Torino", "Torre annunziata", "Torre del Greco", "Trapani", "Trento", "Treviso", "Trieste",
-            "Udine", "Varese", "Venezia", "Verbania", "Vercelli", "Verona", "Vibo Valentia", "Vicenza", "Viterbo"
-        ];
-
         const masterSignData = {
             "Ariete": { element: "Fuoco", planet: "Marte", signNum: 84, color: "Rosso fuoco", gem: "Rubino", gemAdvice: "Indossare a contatto con la pelle; purificare con acqua corrente e luce lunare.", partner: "Cancro", partnerPct: "89%", partnerNote: "Coppia Ariete e Cancro: Un rifugio emotivo intenso e protettivo, dove la sensibilità reciproca crea un legame indissolubile.", friend: "Leone", friendPct: "95%", friendNote: "Tra Ariete e Leone: Un mix frizzante di intraprendenza e leggerezza che rende ogni momento condiviso piacevolmente unico.", index: 0 },
             "Toro": { element: "Terra", planet: "Venere", signNum: 69, color: "Verde Smeraldo", gem: "Smeraldo", gemAdvice: "A contatto con il petto; purificare su geode di ametista o con fumo d'incenso.", partner: "Scorpione", partnerPct: "88%", partnerNote: "Unione solida e sensuale basata su lealtà e continuità materiale.", friend: "Vergine", friendPct: "97%", friendNote: "Complicità naturale orientata al pragmatismo e al sostegno costante.", index: 1 },
@@ -425,18 +391,6 @@
         };
 
         window.addEventListener('DOMContentLoaded', () => {
-            // Popolamento dinamico dei Comuni in ordine alfabetico
-            const placeSelect = document.getElementById('userPlace');
-            if (placeSelect) {
-                comuniDatabase.sort().forEach(comune => {
-                    const opt = document.createElement('option');
-                    opt.value = comune;
-                    opt.innerText = comune;
-                    placeSelect.appendChild(opt);
-                });
-            }
-
-            // Popolamento select partner
             const selectPartner = document.getElementById('selectPartnerSign');
             if (selectPartner) {
                 zodiacSigns.forEach(s => {
@@ -447,7 +401,6 @@
                 });
             }
 
-            // Event listener reattivi mobile/desktop
             const calcBtn = document.getElementById('calcBtn');
             if (calcBtn) {
                 calcBtn.addEventListener('click', calculateMatrix);
@@ -459,6 +412,8 @@
         });
 
         let currentUserZodiac = null;
+        let cachedGeoNumbers = null;
+        let lastInputSignature = "";
 
         function getZodiacDetails(day, month) {
             if ((month == 3 && day >= 21) || (month == 4 && day <= 19)) return masterSignData["Ariete"];
@@ -491,95 +446,5 @@
             return masterNames[clean] || { onomastico: "17 Giugno / Calendario Liturgico Generale", meaning: 'Nobile indole votata alla scoperta e all\'equilibrio' };
         }
 
-        function updateAffinities() {
-            const selectPartner = document.getElementById('selectPartnerSign');
-            if (!selectPartner || !currentUserZodiac) return;
-            const chosenSignName = selectPartner.value;
-            const targetData = masterSignData[chosenSignName] || currentUserZodiac;
-
-            document.getElementById('resCouplePartner').innerText = 'Partner: ' + chosenSignName;
-            document.getElementById('resCouplePct').innerText = targetData.partnerPct || '88%';
-            document.getElementById('resCoupleNote').innerText = targetData.partnerNote || ('Unione intensa basata su stima e comprensione reciproca.');
-
-            document.getElementById('resFriendPartner').innerText = 'Amico/a: ' + chosenSignName;
-            document.getElementById('resFriendPct').innerText = targetData.friendPct || '92%';
-            document.getElementById('resFriendNote').innerText = targetData.friendNote || ('Ottima sintonia amicale e condivisione di ideali.');
-        }
-
-        function calculateMatrix() {
-            try {
-                const nameEl = document.getElementById('userName');
-                const dayEl = document.getElementById('userDay');
-                const monthEl = document.getElementById('userMonth');
-                const yearEl = document.getElementById('userYear');
-                const timeEl = document.getElementById('userTime');
-                const placeEl = document.getElementById('userPlace');
-
-                const name = nameEl ? nameEl.value.trim() : '';
-                const day = dayEl ? parseInt(dayEl.value, 10) : 0;
-                const month = monthEl ? parseInt(monthEl.value, 10) : 0;
-                const year = yearEl ? parseInt(yearEl.value, 10) : 0;
-                const timeStr = timeEl ? timeEl.value : '12:00';
-                const place = placeEl && placeEl.value ? placeEl.value : 'Italia';
-
-                if (!name || isNaN(day) || isNaN(month) || isNaN(year)) {
-                    alert('Attenzione: per favore inserisci Nome, Giorno, Mese e Anno prima di procedere.');
-                    return;
-                }
-
-                document.getElementById('resProfileName').innerText = name.toUpperCase() + ' (' + place.toUpperCase() + ')';
-
-                const zodiac = getZodiacDetails(day, month);
-                currentUserZodiac = zodiac;
-                const signName = zodiacSigns[zodiac.index];
-                const ascendant = calculateAscendant(zodiac.index, timeStr);
-                const nameInfo = getNamesDetails(name);
-
-                const selectPartner = document.getElementById('selectPartnerSign');
-                if (selectPartner) {
-                    selectPartner.value = zodiac.partner;
-                }
-
-                // 1. Anagrafica & Etimologia
-                document.getElementById('resOnomastico').innerText = nameInfo.onomastico;
-                document.getElementById('resMeaning').innerText = nameInfo.meaning;
-
-                // 2. Profilo Astrologico
-                document.getElementById('resZodiac').innerText = signName;
-                document.getElementById('resAscendant').innerText = ascendant;
-                document.getElementById('resElement').innerText = zodiac.element;
-                document.getElementById('resPlanet').innerText = zodiac.planet;
-                document.getElementById('resSignNumber').innerText = zodiac.signNum;
-                document.getElementById('resColor').innerText = zodiac.color;
-                document.getElementById('resGem').innerText = zodiac.gem;
-                document.getElementById('resGemAdvice').innerText = zodiac.gemAdvice;
-
-                // Numeri Geodinamici
-                const n1 = ((day * 3 + name.length) % 90) || 78;
-                const n2 = month < 10 ? '0' + month : month;
-                const n3 = (day % 90) || 24;
-                const n4 = 50;
-                const n5 = 72;
-                document.getElementById('resGeoNumbers').innerText = n1 + ' - ' + n2 + ' - ' + n3 + ' - ' + n4 + ' - ' + n5;
-
-                // 3. Oroscopo Settimanale FREE
-                document.getElementById('resWeeklyWeather').innerText = 'Per il Sole in ' + signName + ': La spinta dinamica e diretta dell\'Ascendente ' + ascendant + ' accelera i tempi di reazione e l\'efficacia delle tue scelte.';
-                document.getElementById('resWisdom').innerText = 'Messaggio per ' + signName + ' con Ascendente ' + ascendant + ': L\'Ascendente ' + ascendant + ' ti chiede di agire con coraggio senza attendere il consenso altrui.';
-                document.getElementById('resActionAdvice').innerText = 'Azione per ' + signName + ': Inizia una nuova attività di petto entro i primi giorni della settimana.';
-
-                // 4. Affinità
-                updateAffinities();
-
-                const resultBox = document.getElementById('resultBox');
-                if (resultBox) {
-                    resultBox.classList.remove('hidden');
-                    resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            } catch (err) {
-                console.error("Errore:", err);
-                alert("Si è verificato un errore durante il calcolo.");
-            }
-        }
-    </script>
-</body>
-</html>
+        // Generatore di 5 numeri unici e stabili basati sui dati utente
+        function getStableUniqueNumbers(seedString
