@@ -128,13 +128,13 @@
                         class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all text-base">
                 </div>
 
-                <!-- 2. Campi Data -->
+                <!-- 2. Campi Data ottimizzati per mobile -->
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2">
                             <i class="fa-solid fa-calendar-day mr-1.5"></i>Giorno (1-31)
                         </label>
-                        <input type="number" id="userDay" min="1" max="31" placeholder="GG" value=""
+                        <input type="text" inputmode="numeric" pattern="[0-9]*" id="userDay" placeholder="GG" value=""
                             class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-amber-500 transition-all text-base">
                     </div>
                     <div>
@@ -161,12 +161,12 @@
                         <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2">
                             <i class="fa-solid fa-calendar mr-1.5"></i>Anno (AAAA)
                         </label>
-                        <input type="number" id="userYear" min="1900" max="2026" placeholder="AAAA" value=""
+                        <input type="text" inputmode="numeric" pattern="[0-9]*" id="userYear" placeholder="AAAA" value=""
                             class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-amber-500 transition-all text-base">
                     </div>
                 </div>
 
-                <!-- 3. Ora e Città di Nascita (Input di testo libero) -->
+                <!-- 3. Ora e Città di Nascita (Testo libero per qualsiasi comune) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2">
@@ -400,7 +400,7 @@
             "maria": { onomastico: "12 Settembre (Santissimo Nome di Maria)", meaning: 'Origine Ebraica che significa Amata da Dio o Signora' }
         };
 
-        // GESTIONE CONTATORE DINAMICO VISITE (Incrementa di 1 ogni visita)
+        // GESTIONE CONTATORE DINAMICO VISITE
         function initVisitCounter() {
             const baseCounter = 1290;
             let currentVisits = localStorage.getItem('astromatrix_visits');
@@ -419,7 +419,6 @@
         window.addEventListener('DOMContentLoaded', () => {
             initVisitCounter();
 
-            // Popolamento select partner
             const selectPartner = document.getElementById('selectPartnerSign');
             if (selectPartner) {
                 zodiacSigns.forEach(s => {
@@ -430,7 +429,6 @@
                 });
             }
 
-            // Attivazione pulsante sia per Click che per Touch (Mobile)
             const calcBtn = document.getElementById('calcBtn');
             if (calcBtn) {
                 const triggerCalculation = (e) => {
@@ -475,7 +473,7 @@
             return masterNames[clean] || { onomastico: "17 Giugno / Calendario Liturgico Generale", meaning: 'Nobile indole votata alla scoperta e all\'equilibrio' };
         }
 
-        // ALGORITMO NUMERI GEODINAMICI (Imperscrutabile, privo di legami visibili con la data)
+        // ALGORITMO NUMERI GEODINAMICI (Imperscrutabile)
         function generateGeodynamicNumbers(name, day, month, year, place, timeStr) {
             const seedStr = (name + day + month + year + place + timeStr).toLowerCase();
             let hash = 0;
@@ -560,7 +558,7 @@
                 document.getElementById('resGem').innerText = zodiac.gem;
                 document.getElementById('resGemAdvice').innerText = zodiac.gemAdvice;
 
-                // Numeri Geodinamici calcolati con la nuova formula misteriosa
+                // Numeri Geodinamici imperscrutabili
                 document.getElementById('resGeoNumbers').innerText = generateGeodynamicNumbers(name, day, month, year, place, timeStr);
 
                 // 3. Oroscopo Settimanale FREE
