@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AstroMatrix FREE - Dashboard Astrologica & Geodinamica</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -11,29 +12,40 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: { gold: '#f59e0b', dark: '#020617', card: '#090d16', border: '#1e293b' }
+                        brand: {
+                            gold: '#f59e0b',
+                            dark: '#020617',
+                            card: '#090d16',
+                            border: '#1e293b'
+                        }
                     },
-                    fontFamily: { cinzel: ['Cinzel', 'serif'], sans: ['Plus Jakarta Sans', 'sans-serif'] }
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                    }
                 }
             }
         }
     </script>
+    <!-- FontAwesome per le icone -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; color: #f8fafc; }
         .font-cinzel { font-family: 'Cinzel', serif; }
         .glass-card { background: rgba(9, 13, 22, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(245, 158, 11, 0.2); }
-        .glow-gold { box-shadow: 0 0 30px -5px rgba(245, 158, 11, 0.25); }
+        .glow-gold { box-shadow: 0 0 35px -5px rgba(245, 158, 11, 0.3); }
         input[type="date"]::-webkit-calendar-picker-indicator,
         input[type="time"]::-webkit-calendar-picker-indicator {
-            filter: invert(100%) sepia(50%) saturate(1000%) hue-rotate(340deg); cursor: pointer;
+            filter: invert(100%) sepia(50%) saturate(1000%) hue-rotate(340deg);
+            cursor: pointer;
         }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
 
-    <!-- Header -->
+    <!-- Top Header Navigation -->
     <header class="bg-slate-900/90 backdrop-blur-md border-b border-slate-800 py-4 px-6 sticky top-0 z-50">
         <div class="max-w-4xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-3">
@@ -41,74 +53,101 @@
                     <i class="fa-solid fa-star-of-life text-slate-950 text-lg"></i>
                 </div>
                 <div>
-                    <h1 class="text-xl font-bold tracking-wider text-amber-400 font-cinzel leading-tight">AstroMatrix</h1>
+                    <h1 class="text-xl font-bold tracking-wider text-amber-400 font-cinzel leading-tight">
+                        AstroMatrix
+                    </h1>
                     <span class="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">Dashboard Geodinamica</span>
                 </div>
             </div>
-            <span class="text-xs bg-amber-500/10 text-amber-300 px-3 py-1 rounded-full border border-amber-500/30 font-semibold tracking-wide">
-                <i class="fa-solid fa-gift mr-1 text-amber-400"></i>FREE EDITION
-            </span>
+            <div class="flex items-center space-x-2">
+                <span class="text-xs bg-amber-500/10 text-amber-300 px-3 py-1 rounded-full border border-amber-500/30 font-semibold tracking-wide">
+                    <i class="fa-solid fa-gift mr-1 text-amber-400"></i>FREE EDITION
+                </span>
+            </div>
         </div>
     </header>
 
-    <!-- Content -->
-    <main class="max-w-3xl mx-auto p-4 sm:p-6 w-full flex-grow my-4">
+    <!-- Main Content Area -->
+    <main class="max-w-3xl mx-auto p-4 sm:p-6 w-full flex-grow my-6">
         
+        <!-- Hero Intro Section -->
         <div class="text-center mb-8">
-            <h2 class="text-3xl sm:text-4xl font-bold mb-3 text-amber-200 font-cinzel tracking-wide">Il Tuo Profilo Astrale Complete</h2>
-            <p class="text-slate-400 text-sm sm:text-base max-w-lg mx-auto">Inserisci i tuoi dati anagrafici per elaborare la scheda completa della Matrice.</p>
+            <h2 class="text-3xl sm:text-4xl font-bold mb-3 text-amber-200 font-cinzel tracking-wide">
+                Il Tuo Profilo Astrale Completo
+            </h2>
+            <p class="text-slate-400 text-sm sm:text-base max-w-lg mx-auto">
+                Inserisci nome, data, ora e luogo di nascita per generare l'analisi dettagliata estratta direttamente dal Master Geodinamico.
+            </p>
         </div>
 
-        <!-- Form Input -->
+        <!-- Input Form Card -->
         <div class="glass-card rounded-2xl p-6 sm:p-8 shadow-2xl mb-8 glow-gold">
-            <div class="space-y-4">
+            <div class="space-y-5">
+                <!-- Nome (senza cognome) -->
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2"><i class="fa-solid fa-user mr-1.5"></i>Nome</label>
-                    <input type="text" id="userName" placeholder="Es. Adolfo / Monica" class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-amber-500 transition-all text-base">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2">
+                        <i class="fa-solid fa-user mr-1.5"></i>Nome
+                    </label>
+                    <input type="text" id="userName" placeholder="Es. Adolfo / Monica" 
+                        class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all text-base">
                 </div>
 
+                <!-- Data e Ora di Nascita (Obbligatorie) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2"><i class="fa-solid fa-calendar-days mr-1.5"></i>Data di Nascita</label>
-                        <input type="date" id="userDate" class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 focus:outline-none focus:border-amber-500 transition-all text-base">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2">
+                            <i class="fa-solid fa-calendar-days mr-1.5"></i>Data di Nascita
+                        </label>
+                        <input type="date" id="userDate" 
+                            class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all text-base">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2"><i class="fa-solid fa-clock mr-1.5"></i>Ora di Nascita <span class="text-amber-400">*</span></label>
-                        <input type="time" id="userTime" class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 focus:outline-none focus:border-amber-500 transition-all text-base">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2">
+                            <i class="fa-solid fa-clock mr-1.5"></i>Ora di Nascita <span class="text-amber-400">*</span>
+                        </label>
+                        <input type="time" id="userTime" 
+                            class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all text-base">
                     </div>
                 </div>
 
+                <!-- Luogo di Nascita -->
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2"><i class="fa-solid fa-location-dot mr-1.5"></i>Luogo di Nascita</label>
-                    <input type="text" id="userPlace" placeholder="Es. Napoli" class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-amber-500 transition-all text-base">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-amber-400/80 mb-2">
+                        <i class="fa-solid fa-location-dot mr-1.5"></i>Luogo di Nascita
+                    </label>
+                    <input type="text" id="userPlace" placeholder="Es. Napoli / Caserta" 
+                        class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all text-base">
                 </div>
 
-                <button onclick="calculateMatrix()" class="w-full bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-4 px-6 rounded-xl shadow-xl transition-all font-cinzel tracking-wider text-base uppercase mt-3">
-                    <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Calcola Profilo Gratuito
+                <!-- Action Button -->
+                <button onclick="calculateMatrix()" class="w-full bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-4 px-6 rounded-xl shadow-xl transition-all transform active:scale-[0.98] font-cinzel tracking-wider text-base uppercase mt-3">
+                    <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Calcola Profilo Gratuito Master
                 </button>
             </div>
         </div>
 
-        <!-- Dashboard Risultati Completa -->
+        <!-- Results Dashboard Box (Hidden by default) -->
         <div id="resultBox" class="hidden glass-card rounded-2xl p-6 sm:p-8 shadow-2xl mb-8 space-y-8 border border-amber-500/40">
             
-            <!-- Intestazione -->
+            <!-- Intestazione Risultato -->
             <div class="border-b border-slate-800 pb-4 flex justify-between items-center">
                 <div>
-                    <span class="text-[11px] uppercase tracking-widest text-amber-400 font-semibold block">AstroMatrix Dashboard</span>
+                    <span class="text-[11px] uppercase tracking-widest text-amber-400 font-semibold block">AstroMatrix Master Dashboard</span>
                     <h3 class="text-2xl font-bold text-slate-100 font-cinzel" id="resProfileName">Profilo Utente</h3>
                 </div>
                 <span class="bg-emerald-500/10 text-emerald-400 text-xs px-3 py-1 rounded-full border border-emerald-500/20 font-medium">
-                    <i class="fa-solid fa-check-circle mr-1"></i>Calcolato
+                    <i class="fa-solid fa-check-circle mr-1"></i>Sincronizzato
                 </span>
             </div>
 
-            <!-- SEZIONE 1: Dati Anagrafici & Nome -->
+            <!-- SEZIONE 1: Anagrafica & Etimologia -->
             <div>
-                <h4 class="text-sm font-bold text-amber-400 font-cinzel uppercase tracking-wider mb-3"><i class="fa-solid fa-address-card mr-2"></i>Identità & Etimologia</h4>
+                <h4 class="text-sm font-bold text-amber-400 font-cinzel uppercase tracking-wider mb-3">
+                    <i class="fa-solid fa-address-card mr-2"></i>Identità & Etimologia del Nome
+                </h4>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                     <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
-                        <span class="text-xs text-slate-400 font-semibold block uppercase">Onomastico</span>
+                        <span class="text-xs text-slate-400 font-semibold block uppercase">Onomastico Ufficiale</span>
                         <p class="font-bold text-slate-100 mt-1" id="resOnomastico">-</p>
                     </div>
                     <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
@@ -118,9 +157,11 @@
                 </div>
             </div>
 
-            <!-- SEZIONE 2: Profilo Astrologico -->
+            <!-- SEZIONE 2: Profilo Astrologico Completo -->
             <div>
-                <h4 class="text-sm font-bold text-amber-400 font-cinzel uppercase tracking-wider mb-3"><i class="fa-solid fa-sun mr-2"></i>Profilo Astrologico</h4>
+                <h4 class="text-sm font-bold text-amber-400 font-cinzel uppercase tracking-wider mb-3">
+                    <i class="fa-solid fa-sun mr-2"></i>Profilo Astrologico
+                </h4>
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm mb-4">
                     <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800">
                         <span class="text-[11px] text-slate-400 font-semibold block uppercase">Segno Solare</span>
@@ -156,20 +197,26 @@
                 </div>
 
                 <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800 text-xs text-slate-300 mb-4">
-                    <span class="text-[11px] text-amber-400 font-bold block uppercase mb-1"><i class="fa-solid fa-gem mr-1"></i>Consiglio d'Uso & Purificazione Pietra</span>
+                    <span class="text-[11px] text-amber-400 font-bold block uppercase mb-1">
+                        <i class="fa-solid fa-gem mr-1"></i>Consiglio d'Uso & Purificazione Pietra
+                    </span>
                     <p id="resGemAdvice">-</p>
                 </div>
 
-                <!-- Numeri Geodinamici -->
+                <!-- Numeri Geodinamici / Pinquina -->
                 <div class="bg-gradient-to-r from-amber-500/10 via-amber-600/5 to-amber-500/10 p-4 rounded-xl border border-amber-500/30 text-center">
-                    <span class="text-xs font-bold text-amber-400 uppercase tracking-widest block mb-2 font-cinzel"><i class="fa-solid fa-cubes mr-1"></i>Numeri Geodinamici di Matrice</span>
+                    <span class="text-xs font-bold text-amber-400 uppercase tracking-widest block mb-2 font-cinzel">
+                        <i class="fa-solid fa-cubes mr-1"></i>Numeri Geodinamici di Matrice
+                    </span>
                     <p class="text-xl sm:text-2xl font-bold text-amber-300 font-cinzel tracking-wider" id="resGeoNumbers">-- - -- - -- - -- - --</p>
                 </div>
             </div>
 
             <!-- SEZIONE 3: Oroscopo Settimanale FREE -->
             <div>
-                <h4 class="text-sm font-bold text-amber-400 font-cinzel uppercase tracking-wider mb-3"><i class="fa-solid fa-feather-pointed mr-2"></i>Oroscopo Settimanale FREE</h4>
+                <h4 class="text-sm font-bold text-amber-400 font-cinzel uppercase tracking-wider mb-3">
+                    <i class="fa-solid fa-feather-pointed mr-2"></i>Oroscopo Settimanale FREE
+                </h4>
                 <div class="space-y-3 text-sm">
                     <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
                         <span class="text-xs text-amber-400 font-bold uppercase block mb-1">Clima Settimanale</span>
@@ -188,151 +235,11 @@
 
             <!-- SEZIONE 4: Le Affinità del Segno -->
             <div>
-                <h4 class="text-sm font-bold text-amber-400 font-cinzel uppercase tracking-wider mb-3"><i class="fa-solid fa-heart mr-2"></i>Le Affinità del Segno</h4>
+                <h4 class="text-sm font-bold text-amber-400 font-cinzel uppercase tracking-wider mb-3">
+                    <i class="fa-solid fa-heart mr-2"></i>Le Affinità del Segno
+                </h4>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                     <!-- Affinità di Coppia -->
                     <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
                         <div class="flex justify-between items-center mb-2">
                             <span class="text-xs font-bold text-amber-400 uppercase">Affinità di Coppia</span>
-                            <span class="text-xs bg-rose-500/20 text-rose-300 px-2.5 py-0.5 rounded-full border border-rose-500/30 font-bold" id="resCouplePct">-%</span>
-                        </div>
-                        <p class="font-bold text-slate-100 text-base mb-1" id="resCouplePartner">Partner: -</p>
-                        <p class="text-xs text-slate-400 leading-relaxed" id="resCoupleNote">-</p>
-                    </div>
-
-                    <!-- Affinità tra Amici -->
-                    <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="text-xs font-bold text-amber-400 uppercase">Affinità Amicizia</span>
-                            <span class="text-xs bg-sky-500/20 text-sky-300 px-2.5 py-0.5 rounded-full border border-sky-500/30 font-bold" id="resFriendPct">-%</span>
-                        </div>
-                        <p class="font-bold text-slate-100 text-base mb-1" id="resFriendPartner">Amico/a: -</p>
-                        <p class="text-xs text-slate-400 leading-relaxed" id="resFriendNote">-</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Banner Premium -->
-        <div class="bg-gradient-to-r from-amber-500/10 via-indigo-500/10 to-purple-500/10 border border-amber-500/20 rounded-2xl p-6 text-center backdrop-blur-sm shadow-xl">
-            <div class="inline-block bg-amber-500/20 text-amber-300 text-xs px-3 py-1 rounded-full font-bold mb-3 border border-amber-500/30 tracking-wider">
-                <i class="fa-solid fa-lock mr-1.5"></i>PRESTO DISPONIBILE
-            </div>
-            <h4 class="text-lg font-bold text-slate-100 font-cinzel mb-2">Sezione Premium & Sinastria Avanzata</h4>
-            <p class="text-xs sm:text-sm text-slate-400 max-w-md mx-auto">Sblocca il quadro planetario completo, l'affinità di coppia approfondita e le analisi geodinamiche storiche.</p>
-        </div>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-900/90 border-t border-slate-800 py-5 px-6 text-xs text-slate-500 mt-12">
-        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
-            <p>&copy; 2026 AstroMatrix FREE - Tutti i diritti riservati.</p>
-            <div class="flex items-center gap-2 bg-slate-950 px-3.5 py-1.5 rounded-full border border-slate-800 text-slate-400 shadow-sm">
-                <i class="fa-solid fa-eye text-amber-400"></i>
-                <span>Visite totali: <strong id="visitCount" class="text-amber-300 font-bold">1,285</strong></span>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Script di Calcolo collegato al Master Excel -->
-    <script>
-        const zodiacSigns = ["Ariete", "Toro", "Gemelli", "Cancro", "Leone", "Vergine", "Bilancia", "Scorpione", "Sagittario", "Capricorno", "Acquario", "Pesci"];
-        
-        function getZodiacDetails(day, month) {
-            if ((month == 3 && day >= 21) || (month == 4 && day <= 19)) return { sign: "Ariete", element: "Fuoco", planet: "Marte", signNum: 84, color: "Rosso fuoco", gem: "Rubino", gemAdvice: "Indossare a contatto con la pelle; purificare con acqua corrente e luce lunare.", partner: "Cancro", partnerPct: "89%", partnerNote: "Coppia Ariete (fuoco) e Cancro (acqua): Un rifugio emotivo intenso e protettivo, dove la sensibilità reciproca crea un legame indissolubile.", friend: "Leone", friendPct: "95%", friendNote: "Tra il Ariete (fuoco) e il Leone (fuoco): Un mix frizzante di intraprendenza e leggerezza che rende ogni momento condiviso piacevolmente unico.", index: 0 };
-            if ((month == 4 && day >= 20) || (month == 5 && day <= 20)) return { sign: "Toro", element: "Terra", planet: "Venere", signNum: 69, color: "Verde Smeraldo", gem: "Smeraldo", gemAdvice: "A contatto con il petto; purificare su geode di ametista o con fumo d'incenso.", partner: "Scorpione", partnerPct: "88%", partnerNote: "Unione solida e sensuale basata su lealtà e continuità materiale.", friend: "Vergine", friendPct: "97%", friendNote: "Complicità naturale orientata al pragmatismo e al sostegno costante.", index: 1 };
-            if ((month == 5 && day >= 21) || (month == 6 && day <= 20)) return { sign: "Gemelli", element: "Aria", planet: "Mercurio", signNum: 77, color: "Giallo vivo", gem: "Agata", gemAdvice: "Portare in tasca o come ciondolo; purificare sotto acqua tiepida senza sale.", partner: "Sagittario", partnerPct: "93%", partnerNote: "Intesa brillante e dinamica che stimola la scoperta reciproca.", friend: "Bilancia", friendPct: "90%", friendNote: "Dialogo fluido, vivace e privo di noia.", index: 2 };
-            if ((month == 6 && day >= 21) || (month == 7 && day <= 22)) return { sign: "Cancro", element: "Acqua", planet: "Luna", signNum: 13, color: "Argento / Bianco", gem: "Perla", gemAdvice: "Indossare come anello o collana; purificare con luce lunare delicata.", partner: "Scorpione", partnerPct: "95%", partnerNote: "Profonda empatia emotiva e rifugio sicuro duraturo.", friend: "Toro", friendPct: "97%", friendNote: "Presenza rassicurante e cura reciproca.", index: 3 };
-            if ((month == 7 && day >= 23) || (month == 8 && day <= 22)) return { sign: "Leone", element: "Fuoco", planet: "Sole", signNum: 41, color: "Oro / Arancio", gem: "Diamante / Zircone", gemAdvice: "Montato in oro; purificare con luce solare del mattino.", partner: "Ariete", partnerPct: "94%", partnerNote: "Intesa immediata e travolgente che stimola l'azione e la gioia condivisa.", friend: "Sagittario", friendPct: "96%", friendNote: "Entusiasmo contagioso e voglia di condividere grandi traguardi.", index: 4 };
-            if ((month == 8 && day >= 23) || (month == 9 && day <= 22)) return { sign: "Vergine", element: "Terra", planet: "Mercurio", signNum: 28, color: "Grigio Perla", gem: "Zaffiro", gemAdvice: "Indossare all'anulare o indice; purificare con acqua e pietra di quarzo.", partner: "Capricorno", partnerPct: "91%", partnerNote: "Affidabilità, cura dei dettagli e grande intesa strategica.", friend: "Toro", friendPct: "89%", friendNote: "Sostegno reciproco basato sulla concretezza.", index: 5 };
-            if ((month == 9 && day >= 23) || (month == 10 && day <= 22)) return { sign: "Bilancia", element: "Aria", planet: "Venere", signNum: 79, color: "Rosa / Blu cobalto", gem: "Opale", gemAdvice: "Evitare sbalzi termici; purificare alla luce soffusa della Luna crescente.", partner: "Gemelli", partnerPct: "92%", partnerNote: "Sintonia romantica ed elegante orientata all'armonia.", friend: "Acquario", friendPct: "90%", friendNote: "Condivisione di ideali e stimoli culturali.", index: 6 };
-            if ((month == 10 && day >= 23) || (month == 11 && day <= 21)) return { sign: "Scorpione", element: "Acqua", planet: "Plutone", signNum: 38, color: "Rosso scuro / Nero", gem: "Topazio / Agata Fuoco", gemAdvice: "Indossare a diretto contatto; purificare con incenso di sandalo.", partner: "Cancro", partnerPct: "96%", partnerNote: "Legame magnetico e viscerale di straordinaria intensità.", friend: "Pesci", friendPct: "95%", friendNote: "Comprensione intuitiva priva di filtri.", index: 7 };
-            if ((month == 11 && day >= 22) || (month == 12 && day <= 21)) return { sign: "Sagittario", element: "Fuoco", planet: "Giove", signNum: 56, color: "Blu scuro / Porpora", gem: "Turchese", gemAdvice: "Ottimo come amuleto da viaggio; purificare con argilla o fumo d'erbe.", partner: "Leone", partnerPct: "91%", partnerNote: "Amore avventuroso e stimolante che guarda sempre avanti.", friend: "Ariete", friendPct: "88%", friendNote: "Energia inesauribile e spirito di squadra.", index: 8 };
-            if ((month == 12 && day >= 22) || (month == 1 && day <= 19)) return { sign: "Capricorno", element: "Terra", planet: "Saturno", signNum: 24, color: "Nero / Marrone", gem: "Onice", gemAdvice: "Indossare a sinistra; purificare con acqua corrente e terra.", partner: "Toro", partnerPct: "95%", partnerNote: "Unione indistruttibile fondata su maturità ed eleganza.", friend: "Vergine", friendPct: "92%", friendNote: "Rispetto reciproco e chiarezza d'intenti.", index: 9 };
-            if ((month == 1 && day >= 20) || (month == 2 && day <= 18)) return { sign: "Acquario", element: "Aria", planet: "Uranio", signNum: 55, color: "Blu elettrico", gem: "Ametista", gemAdvice: "Purificare su geode di quarzo o fumo di salvia bianca.", partner: "Gemelli", partnerPct: "90%", partnerNote: "Libertà condivisa e affinità intellettuale profonda.", friend: "Bilancia", friendPct: "93%", friendNote: "Armonia di idee e progetti creativi.", index: 10 };
-            return { sign: "Pesci", element: "Acqua", planet: "Nettuno", signNum: 33, color: "Verde acqua", gem: "Acquamarina", gemAdvice: "Purificare sotto acqua corrente fredda e luce lunare.", partner: "Scorpione", partnerPct: "95%", partnerNote: "Alchimia spirituale ed emotiva di rara bellezza.", friend: "Cancro", friendPct: "94%", friendNote: "Empatia profonda e protezione affettiva.", index: 11 };
-        }
-
-        function calculateAscendant(sunIndex, timeStr) {
-            const parts = timeStr.split(':');
-            const hours = parseInt(parts[0], 10);
-            const minutes = parseInt(parts[1], 10);
-            const offset = Math.floor((hours + minutes / 60) / 2);
-            return zodiacSigns[(sunIndex + offset) % 12];
-        }
-
-        function getNamesDatabase(name) {
-            const first = name.trim().split(" ")[0].toLowerCase();
-            const db = {
-                "adolfo": { onomastico: "17 Giugno (Sant'Adolfo Vescovo)", meaning: 'Origine Germanica che significa "Nobile Lupo"' },
-                "monica": { onomastico: "27 Agosto (Santa Monica)", meaning: 'Origine Greca che significa "Solitaria" o "Consigliera"' },
-                "mario": { onomastico: "19 Gennaio (San Mario)", meaning: 'Origine Latina che significa "Uomo del mare" o "Guerriero"' },
-                "anna": { onomastico: "26 Luglio (Sant'Anna)", meaning: 'Origine Ebraica che significa "Grazia" o "Misericordiosa"' },
-                "giovanni": { onomastico: "24 Giugno (San Giovanni Battista)", meaning: 'Origine Ebraica che significa "Dono del Signore"' }
-            };
-            return db[first] || { onomastico: "17 Giugno / Calendario Liturgico", meaning: 'Nobile indole votata alla scoperta e all\'equilibrio' };
-        }
-
-        function calculateMatrix() {
-            const name = document.getElementById('userName').value.trim();
-            const dateStr = document.getElementById('userDate').value;
-            const timeStr = document.getElementById('userTime').value;
-            const place = document.getElementById('userPlace').value.trim();
-
-            if (!name || !dateStr || !timeStr || !place) {
-                alert('Attenzione: per favore compila tutti i campi richiesti (Nome, Data, Ora e Luogo di nascita).');
-                return;
-            }
-
-            document.getElementById('resProfileName').innerText = `${name.toUpperCase()} (${place.toUpperCase()})`;
-
-            const [year, month, day] = dateStr.split('-').map(Number);
-            const zodiac = getZodiacDetails(day, month);
-            const ascendant = calculateAscendant(zodiac.index, timeStr);
-            const nameData = getNamesDatabase(name);
-
-            // 1. Dati Anagrafici
-            document.getElementById('resOnomastico').innerText = nameData.onomastico;
-            document.getElementById('resMeaning').innerText = nameData.meaning;
-
-            // 2. Profilo Astrologico
-            document.getElementById('resZodiac').innerText = zodiac.sign;
-            document.getElementById('resAscendant').innerText = ascendant;
-            document.getElementById('resElement').innerText = zodiac.element;
-            document.getElementById('resPlanet').innerText = zodiac.planet;
-            document.getElementById('resSignNumber').innerText = zodiac.signNum;
-            document.getElementById('resColor').innerText = zodiac.color;
-            document.getElementById('resGem').innerText = zodiac.gem;
-            document.getElementById('resGemAdvice').innerText = zodiac.gemAdvice;
-
-            // Numeri Geodinamici (Pinquina di matrice)
-            const n1 = ((day * 3 + name.length) % 90) || 74;
-            const n2 = month < 10 ? '0' + month : month;
-            const n3 = (day % 90) || 25;
-            const n4 = 50;
-            const n5 = 72;
-            document.getElementById('resGeoNumbers').innerText = `${n1} - ${n2} - ${n3} - ${n4} - ${n5}`;
-
-            // 3. Oroscopo Settimanale FREE
-            document.getElementById('resWeeklyWeather').innerText = `Per il Sole in ${zodiac.sign}: La spinta dinamica e diretta dell'Ascendente ${ascendant} accelera i tempi di reazione e l'efficacia delle tue scelte.`;
-            document.getElementById('resWisdom').innerText = `Messaggio per ${zodiac.sign} con Ascendente ${ascendant}: L'Ascendente ${ascendant} ti chiede di agire con coraggio senza attendere il consenso altrui.`;
-            document.getElementById('resActionAdvice').innerText = `Azione per ${zodiac.sign}: Inizia una nuova attività di petto entro i primi giorni della settimana.`;
-
-            // 4. Affinità
-            document.getElementById('resCouplePartner').innerText = `Partner: ${zodiac.partner}`;
-            document.getElementById('resCouplePct').innerText = zodiac.partnerPct;
-            document.getElementById('resCoupleNote').innerText = zodiac.partnerNote;
-
-            document.getElementById('resFriendPartner').innerText = `Amico/a: ${zodiac.friend}`;
-            document.getElementById('resFriendPct').innerText = zodiac.friendPct;
-            document.getElementById('resFriendNote').innerText = zodiac.friendNote;
-
-            const resultBox = document.getElementById('resultBox');
-            resultBox.classList.remove('hidden');
-            resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-    </script>
-</body>
-</html>
