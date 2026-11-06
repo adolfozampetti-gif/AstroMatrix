@@ -109,6 +109,7 @@
             border: 1px solid var(--gold-primary);
             border-radius: 8px;
             padding: 25px;
+            margin-bottom: 25px;
         }
         .result-header {
             font-family: 'Cinzel', serif;
@@ -212,17 +213,17 @@
                     <input type="text" id="ora" class="form-control" placeholder="Es. 16:30">
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="comune"><i class="fa-solid fa-location-dot"></i> Comune di Nascita:</label>
+                    <label class="form-label" for="comune"><i class="fa-solid fa-location-dot"></i> Comune di Nascita *:</label>
                     <input type="text" id="comune" class="form-control" placeholder="Es. Napoli">
                 </div>
             </div>
 
-            <!-- CHiamata diretta inline onclick per evitare qualsiasi blocco di eventi -->
             <button type="button" onclick="calcolaProfilo()" class="btn-calculate">Calcola Profilo Gratuito</button>
         </div>
 
         <div id="output-container">
             <div id="risultato"></div>
+            <div id="risultato-seconda-pagina"></div>
         </div>
     </div>
 
@@ -309,23 +310,28 @@
             
             const container = document.getElementById('output-container');
             const divRisultato = document.getElementById('risultato');
+            const divSecondaPagina = document.getElementById('risultato-seconda-pagina');
 
             container.style.display = 'block';
 
-            if (!nomeInput || !comuneInput || !annoInput || !giornoInput || !meseInput) {
-                divRisultato.innerHTML = '<span class="error"><i class="fa-solid fa-triangle-exclamation"></i> Compilare tutti i campi obbligatori.</span>';
+            // Controllo e blocco rigoroso su campi obbligatori inclusi Ora e Comune
+            if (!nomeInput || !comuneInput || !annoInput || !giornoInput || !meseInput || !oraInput) {
+                divRisultato.innerHTML = '<span class="error"><i class="fa-solid fa-triangle-exclamation"></i> Attenzione: Tutti i campi, inclusi l\'Ora di Nascita e il Comune di Nascita, sono obbligatori per il calcolo geodinamico.</span>';
+                divSecondaPagina.innerHTML = '';
                 return;
             }
 
             const anno = parseInt(annoInput, 10);
             if (isNaN(anno) || anno < 1900 || anno > 2099) {
-                divRisultato.innerHTML = '<span class="error"><i class="fa-solid fa-triangle-exclamation"></i> Inserire un anno valido (1900-2099).</span>';
+                divRisultato.innerHTML = '<span class="error"><i class="fa-solid fa-triangle-exclamation"></i> Inserire un anno di nascita valido (1900-2099).</span>';
+                divSecondaPagina.innerHTML = '';
                 return;
             }
 
             const giorno = parseInt(giornoInput, 10);
             if (isNaN(giorno) || giorno < 1 || giorno > 31) {
                 divRisultato.innerHTML = '<span class="error"><i class="fa-solid fa-triangle-exclamation"></i> Inserire un giorno valido (1-31).</span>';
+                divSecondaPagina.innerHTML = '';
                 return;
             }
 
@@ -335,6 +341,7 @@
 
             if (!infoNome) {
                 divRisultato.innerHTML = `<span class="error"><i class="fa-solid fa-triangle-exclamation"></i> Il nome "<strong>${nomeInput}</strong>" non è presente nel database degli onomastici. Inserisci un nome valido.</span>`;
+                divSecondaPagina.innerHTML = '';
                 return;
             }
 
@@ -350,10 +357,11 @@
             const num3 = riduciA90(valoreNome + valoreComune + anno + giorno + mese);
             const profilo = determinaSegnoZodiacale(giorno, mese);
 
+            // Prima Pagina Risultato Principale
             divRisultato.innerHTML = `
                 <div class="result-card">
                     <div class="result-header">PROFILO GEODINAMICO DI ${nomeInput.toUpperCase()}</div>
-                    <div class="info-row"><span class="info-label"><i class="fa-solid fa-user-tag"></i> Data & Ora:</span><span class="info-val">${giorno}/${mese}/${anno} ${oraInput ? 'alle ' + oraInput : ''}</span></div>
+                    <div class="info-row"><span class="info-label"><i class="fa-solid fa-user-tag"></i> Data & Ora:</span><span class="info-val">${giorno}/${mese}/${anno} alle ${oraInput}</span></div>
                     <div class="info-row"><span class="info-label"><i class="fa-solid fa-city"></i> Luogo di Nascita:</span><span class="info-val">${comuneInput.toUpperCase()}</span></div>
                     <div class="info-row"><span class="info-label"><i class="fa-solid fa-star"></i> Segno Zodiacale:</span><span class="info-val" style="color: var(--gold-primary); font-size: 16px;">${profilo.segno}</span></div>
                     <div class="horoscope-box"><strong>Profilo & Tendenze:</strong> "${profilo.oroscopo}"</div>
@@ -376,6 +384,26 @@
                     </div>
                 </div>
             `;
+
+            // Seconda Pagina: Affinità, Quadro Armonico ed Altro (Estratto da Master Excel)
+            divSecondaPagina.innerHTML = `
+                <div class="result-card">
+                    <div class="result-header"><i class="fa-solid fa-circle-nodes"></i> QUADRO DI AFFINITÀ & PARAMETRI AVANZATI</div>
+                    <div class="horoscope-box">
+                        <strong>Analisi di Compatibilità Geodinamica:</strong> L'interazione tra le coordinate di ${comuneInput.toUpperCase()} e l'orario di nascita (${oraInput}) rivela una forte risonanza energetica con i segni di ${profilo.affinita}.
+                    </div>
+                    <div class="info-row"><span class="info-label"><i class="fa-solid fa-compass"></i> Indice Armonico Primario:</span><span class="info-val">${(num1 * 1.618).toFixed(1)} % (Ottimale)</span></div>
+                    <div class="info-row"><span class="info-label"><i class="fa-solid fa-shield-halved"></i> Fattore di Protezione Astrale:</span><span class="info-val">Classe IV - Stabile</span></div>
+                    <div class="info-row"><span class="info-label"><i class="fa-solid fa-bolt"></i> Ciclo Energetico di Riserva:</span><span class="info-val">${num2} Giorni</span></div>
+                    <div class="weekly-horoscope" style="margin-top: 15px;">
+                        <div class="weekly-title"><i class="fa-solid fa-lightbulb"></i> Consigli per il Benessere Quotidiano</div>
+                        <div style="font-size: 13px; line-height: 1.5; color: var(--text-main);">
+                            La combinazione dei numeri astrali suggerisce di coltivare i propri interessi creativi e di mantenere un contatto costante con la natura e gli affetti familiari. La stabilità interiore è il pilastro del successo personale.
+                        </div>
+                    </div>
+                </div>
+            `;
+
             container.scrollIntoView({ behavior: 'smooth' });
         }
     </script>
