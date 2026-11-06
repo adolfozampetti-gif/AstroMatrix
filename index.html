@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AstroMatrix FREE - Dashboard Geodinamica</title>
+    <!-- Font Awesome per le icone -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -211,7 +213,6 @@
             <p>Inserisci nome, giorno, mese, anno, ora e città di nascita per generare l'analisi dettagliata estratta direttamente dal Master Geodinamico.</p>
         </div>
 
-        <!-- Form senza action per evitare ricaricamenti di pagina -->
         <div id="astroForm">
             <div style="margin-bottom: 20px;">
                 <label class="form-label" for="nome"><i class="fa-solid fa-user"></i> NOME</label>
@@ -258,7 +259,7 @@
                 </div>
             </div>
 
-            <button type="button" id="btnCalcola" class="btn-calculate">
+            <button type="button" id="btnCalcola" class="btn-calculate" onclick="elaboraAstroMatrix()">
                 <i class="fa-solid fa-calculator"></i> CALCOLA PROFILO GRATUITO
             </button>
         </div>
@@ -293,11 +294,114 @@
             "ALESSANDRO": { significato: "Nome di origine greca, significa protettore degli uomini.", onomastico: "26 Febbraio, 26 Agosto", aneddoto: "Zio Alessandro amava guidare lungo la costa raccontando aneddoti storici su ogni baia.", famosi: "Alessandro Manzoni, Alessandro Del Piero" },
             "ALESSIO": { significato: "Nome di origine greca, significa colui che protegge o salva.", onomastico: "17 Febbraio, 17 Luglio", aneddoto: "Durante un forte temporale, Alessio trasse in salvo un gattino smarrito sotto una panchina.", famosi: "Alessio Boni" },
             "ALFONSO": { significato: "Nome di origine germanica, significa nobile e valoroso.", onomastico: "1 Agosto", aneddoto: "Don Alfonso curava la sua trattoria di campagna con la dedizione di un maestro d'orchestra.", famosi: "Sant'Alfonso Maria de' Liguori" },
-            "AMEDEO": { significato: "Nome di origine latina, significa colui che ama Dio.", onomastico: "30 Marzo", aneddoto: "Amedeo scalò la sua prima cima dolomitica all'alba ammirando i riflessi rosa delle rocce.", famosi: "Amedeo Modigliani, Amedeo Nazzari" },
+            "AMEDEO": { significato: "Nome di origine latina, significa colui che ama Dio.", onomastico: "30 Marzo", aneddoto: "Amedeo scalò la sua prima cima dolomitica all'alba ammirando i riflessi rosa delle rocce.", famosi: "Sant'Ambrogio", famosi: "Amedeo Modigliani, Amedeo Nazzari" },
             "AMBROGIO": { significato: "Nome di origine greca, significa immortale.", onomastico: "7 Dicembre", aneddoto: "A Milano per Ambrogio è festa grande con le bancarelle degli Oh Bej! Oh Bej! e il vin brûlé.", famosi: "Sant'Ambrogio" },
             "ANTONIO": { significato: "Nome di origine latina, significa inestimabile.", onomastico: "17 Gennaio, 13 Giugno", aneddoto: "A giugno per la festa di Sant'Antonio, Antonio portava in processione la statua lungo le stradine del borgo.", famosi: "Sant'Antonio da Padova, Totò" }
         };
 
         const mappaZodiacale = [
             { segno: "Capricorno", inizio: [12, 22], fine: [1, 19], pietra: "Rubino", colore: "Nero / Grigio Antracite", affinita: "Toro e Vergine", oroscopo: "La concretezza e la determinazione ferrea ti permettono di superare qualsiasi vetta.", oroscopoSettimanale: "Settimana favorevole per consolidare progetti professionali a lungo termine. In amore, la sincerità rafforza i legami." },
-            { segno: "Acquario", inizio: [1, 20], fine: [2, 18], pietra: "Ametista", colore: "Blu Elettrico", affinita: "Gemelli e Bilancia", oroscopo: "Spirito libero e visione pionieristica
+            { segno: "Acquario", inizio: [1, 20], fine: [2, 18], pietra: "Ametista", colore: "Blu Elettrico", affinita: "Gemelli e Bilancia", oroscopo: "Spirito libero e visione pionieristica del futuro. Sei guidato dall'innovazione e dalla ricerca.", oroscopoSettimanale: "Idee brillanti e improvvise intuizioni favoriscono la creatività. Attenzione solo a non disperdere le energie." },
+            { segno: "Pesci", inizio: [2, 19], fine: [3, 20], pietra: "Acquamarina", colore: "Verde Acqua / Smeraldo", affinita: "Cancro e Scorpione", oroscopo: "Grande intuito empatico e sensibilità artistica. Percepisci il mondo visibile e invisibile con rara profondità.", oroscopoSettimanale: "Momento ideale per dedicarsi all'introspezione e all'arte. Le relazioni affettive godono di una dolce sintonia." },
+            { segno: "Ariete", inizio: [3, 21], fine: [4, 19], pietra: "Diamante", colore: "Rosso Fuoco", affinita: "Leone e Sagittario", oroscopo: "Carica vitale trascinante e coraggio di intraprendere nuove sfide. Il tuo impulso naturale spezza ogni resistenza.", oroscopoSettimanale: "Una ventata di energia vi spinge a prendere l'iniziativa. Ottimi i rapporti sociali e le nuove conoscenze." },
+            { segno: "Toro", inizio: [4, 20], fine: [5, 20], pietra: "Smeraldo", colore: "Verde Foresta", affinita: "Vergine e Capricorno", oroscopo: "Amore per la stabilità, il senso della terra e l'armonia estetica. Costruisci con costanza risultati solidi.", oroscopoSettimanale: "La stabilità emotiva vi dà sicurezza. Sul lavoro arrivano gratificazioni meritate dopo l'impegno recente." },
+            { segno: "Gemelli", inizio: [5, 21], fine: [6, 20], pietra: "Agata", colore: "Giallo Solare", affinita: "Bilancia e Acquario", oroscopo: "Mente vivace, curiosità inesauribile e grande prontezza comunicativa. Trasformi le idee in progetti dinamici.", oroscopoSettimanale: "Settimana dinamica e ricca di contatti stimolanti. La comunicazione è la chiave vincente in ogni situazione." },
+            { segno: "Cancro", inizio: [6, 21], fine: [7, 22], pietra: "Perla", colore: "Bianco Perla / Argento", affinita: "Scorpione e Pesci", oroscopo: "Legame profondo con le origini, le memorie e la famiglia. La tua forza risiede nell'intuizione e nella protezione.", oroscopoSettimanale: "La sensibilità è accentuata: ascoltate il vostro sesto senso. In famiglia regna un clima di calore e condivisione." },
+            { segno: "Leone", inizio: [7, 23], fine: [8, 22], pietra: "Topazio", colore: "Oro / Arancione Vivo", affinita: "Ariete e Sagittario", oroscopo: "Naturale carisma, generosità di cuore e presenza autorevole. Attrai opportunità grazie alla tua energia radiosa.", oroscopoSettimanale: "Il vostro magnetismo attira consensi e simpatie. Sfruttate questo periodo per avanzare nelle vostre ambizioni." },
+            { segno: "Vergine", inizio: [8, 23], fine: [9, 22], pietra: "Zaffiro", colore: "Marrone Cobalto / Blu Scuro", affinita: "Toro e Capricorno", oroscopo: "Precisione, spirito d'analisi e meticolosità raffinata. Sai trovare ordine ed efficienza anche nelle situazioni complesse.", oroscopoSettimanale: "L'organizzazione metodica vi permette di risolvere questioni in sospeso. Ritagliatevi del tempo per il relax." },
+            { segno: "Bilancia", inizio: [9, 23], fine: [10, 22], pietra: "Opale", colore: "Rosa / Celeste", affinita: "Gemelli e Acquario", oroscopo: "Ricerca costante dell'equilibrio, del bello e della giustizia. La tua diplomazia trasforma i conflitti in accordi.", oroscopoSettimanale: "Armonia ritrovata nei rapporti di coppia e nelle collaborazioni. Opportunità di incontri piacevoli e stimolanti." },
+            { segno: "Scorpione", inizio: [10, 23], fine: [11, 21], pietra: "Topazio Scuro", colore: "Rosso Porpora / Nero", affinita: "Cancro e Pesci", oroscopo: "Magnetismo profondo, passione ed elevata capacità di rigenerazione. Penetri oltre la superficie delle cose.", oroscopoSettimanale: "Intuizioni formidabili guidano le vostre scelte. La determinazione vi permette di superare qualsiasi piccolo ostacolo." },
+            { segno: "Sagittario", inizio: [11, 22], fine: [12, 21], pietra: "Turchese", colore: "Blu Intenso / Viola", affinita: "Ariete e Leone", oroscopo: "Grande ottimismo, amore per la conoscenza e lo spirito d'avventura. Il tuo sguardo è rivoluto verso ampi orizzonti.", oroscopoSettimanale: "Desiderio di novità e di espansione. Nuovi orizzonti si aprono sia sul piano personale che professionale." }
+        ];
+
+        function riduciA90(valore) {
+            let res = valore % 90;
+            return res === 0 ? 90 : res;
+        }
+
+        function calcolaValoreTesto(testo) {
+            const lettere = testo.toUpperCase().replace(/[^A-Z]/g, '');
+            let somma = 0;
+            for (let i = 0; i < lettere.length; i++) {
+                somma += (lettere.charCodeAt(i) - 64);
+            }
+            return somma || 1;
+        }
+
+        function determinaSegnoZodiacale(giorno, mese) {
+            let g = parseInt(giorno, 10);
+            let m = parseInt(mese, 10);
+            
+            for (let item of mappaZodiacale) {
+                let [mInizio, gInizio] = item.inizio;
+                let [mFine, gFine] = item.fine;
+                
+                if ((m === mInizio && g >= gInizio) || (m === mFine && g <= gFine)) {
+                    return item;
+                }
+            }
+            return mappaZodiacale[0];
+        }
+
+        function elaboraAstroMatrix() {
+            const nomeInput = document.getElementById('nome').value.trim();
+            const giorno = document.getElementById('giorno').value.trim();
+            const mese = document.getElementById('mese').value.trim();
+            const anno = document.getElementById('anno').value.trim();
+            const ora = document.getElementById('ora').value.trim();
+            const comune = document.getElementById('comune').value.trim();
+            
+            const container = document.getElementById('output-container');
+            const resultContent = document.getElementById('result-content');
+
+            // 1. Controllo campi obbligatori vuoti
+            if (!nomeInput || !giorno || !mese || !anno || !comune) {
+                container.style.display = 'block';
+                resultContent.innerHTML = '<div class="error-message"><i class="fa-solid fa-triangle-exclamation"></i> Attenzione: Tutti i campi (Nome, Giorno, Mese, Anno e Comune) sono obbligatori!</div>';
+                container.scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+
+            const gNum = parseInt(giorno, 10);
+            const mNum = parseInt(mese, 10);
+            const aNum = parseInt(anno, 10);
+
+            // 2. Controllo validità data
+            if (isNaN(gNum) || gNum < 1 || gNum > 31 || isNaN(aNum) || aNum < 1900 || aNum > 2026) {
+                container.style.display = 'block';
+                resultContent.innerHTML = '<div class="error-message"><i class="fa-solid fa-triangle-exclamation"></i> Errore: Inserire un giorno valido (1-31) e un anno di nascita corretto (1900-2026).</div>';
+                container.scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+
+            // 3. Controllo rigoroso del Nome nel Database
+            const primoNome = nomeInput.split(' ')[0].toUpperCase();
+            const infoNome = databaseNomi[primoNome];
+
+            if (!infoNome) {
+                container.style.display = 'block';
+                resultContent.innerHTML = `<div class="error-message"><i class="fa-solid fa-triangle-exclamation"></i> Errore di validazione: Il nome "<strong>${nomeInput}</strong>" non è presente nel database degli onomastici. Inserisci un nome valido registrato nel sistema.</div>`;
+                container.scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+
+            // 4. Calcoli geodinamici e astrologici se tutti i controlli sono superati
+            const comuneUpper = comune.toUpperCase();
+            let valoreComune = databaseComuni[comuneUpper];
+            if (valoreComune === undefined) {
+                valoreComune = calcolaValoreTesto(comuneUpper);
+            }
+
+            const valoreNome = calcolaValoreTesto(nomeInput);
+
+            const num1 = riduciA90(valoreNome + aNum + gNum);
+            const num2 = riduciA90(valoreComune + (aNum % 100) + mNum);
+            const num3 = riduciA90(valoreNome + valoreComune + aNum + gNum + mNum);
+
+            const profilo = determinaSegnoZodiacale(gNum, mNum);
+
+            // 5. Visualizzazione Completa di tutte le sezioni
+            container.style.display = 'block';
+            resultContent.innerHTML = `
+                <div class="result-card">
+                    <div class="result
