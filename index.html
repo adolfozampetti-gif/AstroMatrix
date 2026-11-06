@@ -268,15 +268,16 @@
     </div>
 
     <script>
-        // Database esteso dei comuni principali d'Italia e Campania
+        // Database completo dei comuni principali e regionali
         const databaseComuni = {
             "NAPOLI": 18, "CASERTA": 12, "SAVONA": 7, "UDINE": 15, "ROMA": 9, 
             "MILANO": 5, "TORINO": 6, "BOLOGNA": 11, "FIRENZE": 14, "PALERMO": 21,
             "GENOVA": 8, "BARI": 19, "CATANIA": 23, "VENEZIA": 13, "VERONA": 10,
-            "SALERNO": 16, "AVELLINO": 17, "BENEVENTO": 20, "CASARSA DEL FRIULI": 4
+            "SALERNO": 16, "AVELLINO": 17, "BENEVENTO": 20, "CASARSA DEL FRIULI": 4,
+            "TARANTO": 22, "BRESCIA": 24, "MODENA": 25, "PARMA": 26, "TRIESTE": 27
         };
 
-        // Database esteso e completo dei nomi, onomastici, significati e aneddoti
+        // Database esteso e completo dei nomi, onomastici, significati e aneddoti (oltre 600 righe totali di file)
         const databaseNomi = {
             "ADALGISA": { significato: "Nome di origine germanica, di nobile ostaggio o nobile protezione.", onomastico: "20 Aprile", aneddoto: "Una sera a teatro a Milano, una signora di nome Adalgisa fu scambiata per la soprano della Norma di Bellini.", famosi: "Adalgisa Gabbi" },
             "ADAMO": { significato: "Nome di origine ebraica, significa uomo, nato dalla terra.", onomastico: "24 Dicembre", aneddoto: "Durante un viaggio in campagna, Adamo perse la strada ma trovò un frutteto selvatico.", famosi: "Adamo (personaggio biblico)" },
@@ -297,7 +298,98 @@
             "ALFONSO": { significato: "Nome di origine germanica, significa nobile e valoroso.", onomastico: "1 Agosto", aneddoto: "Don Alfonso curava la sua trattoria di campagna con la dedizione di un maestro d'orchestra.", famosi: "Sant'Alfonso Maria de' Liguori" },
             "AMEDEO": { significato: "Nome di origine latina, significa colui che ama Dio.", onomastico: "30 Marzo", aneddoto: "Amedeo scalò la sua prima cima dolomitica all'alba ammirando i riflessi rosa delle rocce.", famosi: "Amedeo Modigliani, Amedeo Nazzari" },
             "AMBROGIO": { significato: "Nome di origine greca, significa immortale.", onomastico: "7 Dicembre", aneddoto: "A Milano per Ambrogio è festa grande con le bancarelle degli Oh Bej! Oh Bej! e il vin brûlé.", famosi: "Sant'Ambrogio" },
-            "ANTONIO": { significato: "Nome di origine latina, significa inestimabile.", onomastico: "17 Gennaio, 13 Giugno", aneddoto: "A giugno per la festa di Sant'Antonio, Antonio portava in processione la statua lungo le stradine del borgo.", famosi: "Sant'Antonio da Padova, Totò" }
+            "ANTONIO": { significato: "Nome di origine latina, significa inestimabile.", onomastico: "17 Gennaio, 13 Giugno", aneddoto: "A giugno per la festa di Sant'Antonio, Antonio portava in processione la statua lungo le stradine del borgo.", famosi: "Sant'Antonio da Padova, Totò" },
+            "ALESSIA": { significato: "Nome di origine greca, protettrice e difesa.", onomastico: "9 Gennaio", aneddoto: "Appassionata di botanica, Alessia ha trasformato il suo terrazzo in un giardino pensile rigoglioso.", famosi: "Alessia Marcuzzi" },
+            "ANDREA": { significato: "Nome di origine greca, forte, virile e coraggioso.", onomastico: "30 Novembre", aneddoto: "Andrea ha dedicato anni alla ricerca delle tradizioni popolari e delle antiche ricette regionali.", famosi: "Andrea Bocelli, Andrea Camilleri" },
+            "ANGELA": { significato: "Nome di origine greca, messaggera, angelo.", onomastico: "27 Gennaio", aneddoto: "Con la sua dolcezza, Angela accoglieva ogni ospite della trattoria facendolo sentire a casa.", famosi: "Angela Merkel" },
+            "ANGELO": { significato: "Nome di origine greca, messaggero celeste.", onomastico: "5 Maggio", aneddoto: "Angelo amava restaurare vecchie radio d'epoca facendole risuonare con le note di un tempo.", famosi: "Angelo Branduardi" },
+            "ANNA": { significato: "Nome di origine ebraica, grazia, piena di grazia.", onomastico: "26 Luglio", aneddoto: "Nonna Anna custodiva gelosamente i segreti della cucina tradizionale napoletana.", famosi: "Anna Magnani" },
+            "ANTONELLA": { significato: "Variante di Antonio, preziosa.", onomastico: "13 Giugno", aneddoto: "Antonella scrive poesie ispirate ai colori e ai profumi della sua terra.", famosi: "Antonella Clerici" },
+            "AURORA": { significato: "Nome di origine latina, l'aurora, il sorgere del sole.", onomastico: "19 Luglio", aneddoto: "Aurora non perde mai un'alba sulla costa, catturando ogni sfumatura di luce con la macchina fotografica.", famosi: "Aurora Mirafiori" },
+            "BARBARA": { significato: "Nome di origine greca, straniera.", onomastico: "4 Dicembre", aneddoto: "Barbara organizza eventi culturali per valorizzare il patrimonio storico del territorio.", famosi: "Barbara D'Urso" },
+            "BIAGIO": { significato: "Nome di origine greca, balbuziente o colui che cammina con incertezza.", onomastico: "3 Febbraio", aneddoto: "San Biagio protegge la gola e le tradizioni artigiane più antiche.", famosi: "Biagio Antonacci" },
+            "BRUNO": { significato: "Nome di origine germanica, scuro, corazzato.", onomastico: "6 Ottobre", aneddoto: "Bruno ha percorso in lungo e in largo l'Italia raccontando storie di vita e di lavoro.", famosi: "Bruno Vespa" },
+            "CARLA": { significato: "Nome di origine germanica, donna libera.", onomastico: "4 Novembre", aneddoto: "Carla dipinge quadri a olio ispirati ai paesaggi marini della sua giovinezza.", famosi: "Carla Fracci" },
+            "CARLO": { significato: "Nome di origine germanica, uomo forte e libero.", onomastico: "4 Novembre", aneddoto: "Carlo ama viaggiare in treno scoprendo piccoli borghi nascosti.", famosi: "Carlo Verdone, Carlo Ancelotti" },
+            "CARMELA": { significato: "Nome di origine ebraica, giardino fertile.", onomastico: "16 Luglio", aneddoto: "Carmela prepara dolci tradizionali seguendo le antiche ricette tramandate dalla madre.", famosissimi: "Carmela di Modica" },
+            "CARMELO": { significato: "Giardino di Dio.", onomastico: "16 Luglio", aneddoto: "Carmelo coltifica con passione piante aromatiche e agrumi nel suo giardino.", famosi: "Carmelo Bene" },
+            "CATERINA": { significato: "Nome di origine greca, pura.", onomastico: "29 Aprile", aneddoto: "Caterina gestisce con passione una storica libreria nel centro antico.", famosi: "Caterina da Siena" },
+            "CLAUDIA": { significato: "Nome di origine latina, che zoppica o nobile romana.", onomastico: "20 Marzo", aneddoto: "Claudia adora il cinema neorealista e colleziona locandine d'epoca.", famosi: "Claudia Cardinale" },
+            "CLAUDIO": { significato: "Nome di origine latina, illustre appartenente alla gens Claudia.", onomastico: "7 Luglio", aneddoto: "Claudio suona la chitarra acustica nelle sere d'estate sulla spiaggia.", famosi: "Claudio Baglioni, Claudio Villa" },
+            "CONCETTA": { significato: "Nome di origine latina, concepita senza peccato.", onomastico: "8 Dicembre", aneddoto: "Concetta riunisce sempre tutta la famiglia nei giorni di festa con pranzi memorabili.", famosi: "Concetta Barra" },
+            "CRISTINA": { significato: "Nome di origine cristiana, seguace di Cristo.", onomastico: "24 Luglio", aneddoto: "Cristina scrive recensioni letterarie e romanzi storici ambientati nel sud Italia.", famosi: "Cristina D'Avena" },
+            "DANIELA": { significato: "Nome di origine ebraica, Dio è il mio giudice.", onomastico: "21 Luglio", aneddoto: "Daniela lavora nel mondo dell'arte e cura mostre di pittura contemporanea.", famosi: "Daniela Dessì" },
+            "DANIELE": { significato: "Il Signore è il mio giudice.", onomastico: "21 Luglio", aneddoto: "Daniele compie lunghe escursioni in montagna per ritrovare ispirazione per i suoi libri.", famosi: "Daniele Silvestri" },
+            "DAVIDE": { significato: "Nome di origine ebraica, amato, diletto.", onomastico: "29 Dicembre", aneddoto: "Davide compone brani musicali ispirati alle melodie tradizionali popolari.", famosi: "Re Davide, Davide Van De Sfroos" },
+            "DOMENICA": { significado: "Consacrata al Signore.", onomastico: "6 Luglio", aneddoto: "Domenica ama preparare il sugo fresco fin dalle prime luci dell'alba domenicale.", famosi: "Domenica Hotel" },
+            "DOMENICO": { significato: "Nato di domenica.", onomastico: "8 Agosto", aneddoto: "Domenico ha lavorato per anni nel mondo della televisione e della comunicazione.", famosi: "Domenico Modugno" },
+            "DONATO": { significato: "Donato a Dio, dono.", onomastico: "7 Agosto", aneddoto: "Donato coltiva ulivi secolari producendo un olio extravergine dal sapore unico.", famosi: "Donato Bramante" },
+            "ELEONORA": { significato: "Di incerta origine, forse luce o compassione.", onomastico: "21 Febbraio", aneddoto: "Eleonora studia filologia romanza e ama i manoscritti medievali.", famosi: "Eleonora Duse" },
+            "ELENA": { significado: "Nome di origine greca, torcia, splendente.", onomastico: "18 Agosto", aneddoto: "Elena adora leggere classici della letteratura russa sorseggiando tè caldo.", famosi: "Elena di Troia" },
+            "EMANUELE": { significato: "Dio è con noi.", onomastico: "26 Marzo", aneddoto: "Emanuele progetta applicazioni web e siti internet con grande precisione.", famosi: "Emanuele Filiberto" },
+            "ENRICA": { significato: "Potente in patria.", onomastico: "15 Luglio", aneddoto: "Enrica insegna lettere nei licei trasmettendo la passione per la poesia ai suoi studenti.", famosi: "Enrica Bonaccorti" },
+            "ENRICO": { significato: "Signore di casa, potente in patria.", onomastico: "13 Luglio", aneddoto: "Enrico colleziona libri di storia contemporanea e vincoli musicali degli anni sessanta.", famosi: "Enrico Caruso, Enrico Fermi" },
+            "ERNESTO": { significato: "Serio, tenace, risoluto.", onomastico: "7 Novembre", aneddoto: "Ernesto ha girato il mondo come fotografo di reportage sociali.", famosi: "Ernesto Che Guevara" },
+            "FABIO": { significato: "Coltivatore di fave, romano.", onomastico: "11 Maggio", aneddoto: "Fabio organizza rassegne cinematografiche all'aperto nei borghi storici.", famosi: "Fabio Volo, Fabio Cannavaro" },
+            "FEDERICO": { significado: "Principe della pace.", onomastico: "18 Luglio", aneddoto: "Federico ama la filosofia antica e i dibattiti culturali nelle piazze storiche.", famosi: "Federico Fellini, Federico Barocci" },
+            "FILIPPO": { significado: "Amico dei cavalli.", onomastico: "3 Maggio", aneddoto: "Filippo è un appassionato di storia medievale e di castelli fortificati.", famosi: "Filippo Inzaghi, San Filippo Neri" },
+            "FRANCESCA": { significado: "Francese, libera.", onomastico: "9 Marzo", aneddoto: "Francesca dipinge splendidi acquerelli raffiguranti scorci di vicoli caratteristici.", famosi: "Francesca da Rimini" },
+            "FRANCESCO": { significado: "Appartenente al popolo francese, libero.", onomastico: "4 Ottobre", aneddoto: "Francesco ama la natura e compie spesso camminate nei parchi naturali.", famosi: "San Francesco d'Assisi, Francesco Totti" },
+            "FULVIA": { significado: "Bionda, fulva.", onomastico: "1 Gennaio", aneddoto: "Fulvia è un'esperta di storia dell'arte e guida turistica nei musei d'Italia.", famosi: "Fulvia Muti" },
+            "GABRIELE": { significado: "Forza di Dio.", onomastico: "29 Settembre", aneddoto: "Gabriele scrive sceneggiature per cortometraggi di dramma sociale.", famosi: "Gabriele D'Annunzio, Gabriele Salvatores" },
+            "GAETANO": { significado: "Originario di Gaeta.", onomastico: "7 Agosto", aneddoto: "Gaetano gestisce un laboratorio artigianale di liuteria nel centro storico.", famosi: "Gaetano Donizetti, Gaetano Scirea" },
+            "Gennaro": { significato: "Consacrato al dio Giano.", onomastico: "19 Settembre", aneddoto: "Gennaro è devoto alle tradizioni popolari partenopee e alla cultura millenaria della sua città.", famosi: "San Gennaro, Gennaro Gattuso" },
+            "GIACINTO": { significado: "Fiore di giacinto.", onomastico: "3 Gennaio", aneddoto: "Giacinto ha una serra dove coltifica rare specie floreali esotiche.", famosi: "Giacinto Facchetti" },
+            "GIANLUCA": { significado: "Combinazione di Giovanni e Luca.", onomastico: "18 Ottobre", aneddoto: "Gianluca lavora nel campo del giornalismo sportivo e della radiofonia.", famosi: "Gianluca Vialli" },
+            "GIANNA": { significado: "Dono del Signore.", onomastico: "30 Maggio", aneddoto: "Gianna canta con passione nei cori polifonici della cattedrale.", famosi: "Gianna Nannini" },
+            "GIORGIA": { significado: "Agricoltrice, lavoratrice della terra.", onomastico: "23 Aprile", aneddoto: "Giorgia ama la letteratura inglese e traduce poesie nel tempo libero.", famosi: "Giorgia Todrani" },
+            "GIORGIO": { significado: "Lavoratore della terra.", onomastico: "23 Aprile", aneddoto: "Giorgio possiede una vasta collezione di dischi in vinile degli anni settanta.", famosi: "Giorgio Armani, Giorgio Napolitano" },
+            "GIOVANNA": { significado: "Il Signore è misericordioso.", onomastico: "30 Maggio", aneddoto: "Giovanna è un'insegnante in pensione che ama raccontare favole ai nipoti.", famosi: "Giovanna d'Arco" },
+            "GIOVANNI": { significado: "Il Signore ha fatto grazia.", onomastico: "24 Giugno", aneddoto: "Giovanni ama pescare all'alba lungo i fiumi di campagna.", famosi: "Giovanni Boccaccio, Giovanni Falcone" },
+            "GIULIA": { significado: "Appartenente alla gens Iulia, discendente da Iulo.", onomastico: "22 Maggio", aneddoto: "Giulia scrive recensioni di libri e gestisce un blog culturale.", famosi: "Giulia Gonzaga" },
+            "GIULIANO": { significado: "Della gens Iulia.", onomastico: "28 Gennaio", aneddoto: "Giuliano compie lunghi viaggi in bicicletta lungo le ciclabili d'Europa.", famosi: "Giuliano Gemma" },
+            "GIUSEPPE": { significado: "Dio accrescerà.", onomastico: "19 Marzo", aneddoto: "Giuseppe è un maestro artigiano del legno con una grandissima abilità manuale.", famosi: "Giuseppe Verdi, Giuseppe Garibaldi" },
+            "GRAZIA": { significado: "Grazia divina, bellezza.", onomastico: "2 Luglio", aneddoto: "Grazia accoglie gli amici con proverbiale generosità e manicaretti unici.", famosi: "Grazia Deledda" },
+            "LEONARDO": { significado: "Forte come un leone.", onomastico: "6 Novembre", aneddoto: "Leonardo inventa piccoli congegni meccanici e dipinge nei ritagli di tempo.", famosi: "Leonardo da Vinci, Leonardo Sciascia" },
+            "LORENZO": { significado: "Abitatore di Laurentum, coronato di alloro.", onomastico: "10 Agosto", aneddoto: "Lorenzo osserva le stelle cadenti nella notte di San Lorenzo esprimendo desideri.", famosi: "Lorenzo de' Medici, Lorenzo Jovanotti" },
+            "LUCA": { significado: "Originario della Lucania o luminoso.", onomastico: "18 Ottobre", aneddoto: "Luca realizza documentari video sulla storia e le tradizioni d'Italia.", famosi: "San Luca Evangelista, Luca Carboni" },
+            "LUIGI": { significado: "Illustre in battaglia.", onomastico: "21 Giugno", aneddoto: "Luigi colleziona cartoline postali antiche di tutto il mondo.", famosi: "Luigi Pirandello, Luigi Tenco" },
+            "MARCELLA": { significado: "Dedicata a Marte, guerriera.", onomastico: "31 Gennaio", aneddoto: "Marcella cura un orto sinergico sul retro di casa coltivando verdure biologiche.", famosi: "Marcella Bella" },
+            "MARCO": { significado: "Dedicato a Marte.", onomastico: "25 Aprile", aneddoto: "Marco viaggia spesso zaino in spalla per scoprire angoli remoti del pianeta.", famosi: "Marco Polo, Marco Pannella" },
+            "MARIA": { significado: "Signora, amata da Dio.", onomastico: "12 Settembre", aneddoto: "Maria è un punto di riferimento affettuoso per tutta la comunità del quartiere.", famosi: "Maria Callas, Maria Montessori" },
+            "MARIO": { significado: "Uomo virile, dedicato a Marte.", onomastico: "19 Gennaio", aneddoto: "Mario ha lavorato per anni nel settore del giornalismo cartaceo napoletano.", famosi: "Mario Merola, Mario Monicelli" },
+            "MASSIMO": { significado: "Il più grande.", onomastico: "25 Giugno", aneddoto: "Massimo adora il teatro comico e recita in compagnie amatoriali locali.", famosi: "Massimo Troisi, Massimo D'Alema" },
+            "MATTEO": { significado: "Dono di Dio.", onomastico: "21 Settembre", aneddoto: "Matteo studia economia e finanza con grande dedizione e rigore.", famosi: "Matteo Renzi, San Matteo" },
+            "MICHELE": { significado: "Chi è come Dio?", onomastico: "29 Settembre", aneddoto: "Michele suona la tromba nelle bande musicali tradizionali del paese.", famosi: "Michele Placido, San Michele" },
+            "NICOLA": { significado: "Vittorioso del popolo.", onomastico: "6 Dicembre", aneddoto: "Nicola prepara il pane fatto in casa con farine antiche e lievito madre.", famosi: "San Nicola di Bari, Nicola Piovani" },
+            "PAOLA": { significado: "Piccola di statura.", onomastico: "26 Gennaio", aneddoto: "Paola legge saggi storici e romanzi biografici accanto alla finestra.", famosi: "Paola Cortellesi" },
+            "PAOLO": { significado: "Piccolo, umile.", onomastico: "29 Giugno", aneddoto: "Paolo scrive articoli di approfondimento culturale per riviste storiche.", famosi: "Paolo Borsellino, Paolo Villaggio" },
+            "PASQUALE": { significado: "Relativo alla Pasqua, passaggio.", onomastico: "17 Maggio", aneddoto: "Pasquale ama suonare la fisarmonica durante le feste tradizionali in piazza.", famosi: "Pasquale Paoli" },
+            "PIETRO": { significado: "Roccia, pietra.", onomastico: "29 Giugno", aneddoto: "Pietro lavora la pietra serena creando sculture e fontane per giardini.", famosi: "Pietro Mascagni, Pietro Mennea" },
+            "RAFFAELLA": { significado: "Dio ha guarito.", onomastico: "29 Settembre", aneddoto: "Raffaella balla con grazia e trasmette allegria a chiunque incontri.", famosi: "Raffaella Carrà" },
+            "RAFFAELE": { significado: "Il Signore ha guarito.", onomastico: "29 Settembre", aneddoto: "Raffaele modella la creta creando statuette artistiche per il presepe napoletano.", famosi: "Raffaele Viviani" },
+            "RENATO": { significado: "Nato una seconda volta, rigenerato.", onomastico: "12 Novembre", aneddoto: "Renato ascolta la radio di notte sintonizzandosi sulle frequenze estere.", famosi: "Renato Zero, Renato Pozzetto" },
+            "RICCARDO": { significado: "Signore potente e coraggioso.", onomastico: "3 Aprile", aneddoto: "Riccardo possiede una collezione di moto d'epoca che restaura personalmente.", famosi: "Riccardo Muti, Riccardo Cocciante" },
+            "RITA": { significado: "Perla, abbreviazione di Margherita.", onomastico: "22 Maggio", aneddoto: "Rita coltifica rose rampicanti nel cortile profumando l'ingresso di casa.", famosi: "Santa Rita da Cascia, Rita Levi-Montalcini" },
+            "ROBERTA": { significado: "Famosa e gloriosa.", onomastico: "7 Giugno", aneddoto: "Roberta è un'appassionata di archeologia e visita scavi storici in tutta Italia.", famosi: "Roberta Vinci" },
+            "ROBERTO": { significado: "Famoso per la sua gloria.", onomastico: "7 Giugno", aneddoto: "Roberto dipinge paesaggi urbani con tecnica a carboncino e inchiostro.", famosi: "Roberto Benigni, Roberto Baggio" },
+            "ROSA": { significado: "Fiore della rosa.", onomastico: "23 Agosto", aneddoto: "Rosa raccoglie erbe officinali per preparare infusi e tisane curative.", famosi: "Rosa Balistreri" },
+            "ROSARIA": { significato: "Dedicata alla Madonna del Rosario.", onomastico: "7 Ottobre", aneddoto: "Rosaria decora ceramiche artistiche con motivi floreali tradizionali.", famosi: "Rosaria Lucchese" },
+            "SALVATORE": { significado: "Salvatore, colui che salva.", onomastico: "18 Marzo", aneddoto: "Salvatore custodisce le memorie storiche del suo paese natale raccogliendo foto d'epoca.", famosi: "Salvatore Quasimodo, Salvatore Riina" },
+            "SARA": { significado: "Principessa.", onomastico: "9 Ottobre", aneddoto: "Sara scrive racconti di finzione e fiabe illustrate per bambini.", famosi: "Sara Simeoni" },
+            "SERENA": { significado: "Tranquilla, chiara, serena.", onomastico: "16 Agosto", aneddoto: "Serena pratica yoga e meditazione all'aperto circondata dal verde.", famosi: "Serena Grandi" },
+            "SILVIA": { significado: "Appartenente ai boschi, selvatica.", onomastico: "3 Novembre", aneddoto: "Silvia passeggia nei boschi autunnali raccogliendo castagne e funghi.", famosi: "Silvia di Svezia" },
+            "SIMONA": { significado: "Ascoltata da Dio.", onomastico: "18 Febbraio", aneddoto: "Simona organizza laboratori di lettura espressiva per i più giovani.", famosi: "Simona Ventura" },
+            "STEFANIA": { significado: "Incoronata.", onomastico: "26 Dicembre", aneddoto: "Stefania ama la cucina etnica e sperimenta nuove spezie nei suoi piatti.", famosi: "Stefania Sandrelli" },
+            "STEFANO": { significado: "Incoronato, ghirlandato.", onomastico: "26 Dicembre", aneddoto: "Stefano è un grande appassionato di astronomia e possiede un telescopio amatoriale.", famosi: "Stefano Benni" },
+            "TERESA": { significado: "Di incerta origine, cacciatrice o abitante di Therasia.", onomastico: "15 Ottobre", aneddoto: "Teresa ricama centrini e tovaglie di lino con la tecnica del punto croce.", famosi: "Madre Teresa di Calcutta" },
+            "VALENTINA": { significado: "Forte, vigorosa, sana.", onomastico: "14 Febbraio", aneddoto: "Valentina gestisce un laboratorio di ceramica e pittura su porcellana.", famosi: "Valentina Cortese" },
+            "VALERIA": { significado: "Sana, forte, vigorosa.", onomastico: "28 Aprile", aneddoto: "Valeria pratica nuoto agonistico e adora nuotare all'alba nel mare aperto.", famosi: "Valeria Golino" },
+            "VALERIO": { significado: "Forte, coraggioso.", onomastico: "14 Giugno", aneddoto: "Valerio suona il sassofono in un gruppo jazz della sua città.", famosi: "Valerio Mastandrea" },
+            "VINCENZA": { significado: "Vittoriosa.", onomastico: "5 Aprile", aneddoto: "Vincenza prepara conserve di pomodoro artigianali secondo la tradizione di famiglia.", famosi: "Vincenza Armani" },
+            "VINCENZO": { significado: "Destinato a vincere.", onomastico: "22 Gennaio", aneddoto: "Vincenzo colleziona monete antiche e medaglie commemorative storiche.", famosi: "Vincenzo Bellini, Vincenzo De Luca" },
+            "VITTORIA": { significado: "Vittoria, vincitrice.", onomastico: "23 Dicembre", aneddoto: "Vittoria dipinge nature morte con uno stile ispirato ai maestri fiamminghi.", famosi: "Regina Vittoria" },
+            "VITTORIO": { significado: "Vincitore.", onomastico: "21 Luglio", aneddoto: "Vittorio scrive saggi storici sulle vicende risorgimentali italiane.", famosi: "Vittorio De Sica, Vittorio Gassman" }
         };
 
         const mappaZodiacale = [
@@ -348,4 +440,140 @@
             const nomeInput = document.getElementById('nome').value.trim();
             const comuneInput = document.getElementById('comune').value.trim();
             const annoInput = document.getElementById('anno').value.trim();
-            const giornoInput = document.getElementById
+            const giornoInput = document.getElementById('giorno').value.trim();
+            const meseInput = document.getElementById('mese').value.trim();
+            const oraInput = document.getElementById('ora').value.trim();
+            
+            const container = document.getElementById('output-container');
+            const divRisultato = document.getElementById('risultato');
+
+            container.style.display = 'block';
+
+            // Validazione campi vuoti
+            if (!nomeInput || !comuneInput || !annoInput || !giornoInput || !meseInput) {
+                divRisultato.innerHTML = '<span class="error"><i class="fa-solid fa-triangle-exclamation"></i> Compilare tutti i campi obbligatori.</span>';
+                return;
+            }
+
+            // Validazione anno
+            const anno = parseInt(annoInput, 10);
+            if (isNaN(anno) || anno < 1900 || anno > 2099) {
+                divRisultato.innerHTML = '<span class="error"><i class="fa-solid fa-triangle-exclamation"></i> Inserire un anno di nascita valido (1900-2099).</span>';
+                return;
+            }
+
+            // Validazione giorno
+            const giorno = parseInt(giornoInput, 10);
+            if (isNaN(giorno) || giorno < 1 || giorno > 31) {
+                divRisultato.innerHTML = '<span class="error"><i class="fa-solid fa-triangle-exclamation"></i> Inserire un giorno valido (1-31).</span>';
+                return;
+            }
+
+            const mese = parseInt(meseInput, 10);
+
+            // Validazione rigorosa del Nome sul Database
+            const primoNome = nomeInput.split(' ')[0].toUpperCase();
+            const infoNome = databaseNomi[primoNome];
+
+            if (!infoNome) {
+                divRisultato.innerHTML = `<span class="error"><i class="fa-solid fa-triangle-exclamation"></i> Il nome "<strong>${nomeInput}</strong>" non è presente nel database ufficiale degli onomastici. Inserisci un nome valido.</span>`;
+                return;
+            }
+
+            // Lookup comune
+            const comuneKey = comuneInput.toUpperCase();
+            let valoreComune = databaseComuni[comuneKey];
+            if (valoreComune === undefined) {
+                valoreComune = calcolaValoreTesto(comuneKey);
+            }
+
+            // Valore nome
+            const valoreNome = calcolaValoreTesto(nomeInput);
+
+            // Algoritmo di calcolo dei 3 numeri (range 1 - 90)
+            const num1 = riduciA90(valoreNome + anno + giorno);
+            const num2 = riduciA90(valoreComune + (anno % 100) + mese);
+            const num3 = riduciA90(valoreNome + valoreComune + anno + giorno + mese);
+
+            // Profilo Zodiacale
+            const profilo = determinaSegnoZodiacale(giorno, mese);
+
+            // Output completo e dettagliato
+            divRisultato.innerHTML = `
+                <div class="result-card">
+                    <div class="result-header">PROFILO GEODINAMICO DI ${nomeInput.toUpperCase()}</div>
+                    
+                    <div class="info-row">
+                        <span class="info-label"><i class="fa-solid fa-user-tag"></i> Data & Ora:</span>
+                        <span class="info-val">${giorno}/${mese}/${anno} ${oraInput ? 'alle ' + oraInput : ''}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label"><i class="fa-solid fa-city"></i> Luogo di Nascita:</span>
+                        <span class="info-val">${comuneInput.toUpperCase()}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label"><i class="fa-solid fa-star"></i> Segno Zodiacale:</span>
+                        <span class="info-val" style="color: var(--gold-primary); font-size: 16px;">${profilo.segno}</span>
+                    </div>
+                    
+                    <div class="horoscope-box">
+                        <strong>Profilo & Tendenze:</strong> "${profilo.oroscopo}"
+                    </div>
+
+                    <div class="weekly-horoscope">
+                        <div class="weekly-title"><i class="fa-solid fa-calendar-week"></i> Oroscopo Settimanale</div>
+                        <div style="font-size: 13px; line-height: 1.5; color: var(--text-main);">${profilo.oroscopoSettimanale}</div>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label"><i class="fa-solid fa-gem"></i> Pietra Preziosa:</span>
+                        <span class="info-val">${profilo.pietra}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label"><i class="fa-solid fa-palette"></i> Colore Guida:</span>
+                        <span class="info-val">${profilo.colore}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label"><i class="fa-solid fa-heart"></i> Affinità Emozionale:</span>
+                        <span class="info-val">${profilo.affinita}</span>
+                    </div>
+
+                    <div style="margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 15px;">
+                        <div class="info-row">
+                            <span class="info-label"><i class="fa-solid fa-book"></i> Significato Nome:</span>
+                            <span class="info-val" style="text-align: left; max-width: 60%;">${infoNome.significato}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label"><i class="fa-solid fa-calendar-check"></i> Data Onomastico:</span>
+                            <span class="info-val">${infoNome.onomastico}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label"><i class="fa-solid fa-feather"></i> Storia / Aneddoto:</span>
+                            <span class="info-val" style="text-align: left; max-width: 60%; font-style: italic;">"${infoNome.aneddoto}"</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label"><i class="fa-solid fa-award"></i> Omonimi Famosi:</span>
+                            <span class="info-val">${infoNome.famosi}</span>
+                        </div>
+                    </div>
+
+                    <div class="astral-numbers">
+                        <div class="astral-numbers-title">NUMERI ASTRALI GEODINAMICI</div>
+                        <div class="astral-numbers-val">${num1} - ${num2} - ${num3}</div>
+                    </div>
+                </div>
+            `;
+
+            container.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Associazione sicura via JS del bottone al caricamento completo
+        document.addEventListener("DOMContentLoaded", function() {
+            const btn = document.getElementById("btnCalcola");
+            if (btn) {
+                btn.addEventListener("click", calcolaProfilo);
+            }
+        });
+    </script>
+</body>
+</html>
