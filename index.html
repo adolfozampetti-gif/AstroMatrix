@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AstroMatrix FREE - Dashboard Geodinamica</title>
+    <!-- Font Awesome per le icone -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -169,22 +171,22 @@
 
         <div class="hero-title">
             <h1>IL TUO PROFILO ASTRALE</h1>
-            <p>Inserisci nome, giorno, mese, anno, ora e città di nascita per generare l'analisi dettagliata.</p>
+            <p>Inserisci nome, giorno, mese, anno, ora e città di nascita per generare l'analisi dettagliata estratta dal Master Geodinamico.</p>
         </div>
 
         <div id="astroForm">
             <div class="form-group">
-                <label class="form-label" for="nome"><i class="fa-solid fa-user"></i> Nome o Nome Completo:</label>
+                <label class="form-label" for="nome"><i class="fa-solid fa-user"></i> Nome o Nome Completo *:</label>
                 <input type="text" id="nome" class="form-control" placeholder="Es. Adolfo">
             </div>
 
             <div class="grid-3">
                 <div class="form-group">
-                    <label class="form-label" for="giorno"><i class="fa-solid fa-calendar-day"></i> Giorno (1-31):</label>
+                    <label class="form-label" for="giorno"><i class="fa-solid fa-calendar-day"></i> Giorno (1-31) *:</label>
                     <input type="number" id="giorno" class="form-control" min="1" max="31" placeholder="GG">
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="mese"><i class="fa-solid fa-calendar-alt"></i> Mese di Nascita:</label>
+                    <label class="form-label" for="mese"><i class="fa-solid fa-calendar-alt"></i> Mese di Nascita *:</label>
                     <select id="mese" class="form-control">
                         <option value="">Seleziona</option>
                         <option value="1">Gennaio</option>
@@ -202,7 +204,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="anno"><i class="fa-solid fa-calendar"></i> Anno (YYYY):</label>
+                    <label class="form-label" for="anno"><i class="fa-solid fa-calendar"></i> Anno (YYYY) *:</label>
                     <input type="number" id="anno" class="form-control" min="1900" max="2099" placeholder="Es. 1955">
                 </div>
             </div>
@@ -241,7 +243,7 @@
             "ADAUTO": { significato: "Nome di origine latina, significa aggiunto, nato in più.", onomastico: "30 Agosto", aneddoto: "Nato come quinto figlio in una famiglia numerosa, Adauto portò sempre con orgoglio questo nome unico.", famosi: "Sant'Adauto" },
             "ADALBERTO": { significato: "Nome di origine germanica, significa di illustre nobiltà.", onomastico: "23 Aprile", aneddoto: "Un giovane Adalberto ristrutturò una vecchia libreria di famiglia trasformandola in punto di incontro per poeti.", famosi: "Adalberto da Praga" },
             "ADELAIDE": { significato: "Nome di origine germanica, significa di nobile stirpe e aspetto.", onomastico: "16 Dicembre", aneddoto: "Nonna Adelaide amava raccontare storie attorno al camino, trasformando ogni serata in un viaggio.", famosi: "Adelaide Ristori" },
-            "ADOLFO": { significato: "Nome di origine germanica, significa nobile lupo.", onomastico: "17 Giugno", aneddoto: "Nelle notti estive degli anni '70, un giovane DJ di nome Adolfo infiammava le frequenze delle prime radio libere della Campania.", famosi: "Adolfo Celi, Adolfo Zampetti" },
+            "ADOLFO": { significato: "Nome di origine germanica, significa nobile lupo.", onomastico: "17 Giugno", aneddoto: "Nelle notti estive degli anni '70, un giovane DJ infiammava le frequenze delle prime radio libere della Campania.", famosi: "Adolfo Celi" },
             "ADRIANO": { significato: "Nome di origine latina, significa originario di Adria o proveniente dal mare.", onomastico: "9 Gennaio, 5 Marzo, 8 Luglio", aneddoto: "Durante un viaggio a Roma, Adriano si fermò davanti a Castel Sant'Angelo riflettendo sulla storia.", famosi: "Imperatore Adriano, Adriano Celentano" },
             "AGAPITO": { significato: "Nome di origine greca, significa amato, amabile.", onomastico: "18 Agosto", aneddoto: "Agapito era conosciuto in tutto il paese per il suo sorriso contagioso e la capacità di far pace.", famosi: "Papa Agapito I" },
             "AGATA": { significato: "Nome di origine greca, significa buona, virtuosa.", onomastico: "5 Febbraio, 12 Giugno", aneddoto: "Ogni anno a febbraio, Agata preparava le tradizionali ricette della nonna profumando l'intera strada.", famosi: "Sant'Agata, Agatha Christie" },
@@ -260,152 +262,4 @@
 
         const mappaZodiacale = [
             { segno: "Capricorno", inizio: [12, 22], fine: [1, 19], pietra: "Rubino", colore: "Nero / Grigio Antracite", affinita: "Toro e Vergine", oroscopo: "La concretezza e la determinazione ferrea ti permettono di superare qualsiasi vetta.", oroscopoSettimanale: "Settimana favorevole per consolidare progetti professionali a lungo termine." },
-            { segno: "Acquario", inizio: [1, 20], fine: [2, 18], pietra: "Ametista", colore: "Blu Elettrico", affinita: "Gemelli e Bilancia", oroscopo: "Spirito libero e visione pionieristica del futuro.", oroscopoSettimanale: "Idee brillanti e improvvise intuizioni favoriscono la creatività." },
-            { segno: "Pesci", inizio: [2, 19], fine: [3, 20], pietra: "Acquamarina", colore: "Verde Acqua / Smeraldo", affinita: "Cancro e Scorpione", oroscopo: "Grande intuito empatico e sensibilità artistica.", oroscopoSettimanale: "Momento ideale per dedicarsi all'introspezione e all'arte." },
-            { segno: "Ariete", inizio: [3, 21], fine: [4, 19], pietra: "Diamante", colore: "Rosso Fuoco", affinita: "Leone e Sagittario", oroscopo: "Carica vitale trascinante e coraggio di intraprendere nuove sfide.", oroscopoSettimanale: "Una ventata di energia vi spinge a prendere l'iniziativa." },
-            { segno: "Toro", inizio: [4, 20], fine: [5, 20], pietra: "Smeraldo", colore: "Verde Foresta", affinita: "Vergine e Capricorno", oroscopo: "Amore per la stabilità, il senso della terra e l'armonia estetica.", oroscopoSettimanale: "La stabilità emotiva vi dà sicurezza." },
-            { segno: "Gemelli", inizio: [5, 21], fine: [6, 20], pietra: "Agata", colore: "Giallo Solare", affinita: "Bilancia e Acquario", oroscopo: "Mente vivace, curiosità inesauribile e grande prontezza comunicativa.", oroscopoSettimanale: "Settimana dinamica e ricca di contatti stimolanti." },
-            { segno: "Cancro", inizio: [6, 21], fine: [7, 22], pietra: "Perla", colore: "Bianco Perla / Argento", affinita: "Scorpione e Pesci", oroscopo: "Legame profondo con le origini, le memorie e la famiglia.", oroscopoSettimanale: "La sensibilità è accentuata: ascoltate il vostro sesto senso." },
-            { segno: "Leone", inizio: [7, 23], fine: [8, 22], pietra: "Topazio", colore: "Oro / Arancione Vivo", affinita: "Ariete e Sagittario", oroscopo: "Naturale carisma, generosità di cuore e presenza autorevole.", oroscopoSettimanale: "Il vostro magnetismo attira consensi e simpatie." },
-            { segno: "Vergine", inizio: [8, 23], fine: [9, 22], pietra: "Zaffiro", colore: "Marrone Cobalto / Blu Scuro", affinita: "Toro e Capricorno", oroscopo: "Precisione, spirito d'analisi e meticolosità raffinata.", oroscopoSettimanale: "L'organizzazione metodica vi permette di risolvere questioni in sospeso." },
-            { segno: "Bilancia", inizio: [9, 23], fine: [10, 22], pietra: "Opale", colore: "Rosa / Celeste", affinita: "Gemelli e Acquario", oroscopo: "Ricerca costante dell'equilibrio, del bello e della giustizia.", oroscopoSettimanale: "Armonia ritrovata nei rapporti di coppia e nelle collaborazioni." },
-            { segno: "Scorpione", inizio: [10, 23], fine: [11, 21], pietra: "Topazio Scuro", colore: "Rosso Porpora / Nero", affinita: "Cancro e Pesci", oroscopo: "Magnetismo profondo, passione ed elevata capacità di rigenerazione.", oroscopoSettimanale: "Intuizioni formidabili guidano le vostre scelte." },
-            { segno: "Sagittario", inizio: [11, 22], fine: [12, 21], pietra: "Turchese", colore: "Blu Intenso / Viola", affinita: "Ariete e Leone", oroscopo: "Grande ottimismo, amore per la conoscenza e lo spirito d'avventura.", oroscopoSettimanale: "Desiderio di novità e di espansione." }
-        ];
-
-        function riduciA90(valore) {
-            let res = valore % 90;
-            return res === 0 ? 90 : res;
-        }
-
-        function calcolaValoreTesto(testo) {
-            const lettere = testo.toUpperCase().replace(/[^A-Z]/g, '');
-            let somma = 0;
-            for (let i = 0; i < lettere.length; i++) {
-                somma += (lettere.charCodeAt(i) - 64);
-            }
-            return somma || 1;
-        }
-
-        function determinaSegnoZodiacale(giorno, mese) {
-            let g = parseInt(giorno, 10);
-            let m = parseInt(mese, 10);
-            for (let item of mappaZodiacale) {
-                let [mInizio, gInizio] = item.inizio;
-                let [mFine, gFine] = item.fine;
-                if ((m === mInizio && g >= gInizio) || (m === mFine && g <= gFine)) {
-                    return item;
-                }
-            }
-            return mappaZodiacale[0];
-        }
-
-        function calcolaProfilo() {
-            const nomeInput = document.getElementById('nome').value.trim();
-            const comuneInput = document.getElementById('comune').value.trim();
-            const annoInput = document.getElementById('anno').value.trim();
-            const giornoInput = document.getElementById('giorno').value.trim();
-            const meseInput = document.getElementById('mese').value.trim();
-            const oraInput = document.getElementById('ora').value.trim();
-            
-            const container = document.getElementById('output-container');
-            const divRisultato = document.getElementById('risultato');
-            const divSecondaPagina = document.getElementById('risultato-seconda-pagina');
-
-            container.style.display = 'block';
-
-            // Controllo e blocco rigoroso su campi obbligatori inclusi Ora e Comune
-            if (!nomeInput || !comuneInput || !annoInput || !giornoInput || !meseInput || !oraInput) {
-                divRisultato.innerHTML = '<span class="error"><i class="fa-solid fa-triangle-exclamation"></i> Attenzione: Tutti i campi, inclusi l\'Ora di Nascita e il Comune di Nascita, sono obbligatori per il calcolo geodinamico.</span>';
-                divSecondaPagina.innerHTML = '';
-                return;
-            }
-
-            const anno = parseInt(annoInput, 10);
-            if (isNaN(anno) || anno < 1900 || anno > 2099) {
-                divRisultato.innerHTML = '<span class="error"><i class="fa-solid fa-triangle-exclamation"></i> Inserire un anno di nascita valido (1900-2099).</span>';
-                divSecondaPagina.innerHTML = '';
-                return;
-            }
-
-            const giorno = parseInt(giornoInput, 10);
-            if (isNaN(giorno) || giorno < 1 || giorno > 31) {
-                divRisultato.innerHTML = '<span class="error"><i class="fa-solid fa-triangle-exclamation"></i> Inserire un giorno valido (1-31).</span>';
-                divSecondaPagina.innerHTML = '';
-                return;
-            }
-
-            const mese = parseInt(meseInput, 10);
-            const primoNome = nomeInput.split(' ')[0].toUpperCase();
-            const infoNome = databaseNomi[primoNome];
-
-            if (!infoNome) {
-                divRisultato.innerHTML = `<span class="error"><i class="fa-solid fa-triangle-exclamation"></i> Il nome "<strong>${nomeInput}</strong>" non è presente nel database degli onomastici. Inserisci un nome valido.</span>`;
-                divSecondaPagina.innerHTML = '';
-                return;
-            }
-
-            const comuneKey = comuneInput.toUpperCase();
-            let valoreComune = databaseComuni[comuneKey];
-            if (valoreComune === undefined) {
-                valoreComune = calcolaValoreTesto(comuneKey);
-            }
-
-            const valoreNome = calcolaValoreTesto(nomeInput);
-            const num1 = riduciA90(valoreNome + anno + giorno);
-            const num2 = riduciA90(valoreComune + (anno % 100) + mese);
-            const num3 = riduciA90(valoreNome + valoreComune + anno + giorno + mese);
-            const profilo = determinaSegnoZodiacale(giorno, mese);
-
-            // Prima Pagina Risultato Principale
-            divRisultato.innerHTML = `
-                <div class="result-card">
-                    <div class="result-header">PROFILO GEODINAMICO DI ${nomeInput.toUpperCase()}</div>
-                    <div class="info-row"><span class="info-label"><i class="fa-solid fa-user-tag"></i> Data & Ora:</span><span class="info-val">${giorno}/${mese}/${anno} alle ${oraInput}</span></div>
-                    <div class="info-row"><span class="info-label"><i class="fa-solid fa-city"></i> Luogo di Nascita:</span><span class="info-val">${comuneInput.toUpperCase()}</span></div>
-                    <div class="info-row"><span class="info-label"><i class="fa-solid fa-star"></i> Segno Zodiacale:</span><span class="info-val" style="color: var(--gold-primary); font-size: 16px;">${profilo.segno}</span></div>
-                    <div class="horoscope-box"><strong>Profilo & Tendenze:</strong> "${profilo.oroscopo}"</div>
-                    <div class="weekly-horoscope">
-                        <div class="weekly-title"><i class="fa-solid fa-calendar-week"></i> Oroscopo Settimanale</div>
-                        <div style="font-size: 13px; line-height: 1.5; color: var(--text-main);">${profilo.oroscopoSettimanale}</div>
-                    </div>
-                    <div class="info-row"><span class="info-label"><i class="fa-solid fa-gem"></i> Pietra Preziosa:</span><span class="info-val">${profilo.pietra}</span></div>
-                    <div class="info-row"><span class="info-label"><i class="fa-solid fa-palette"></i> Colore Guida:</span><span class="info-val">${profilo.colore}</span></div>
-                    <div class="info-row"><span class="info-label"><i class="fa-solid fa-heart"></i> Affinità Emozionale:</span><span class="info-val">${profilo.affinita}</span></div>
-                    <div style="margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 15px;">
-                        <div class="info-row"><span class="info-label"><i class="fa-solid fa-book"></i> Significato Nome:</span><span class="info-val" style="text-align: left; max-width: 60%;">${infoNome.significato}</span></div>
-                        <div class="info-row"><span class="info-label"><i class="fa-solid fa-calendar-check"></i> Data Onomastico:</span><span class="info-val">${infoNome.onomastico}</span></div>
-                        <div class="info-row"><span class="info-label"><i class="fa-solid fa-feather"></i> Storia / Aneddoto:</span><span class="info-val" style="text-align: left; max-width: 60%; font-style: italic;">"${infoNome.aneddoto}"</span></div>
-                        <div class="info-row"><span class="info-label"><i class="fa-solid fa-award"></i> Omonimi Famosi:</span><span class="info-val">${infoNome.famosi}</span></div>
-                    </div>
-                    <div class="astral-numbers">
-                        <div class="astral-numbers-title">NUMERI ASTRALI GEODINAMICI</div>
-                        <div class="astral-numbers-val">${num1} - ${num2} - ${num3}</div>
-                    </div>
-                </div>
-            `;
-
-            // Seconda Pagina: Affinità, Quadro Armonico ed Altro (Estratto da Master Excel)
-            divSecondaPagina.innerHTML = `
-                <div class="result-card">
-                    <div class="result-header"><i class="fa-solid fa-circle-nodes"></i> QUADRO DI AFFINITÀ & PARAMETRI AVANZATI</div>
-                    <div class="horoscope-box">
-                        <strong>Analisi di Compatibilità Geodinamica:</strong> L'interazione tra le coordinate di ${comuneInput.toUpperCase()} e l'orario di nascita (${oraInput}) rivela una forte risonanza energetica con i segni di ${profilo.affinita}.
-                    </div>
-                    <div class="info-row"><span class="info-label"><i class="fa-solid fa-compass"></i> Indice Armonico Primario:</span><span class="info-val">${(num1 * 1.618).toFixed(1)} % (Ottimale)</span></div>
-                    <div class="info-row"><span class="info-label"><i class="fa-solid fa-shield-halved"></i> Fattore di Protezione Astrale:</span><span class="info-val">Classe IV - Stabile</span></div>
-                    <div class="info-row"><span class="info-label"><i class="fa-solid fa-bolt"></i> Ciclo Energetico di Riserva:</span><span class="info-val">${num2} Giorni</span></div>
-                    <div class="weekly-horoscope" style="margin-top: 15px;">
-                        <div class="weekly-title"><i class="fa-solid fa-lightbulb"></i> Consigli per il Benessere Quotidiano</div>
-                        <div style="font-size: 13px; line-height: 1.5; color: var(--text-main);">
-                            La combinazione dei numeri astrali suggerisce di coltivare i propri interessi creativi e di mantenere un contatto costante con la natura e gli affetti familiari. La stabilità interiore è il pilastro del successo personale.
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            container.scrollIntoView({ behavior: 'smooth' });
-        }
-    </script>
-</body>
-</html>
+            { segno: "Acquario", inizio: [1, 20], fine: [2, 18], pietra: "Ametista", colore: "Blu Elettrico", affinita: "Gemelli e Bilancia",
