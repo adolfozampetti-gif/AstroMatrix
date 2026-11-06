@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AstroMatrix FREE - Dashboard Geodinamica</title>
-    <!-- Font Awesome per le icone -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -171,7 +169,7 @@
 
         <div class="hero-title">
             <h1>IL TUO PROFILO ASTRALE</h1>
-            <p>Inserisci nome, giorno, mese, anno, ora e città di nascita per generare l'analisi dettagliata estratta dal Master Geodinamico.</p>
+            <p>Inserisci i dati anagrafici completi, l'ora, il comune di nascita e seleziona i segni per le affinità.</p>
         </div>
 
         <div id="astroForm">
@@ -205,61 +203,4 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="anno"><i class="fa-solid fa-calendar"></i> Anno (YYYY) *:</label>
-                    <input type="number" id="anno" class="form-control" min="1900" max="2099" placeholder="Es. 1955">
-                </div>
-            </div>
-
-            <div class="grid-2">
-                <div class="form-group">
-                    <label class="form-label" for="ora"><i class="fa-solid fa-clock"></i> Ora di Nascita *:</label>
-                    <input type="text" id="ora" class="form-control" placeholder="Es. 16:30">
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="comune"><i class="fa-solid fa-location-dot"></i> Comune di Nascita *:</label>
-                    <input type="text" id="comune" class="form-control" placeholder="Es. Napoli">
-                </div>
-            </div>
-
-            <button type="button" onclick="calcolaProfilo()" class="btn-calculate">Calcola Profilo Gratuito</button>
-        </div>
-
-        <div id="output-container">
-            <div id="risultato"></div>
-            <div id="risultato-seconda-pagina"></div>
-        </div>
-    </div>
-
-    <script>
-        const databaseComuni = {
-            "NAPOLI": 18, "CASERTA": 12, "SAVONA": 7, "UDINE": 15, "ROMA": 9, 
-            "MILANO": 5, "TORINO": 6, "BOLOGNA": 11, "FIRENZE": 14, "PALERMO": 21,
-            "GENOVA": 8, "BARI": 19, "CATANIA": 23, "VENEZIA": 13, "VERONA": 10,
-            "SALERNO": 16, "AVELLINO": 17, "BENEVENTO": 20, "CASARSA DEL FRIULI": 4
-        };
-
-        const databaseNomi = {
-            "ADALGISA": { significato: "Nome di origine germanica, di nobile ostaggio o nobile protezione.", onomastico: "20 Aprile", aneddoto: "Una sera a teatro a Milano, una signora di nome Adalgisa fu scambiata per la soprano della Norma di Bellini.", famosi: "Adalgisa Gabbi" },
-            "ADAMO": { significato: "Nome di origine ebraica, significa uomo, nato dalla terra.", onomastico: "24 Dicembre", aneddoto: "Durante un viaggio in campagna, Adamo perse la strada ma trovò un frutteto selvatico.", famosi: "Adamo (personaggio biblico)" },
-            "ADAUTO": { significato: "Nome di origine latina, significa aggiunto, nato in più.", onomastico: "30 Agosto", aneddoto: "Nato come quinto figlio in una famiglia numerosa, Adauto portò sempre con orgoglio questo nome unico.", famosi: "Sant'Adauto" },
-            "ADALBERTO": { significato: "Nome di origine germanica, significa di illustre nobiltà.", onomastico: "23 Aprile", aneddoto: "Un giovane Adalberto ristrutturò una vecchia libreria di famiglia trasformandola in punto di incontro per poeti.", famosi: "Adalberto da Praga" },
-            "ADELAIDE": { significato: "Nome di origine germanica, significa di nobile stirpe e aspetto.", onomastico: "16 Dicembre", aneddoto: "Nonna Adelaide amava raccontare storie attorno al camino, trasformando ogni serata in un viaggio.", famosi: "Adelaide Ristori" },
-            "ADOLFO": { significato: "Nome di origine germanica, significa nobile lupo.", onomastico: "17 Giugno", aneddoto: "Nelle notti estive degli anni '70, un giovane DJ infiammava le frequenze delle prime radio libere della Campania.", famosi: "Adolfo Celi" },
-            "ADRIANO": { significato: "Nome di origine latina, significa originario di Adria o proveniente dal mare.", onomastico: "9 Gennaio, 5 Marzo, 8 Luglio", aneddoto: "Durante un viaggio a Roma, Adriano si fermò davanti a Castel Sant'Angelo riflettendo sulla storia.", famosi: "Imperatore Adriano, Adriano Celentano" },
-            "AGAPITO": { significato: "Nome di origine greca, significa amato, amabile.", onomastico: "18 Agosto", aneddoto: "Agapito era conosciuto in tutto il paese per il suo sorriso contagioso e la capacità di far pace.", famosi: "Papa Agapito I" },
-            "AGATA": { significato: "Nome di origine greca, significa buona, virtuosa.", onomastico: "5 Febbraio, 12 Giugno", aneddoto: "Ogni anno a febbraio, Agata preparava le tradizionali ricette della nonna profumando l'intera strada.", famosi: "Sant'Agata, Agatha Christie" },
-            "AGNESE": { significato: "Nome di origine greca, significa casta, pura, agnello.", onomastico: "21 Gennaio", aneddoto: "Nel giardino di Agnese crescevano le rose più profumate del paese, regalate ogni domenica agli anziani.", famosi: "Sant'Agnese, Agnese Moro" },
-            "AGOSTINO": { significato: "Nome di origine latina, significa venerabile, favorito da auguri felici.", onomastico: "28 Agosto", aneddoto: "Tra gli scaffali della biblioteca universitaria, Agostino ritrovò un antico manoscritto sulla filosofia.", famosi: "Sant'Agostino d'Ippona" },
-            "ALBERTO": { significato: "Nome di origine germanica, significa famoso per nobiltà.", onomastico: "8 Aprile", aneddoto: "Un regalo inaspettato aprì ad Alberto un mondo nuovo fatto di scrittura, blog e programmazione web.", famosi: "Alberto Sordi, Albert Einstein" },
-            "ALDO": { significato: "Nome di origine germanica, significa vecchio, saggio, esperto.", onomastico: "10 Gennaio", aneddoto: "Nel suo laboratorio di falegnameria, Aldo creava burattini in legno capaci di incantare i bambini.", famosi: "Aldo Moro, Aldo Fabrizi" },
-            "ALESSANDRA": { significato: "Nome di origine greca, significa protettrice degli uomini.", onomastico: "20 Marzo", aneddoto: "Alessandra corse la sua prima maratona tagliando il traguardo tra gli applausi commossi della famiglia.", famosi: "Alessandra Amoroso" },
-            "ALESSANDRO": { significato: "Nome di origine greca, significa protettore degli uomini.", onomastico: "26 Febbraio, 26 Agosto", aneddoto: "Zio Alessandro amava guidare lungo la costa raccontando aneddoti storici su ogni baia.", famosi: "Alessandro Manzoni, Alessandro Del Piero" },
-            "ALESSIO": { significato: "Nome di origine greca, significa colui che protegge o salva.", onomastico: "17 Febbraio, 17 Luglio", aneddoto: "Durante un forte temporale, Alessio trasse in salvo un gattino smarrito sotto una panchina.", famosi: "Alessio Boni" },
-            "ALFONSO": { significato: "Nome di origine germanica, significa nobile e valoroso.", onomastico: "1 Agosto", aneddoto: "Don Alfonso curava la sua trattoria di campagna con la dedizione di un maestro d'orchestra.", famosi: "Sant'Alfonso Maria de' Liguori" },
-            "AMEDEO": { significato: "Nome di origine latina, significa colui che ama Dio.", onomastico: "30 Marzo", aneddoto: "Amedeo scalò la sua prima cima dolomitica all'alba ammirando i riflessi rosa delle rocce.", famosi: "Amedeo Modigliani, Amedeo Nazzari" },
-            "AMBROGIO": { significato: "Nome di origine greca, significa immortale.", onomastico: "7 Dicembre", aneddoto: "A Milano per Ambrogio è festa grande con le bancarelle degli Oh Bej! Oh Bej! e il vin brûlé.", famosi: "Sant'Ambrogio" },
-            "ANTONIO": { significato: "Nome di origine latina, significa inestimabile.", onomastico: "17 Gennaio, 13 Giugno", aneddoto: "A giugno per la festa di Sant'Antonio, Antonio portava in processione la statua lungo le stradine del borgo.", famosi: "Sant'Antonio da Padova, Totò" }
-        };
-
-        const mappaZodiacale = [
-            { segno: "Capricorno", inizio: [12, 22], fine: [1, 19], pietra: "Rubino", colore: "Nero / Grigio Antracite", affinita: "Toro e Vergine", oroscopo: "La concretezza e la determinazione ferrea ti permettono di superare qualsiasi vetta.", oroscopoSettimanale: "Settimana favorevole per consolidare progetti professionali a lungo termine." },
-            { segno: "Acquario", inizio: [1, 20], fine: [2, 18], pietra: "Ametista", colore: "Blu Elettrico", affinita: "Gemelli e Bilancia",
+                    <input type
